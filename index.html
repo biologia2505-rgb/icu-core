@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ICU CORE v30.1 — Clinical Reasoning Engine</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* === INTRO — дышащий градиент + пульсирующий логотип === */
+#intro-screen{position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;display:flex;flex-direction:column;justify-content:center;align-items:center;pointer-events:none;animation:introFadeOut .6s ease 2.2s forwards;background:linear-gradient(135deg,#1A1F2A 0%,#1E2A38 60%,#232F40 100%);background-size:200% 200%;animation:introFadeOut .6s ease 2.2s forwards,introBreath 6s ease-in-out infinite}
+#intro-screen .intro-logo{width:clamp(48px,10vw,84px);height:clamp(48px,10vw,84px);color:#7BA8A0;stroke-width:1.5;margin-bottom:28px;animation:introLogoPulse 2s ease-in-out infinite,introSlide 1s cubic-bezier(.16,1,.3,1) both}
+#intro-screen .intro-title{font:700 clamp(32px,7vw,64px) 'Inter',sans-serif;color:#FAF9F7;letter-spacing:-.03em;margin:0;animation:introSlide 1.2s cubic-bezier(.16,1,.3,1) both;font-feature-settings:'cv11'}
+#intro-screen .intro-line{width:clamp(60px,15vw,120px);height:1.5px;background:linear-gradient(90deg,transparent,#7BA8A0,transparent);margin:24px 0;animation:introGrow 1.4s cubic-bezier(.16,1,.3,1) .3s both}
+#intro-screen .intro-sub{font:400 clamp(11px,2vw,14px) 'Inter',sans-serif;color:#A8B2BD;letter-spacing:.15em;text-transform:uppercase;margin:0;animation:introSlide 1s ease .5s both}
+@keyframes introFadeOut{to{opacity:0;visibility:hidden}}
+@keyframes introSlide{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes introGrow{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
+@keyframes introBreath{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes introLogoPulse{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+
+/* === THEME === */
+:root{
+  --bg:#FAF9F7;--card:#FFFFFF;--elev:#F5F3F0;--elev2:#FAF9F7;
+  --txt:#1A1A1A;--txt2:#3A3A3A;--mut:#5A5A5A;--mut2:#7A7A7A;
+  --border:#E8E6E3;--border2:#F0EEEA;
+  --acc:#294056;--acc-soft:#EDF1F5;--acc-hover:#1E2F40;
+  --ok:#3F7A4F;--ok-bg:#EBF3EC;--warn:#A87B0B;--warn-bg:#F8F2E0;--bad:#9E3A38;--bad-bg:#F5E8E7;
+  --radius:10px;--radius-sm:8px;
+  --shadow:0 1px 2px rgba(26,26,26,.05),0 1px 3px rgba(26,26,26,.04);
+  --shadow-md:0 4px 16px rgba(41,64,86,.08);
+  --shadow-lg:0 8px 32px rgba(41,64,86,.10);
+  --t:.18s cubic-bezier(.2,0,.2,1);
+}
+[data-theme=dark]{
+  --bg:#15171C;--card:#1D2026;--elev:#262A32;--elev2:#1A1D22;
+  --txt:#F2F3F5;--txt2:#C8CBD2;--mut:#8A8F99;--mut2:#6A6F79;
+  --border:#2C3038;--border2:#242830;
+  --acc:#7BA8A0;--acc-soft:#1A2B2E;--acc-hover:#8EBBB3;
+  --ok:#6FAB7E;--ok-bg:#16281B;--warn:#D4A644;--warn-bg:#2B2418;--bad:#C97069;--bad-bg:#2B1A18;
+  --shadow:0 1px 2px rgba(0,0,0,.4);--shadow-md:0 4px 16px rgba(0,0,0,.5);--shadow-lg:0 8px 32px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:'Inter',-apple-system,system-ui,sans-serif;font-size:14px;line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased;font-feature-settings:'cv11','ss01';padding-bottom:60px;transition:background var(--t),color var(--t)}
+.container{max-width:1280px;margin:0 auto;padding:28px 24px}
+
+/* === HEADER === */
+.header{position:sticky;top:0;z-index:50;background:var(--bg);padding:16px 0 14px;margin-bottom:20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;transition:background var(--t),border-color var(--t)}
+.header-brand{display:flex;align-items:center;gap:12px}
+.header-logo{width:28px;height:28px;color:var(--acc);stroke-width:1.5;transition:color var(--t)}
+.header h1{font-size:18px;font-weight:700;margin:0;letter-spacing:-.02em;color:var(--txt);display:flex;align-items:baseline;gap:10px}
+.version{font-size:10px;font-weight:500;color:var(--mut);padding:2px 7px;background:var(--elev);border-radius:20px;font-family:'JetBrains Mono',monospace;letter-spacing:0}
+.header-sub{font-size:11.5px;color:var(--mut);margin-top:2px;font-weight:400}
+.header-actions{display:flex;gap:6px;align-items:center}
+.icon-btn{width:34px;height:34px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--card);color:var(--txt2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--t);padding:0}
+.icon-btn:hover{background:var(--elev);color:var(--txt);border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-soft)}
+.icon-btn:active{transform:scale(.94)}
+.icon-btn svg{width:15px;height:15px;stroke-width:1.5}
+.risk-pill{font-size:12px;padding:5px 12px;border-radius:20px;background:var(--card);border:1px solid var(--border);color:var(--txt2);font-family:'JetBrains Mono',monospace;font-weight:600;display:flex;align-items:center;gap:7px;transition:all var(--t)}
+.risk-dot{width:6px;height:6px;border-radius:50%;background:var(--mut2);transition:all .3s}
+.risk-pill.ok .risk-dot{background:var(--ok);box-shadow:0 0 0 3px var(--ok-bg)}
+.risk-pill.warn .risk-dot{background:var(--warn);box-shadow:0 0 0 3px var(--warn-bg)}
+.risk-pill.bad .risk-dot{background:var(--bad);box-shadow:0 0 0 3px var(--bad-bg)}
+
+/* === TABS === */
+.tabs{display:flex;gap:2px;margin-bottom:22px;padding:4px;background:var(--elev);border-radius:var(--radius);overflow-x:auto;transition:background var(--t)}
+.tab{flex:1;min-width:80px;padding:8px 12px;border:0;border-radius:6px;background:transparent;color:var(--mut);font:500 12px 'Inter',sans-serif;cursor:pointer;transition:all var(--t);white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:6px}
+.tab:hover{color:var(--txt);background:rgba(41,64,86,.05)}
+.tab:active{transform:scale(.97)}
+.tab.active{background:var(--card);color:var(--txt);font-weight:600;box-shadow:var(--shadow)}
+.tab svg{width:13px;height:13px;opacity:.6;stroke-width:1.75;transition:all var(--t)}
+.tab.active svg{opacity:1;color:var(--acc)}
+
+.panel{display:none}
+.panel.active{display:block;animation:panelIn .22s cubic-bezier(.2,0,.2,1)}
+@keyframes panelIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* === CARD === */
+.card,.chart-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);transition:background var(--t),border-color var(--t),box-shadow var(--t)}
+.card + .card{margin-top:12px}
+.card h2{font-size:11px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--border2);display:flex;align-items:center;gap:8px}
+.card h2 svg{width:13px;height:13px;stroke-width:1.75;color:var(--acc)}
+.card h2 .toggle-mode{margin-left:auto;font-size:10px;color:var(--acc);cursor:pointer;font-weight:600;text-transform:none;letter-spacing:0;padding:3px 8px;background:var(--acc-soft);border-radius:6px;border:0;transition:all var(--t)}
+.card h2 .toggle-mode:hover{transform:translateY(-1px);box-shadow:0 0 0 3px var(--acc-soft)}
+.card h2 .toggle-mode:active{transform:scale(.95)}
+
+/* === GRID === */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:12px;align-items:start}
+
+/* === FIELD ROW === */
+.field-row{display:grid;grid-template-columns:repeat(4, 1fr);gap:10px}
+.field-row.cols-3{grid-template-columns:repeat(3, 1fr)}
+.field-row.cols-2{grid-template-columns:repeat(2, 1fr)}
+.field-group{margin-bottom:14px}
+.field-group:last-child{margin-bottom:0}
+.group-label{font:600 10px 'Inter',sans-serif;color:var(--mut2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;padding-bottom:5px;border-bottom:1px dashed var(--border2)}
+
+label{display:block;font:600 11px 'Inter',sans-serif;color:var(--txt2);margin:0 0 4px;letter-spacing:.02em;text-transform:uppercase}
+input,select,textarea{width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--card);color:var(--txt);font:500 14px 'JetBrains Mono',monospace;transition:all var(--t);font-variant-numeric:tabular-nums}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-soft)}
+input::placeholder,textarea::placeholder{color:var(--mut2);font-family:'Inter',sans-serif;font-weight:400}
+.hint{font:400 10px 'Inter',sans-serif;color:var(--mut2);margin-top:3px;line-height:1.35}
+textarea{font-family:'Inter',sans-serif;font-size:13px;line-height:1.5;resize:vertical;min-height:70px}
+
+/* Убираем дефолтные стрелки у number-полей */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;appearance:none;margin:0}
+input[type=number]{-moz-appearance:textfield;appearance:textfield}
+
+/* Убираем автозаполнение Chrome */
+input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus,input:-webkit-autofill:active{-webkit-box-shadow:0 0 0 1000px var(--card) inset !important;-webkit-text-fill-color:var(--txt) !important;transition:background-color 5000s ease-in-out 0s;caret-color:var(--txt)}
+
+input.ok-field{border-color:var(--ok);background:var(--ok-bg)}
+input.warn-field{border-color:var(--warn);background:var(--warn-bg)}
+input.bad-field{border-color:var(--bad);background:var(--bad-bg)}
+
+.btnrow{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+button.primary{flex:1;min-width:140px;padding:12px 20px;border:0;border-radius:var(--radius-sm);background:linear-gradient(180deg,var(--acc) 0%,var(--acc-hover) 100%);color:#fff;font:600 13px 'Inter',sans-serif;cursor:pointer;transition:all var(--t);display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+button.primary:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(41,64,86,.22),0 0 0 3px var(--acc-soft)}
+button.primary:active{transform:scale(.98) translateY(0);box-shadow:0 1px 2px rgba(0,0,0,.1)}
+button.primary svg{width:14px;height:14px;stroke-width:2}
+button.ghost{background:var(--card);border:1px solid var(--border);color:var(--txt2);flex:0 0 auto;min-width:auto;padding:12px 18px;border-radius:var(--radius-sm);font:500 13px 'Inter',sans-serif;cursor:pointer;transition:all var(--t)}
+button.ghost:hover{background:var(--elev);color:var(--txt);border-color:var(--acc);transform:translateY(-1px);box-shadow:0 0 0 3px var(--acc-soft)}
+button.ghost:active{transform:scale(.98) translateY(0)}
+
+.preset-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.preset-btn{padding:9px 12px;border-radius:var(--radius-sm);background:var(--elev2);border:1px solid var(--border);color:var(--txt2);cursor:pointer;font:500 12px 'Inter',sans-serif;transition:all var(--t);text-align:center}
+.preset-btn:hover{background:var(--elev);color:var(--txt);border-color:var(--acc);transform:translateY(-1px);box-shadow:0 0 0 3px var(--acc-soft)}
+.preset-btn:active{transform:scale(.97) translateY(0)}
+
+/* === RESULT CARDS === */
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+.result-card{padding:14px;background:var(--elev2);border-radius:var(--radius-sm);border:1px solid var(--border2);transition:all var(--t)}
+.result-card:hover{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-soft)}
+.result-card h4{font:600 10px 'Inter',sans-serif;color:var(--acc);text-transform:uppercase;letter-spacing:.06em;margin:0 0 10px;display:flex;justify-content:space-between;align-items:center}
+.result-row{display:flex;justify-content:space-between;padding:5px 0;font-size:12.5px;border-bottom:1px dashed var(--border2)}
+.result-row:last-child{border-bottom:none}
+.result-row span:first-child{color:var(--mut)}
+.result-row span:last-child{font:600 12.5px 'JetBrains Mono',monospace;color:var(--txt);font-variant-numeric:tabular-nums}
+
+/* === SYNDROME — градиент вместо полоски === */
+.syndrome-block{padding:22px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.syndrome-block::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--acc) 0%,transparent 100%);border-radius:var(--radius) 0 0 var(--radius)}
+.syn-label{font:500 10px 'Inter',sans-serif;color:var(--acc);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.syn-title{font:600 20px 'Inter',sans-serif;color:var(--txt);line-height:1.3;margin-bottom:8px;letter-spacing:-.015em}
+.syn-detail{font:400 13px 'Inter',sans-serif;color:var(--mut);line-height:1.6}
+
+.final-block{padding:16px;background:var(--elev2);border-radius:var(--radius-sm);margin:8px 0;border:1px solid var(--border2)}
+.final-block h4{font:600 11px 'Inter',sans-serif;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+.final-block h4 .num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;background:var(--acc);color:#fff;border-radius:50%;font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.final-block .content{font-size:13px;line-height:1.7;color:var(--txt2)}
+
+/* === DASHBOARD === */
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.dash-tile{padding:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);transition:all .25s cubic-bezier(.2,0,.2,1);position:relative;overflow:hidden}
+.dash-tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-md),0 0 0 3px var(--acc-soft)}
+.dash-tile.ok{background:linear-gradient(135deg,var(--ok-bg) 0%,var(--card) 55%)}
+.dash-tile.warn{background:linear-gradient(135deg,var(--warn-bg) 0%,var(--card) 55%)}
+.dash-tile.bad{background:linear-gradient(135deg,var(--bad-bg) 0%,var(--card) 55%)}
+.dash-label{font:500 10px 'Inter',sans-serif;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.dash-value{font:600 24px 'JetBrains Mono',monospace;color:var(--txt);line-height:1.1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.dash-tile.ok .dash-value{color:var(--ok)}
+.dash-tile.warn .dash-value{color:var(--warn)}
+.dash-tile.bad .dash-value{color:var(--bad)}
+.dash-unit{font-size:10px;color:var(--mut2);font-weight:500;margin-top:3px;font-family:'JetBrains Mono',monospace}
+.dash-status{font:600 11px 'Inter',sans-serif;margin-top:5px}
+.dash-status.ok{color:var(--ok)}
+.dash-status.warn{color:var(--warn)}
+.dash-status.bad{color:var(--bad)}
+.dash-tile.bad::after{content:'';position:absolute;top:14px;right:14px;width:8px;height:8px;border-radius:50%;background:var(--bad);animation:pulseBad 1.8s ease-in-out infinite}
+@keyframes pulseBad{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(158,58,56,.45)}50%{opacity:.75;box-shadow:0 0 0 6px rgba(158,58,56,0)}}
+
+.dash-summary{padding:20px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:12px;transition:all var(--t)}
+.dash-summary h3{font:600 10px 'Inter',sans-serif;color:var(--mut);text-transform:uppercase;letter-spacing:.1em;margin:0 0 10px}
+.dash-summary .main{font:600 17px 'Inter',sans-serif;color:var(--txt);margin-bottom:6px;letter-spacing:-.015em}
+.dash-summary .sub{font:400 13px 'Inter',sans-serif;color:var(--mut);line-height:1.6}
+.dash-scales{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;margin-top:10px}
+.dash-scale{padding:12px;background:var(--elev2);border-radius:var(--radius-sm);text-align:center;border:1px solid var(--border2)}
+.dash-scale .name{font:500 10px 'Inter',sans-serif;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+.dash-scale .val{font:600 18px 'JetBrains Mono',monospace;color:var(--txt);margin:3px 0;font-variant-numeric:tabular-nums}
+.dash-scale .interp{font-size:10px;color:var(--mut2);line-height:1.3}
+.dash-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.dash-actions button{flex:1;min-width:160px;padding:12px;border-radius:var(--radius-sm);font:600 13px 'Inter',sans-serif;cursor:pointer;transition:all var(--t);border:0;display:flex;align-items:center;justify-content:center;gap:8px}
+.dash-actions .primary{background:linear-gradient(180deg,var(--acc) 0%,var(--acc-hover) 100%);color:#fff;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.dash-actions .primary:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(41,64,86,.22),0 0 0 3px var(--acc-soft)}
+.dash-actions .primary:active{transform:scale(.98) translateY(0)}
+.dash-actions .ghost{background:var(--card);border:1px solid var(--border);color:var(--txt2)}
+.dash-actions .ghost:hover{background:var(--elev);border-color:var(--acc);color:var(--txt);transform:translateY(-1px);box-shadow:0 0 0 3px var(--acc-soft)}
+.dash-actions .ghost:active{transform:scale(.98) translateY(0)}
+.dash-actions svg{width:14px;height:14px;stroke-width:2}
+
+/* === SCALES === */
+.score-card{padding:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);margin-top:10px;transition:all var(--t)}
+.score-card:hover{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-soft)}
+.score-card h4{font:600 12px 'Inter',sans-serif;color:var(--txt);margin:0 0 8px;text-transform:uppercase;letter-spacing:.05em}
+.score-val{font:600 28px 'JetBrains Mono',monospace;color:var(--txt);margin:4px 0;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.score-interp{font-size:12.5px;color:var(--mut);line-height:1.5;margin-bottom:10px}
+.score-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border2);font-size:12.5px}
+.score-row:last-child{border-bottom:none}
+.score-row span:first-child{color:var(--mut)}
+.score-row span:last-child{font:600 12.5px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums}
+.badge-ok,.badge-warn,.badge-bad{display:inline-block;padding:2px 8px;border-radius:4px;font:600 10px 'Inter',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+.badge-ok{background:var(--ok-bg);color:var(--ok)}
+.badge-warn{background:var(--warn-bg);color:var(--warn)}
+.badge-bad{background:var(--bad-bg);color:var(--bad)}
+
+/* === BALANCE === */
+.balance-result{padding:14px;background:var(--elev2);border-radius:var(--radius-sm);border:1px solid var(--border2);margin-top:10px}
+.balance-result h4{font:600 11px 'Inter',sans-serif;color:var(--acc);margin:0 0 10px;text-transform:uppercase;letter-spacing:.06em}
+.balance-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--border2);font-size:12.5px}
+.balance-row:last-child{border-bottom:none}
+.balance-row span:first-child{color:var(--mut)}
+.balance-row span:last-child{font:600 12.5px 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums}
+
+/* === DETAILS === */
+details{margin:8px 0;padding:0;background:transparent;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;transition:all var(--t)}
+details[open]{background:var(--elev2)}
+details:hover{border-color:var(--acc)}
+summary{cursor:pointer;font:500 13px 'Inter',sans-serif;padding:11px 14px;color:var(--txt);list-style:none;display:flex;justify-content:space-between;align-items:center;transition:all var(--t);user-select:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'+';font-family:'JetBrains Mono',monospace;color:var(--mut);font-size:16px;transition:transform .25s cubic-bezier(.2,0,.2,1)}
+details[open] summary::after{content:'−'}
+summary:hover{background:var(--elev2);color:var(--acc)}
+summary:active{transform:scale(.99)}
+.fml{background:var(--card);padding:14px 18px;margin:0;font:12px 'JetBrains Mono',monospace;color:var(--txt2);overflow-x:auto;white-space:pre-wrap;line-height:1.7;border-top:1px solid var(--border);font-variant-numeric:tabular-nums}
+
+.alert,.rec,.finding{margin-top:10px;padding:11px 14px;border-radius:var(--radius-sm);font-size:12.5px;line-height:1.55;border:1px solid;border-left-width:3px}
+.alert{background:var(--warn-bg);border-color:var(--warn);color:var(--warn)}
+.rec{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.finding{background:var(--elev2);border-color:var(--border);color:var(--txt2);border-left-color:var(--acc);position:relative}
+.finding::before{content:'';position:absolute;top:0;left:-3px;width:3px;height:100%;background:linear-gradient(180deg,var(--acc) 0%,transparent 100%)}
+
+.chart-box{height:420px;position:relative}
+
+.history-panel{position:fixed;top:76px;right:24px;width:360px;max-width:calc(100vw - 32px);max-height:60vh;overflow:auto;z-index:100;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:8px;box-shadow:var(--shadow-lg);display:none;animation:panelIn .18s cubic-bezier(.2,0,.2,1)}
+.history-panel.show{display:block}
+.history-header{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid var(--border2);margin-bottom:4px}
+.history-header b{font:600 11px 'Inter',sans-serif;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+.history-item{padding:11px 13px;border-radius:var(--radius-sm);cursor:pointer;transition:all var(--t)}
+.history-item:hover{background:var(--elev2);transform:translateX(2px);box-shadow:0 0 0 3px var(--acc-soft)}
+.hi-date{font:400 11px 'JetBrains Mono',monospace;color:var(--mut2);margin-bottom:4px}
+.hi-main{font:600 12px 'JetBrains Mono',monospace;color:var(--txt);margin-bottom:3px}
+.hi-diag{font:400 11px 'Inter',sans-serif;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--txt);color:var(--card);padding:11px 20px;border-radius:var(--radius-sm);opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.2,0,.2,1);z-index:999;font:500 13px 'Inter',sans-serif;box-shadow:var(--shadow-lg)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+table{width:100%;border-collapse:collapse;font:13px 'JetBrains Mono',monospace;margin-top:8px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--border2);text-align:left}
+th{color:var(--mut);background:transparent;font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-family:'Inter',sans-serif}
+td:last-child{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+
+.small-note{font-size:12px;color:var(--mut);line-height:1.6;margin:8px 0 0}
+.diag{padding:4px 0;line-height:1.7;font-size:13px;color:var(--txt2)}
+.diag h3{font:600 11px 'Inter',sans-serif;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin:16px 0 10px}
+.diag h3:first-child{margin-top:0}
+.diag ul{margin:6px 0 6px 20px;padding:0}
+.diag li{margin:5px 0}
+
+.quick-fields{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .field-row{grid-template-columns:repeat(2,1fr)}
+  .result-grid{grid-template-columns:1fr}
+  .chart-box{height:360px}
+}
+@media(max-width:700px){
+  .container{padding:16px 12px}
+  .header{padding:12px 0;margin-bottom:16px}
+  .header h1{font-size:16px}
+  .header-actions{width:100%;justify-content:space-between}
+  .tabs{padding:3px;gap:1px}
+  .tab{padding:8px 8px;font-size:10.5px;min-width:auto;flex:1;letter-spacing:0;gap:4px}
+  .tab svg{display:none}
+  .card{padding:16px}
+  .dash-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .dash-value{font-size:20px}
+  .chart-box{height:320px}
+  .syn-title{font-size:16px}
+  .dash-actions{flex-direction:column}
+  .history-panel{width:calc(100vw - 24px);right:12px;top:68px}
+  .toast{left:12px;right:12px;transform:none;text-align:center}
+  .toast.show{transform:none}
+  .field-row{grid-template-columns:repeat(2,1fr)}
+  .quick-fields{grid-template-columns:repeat(2,1fr)}
+  .preset-row{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ===== ICU CORE v28 — visual system ===== */
+:root{--hero:#0b1018;--hero2:#101b27;--cyan:#6ee7f2;--mint:#8ce3c5;--violet:#a8a0ff;--glass:rgba(255,255,255,.055);--glass-border:rgba(255,255,255,.10)}
+body{background:radial-gradient(circle at 10% -10%,rgba(110,231,242,.08),transparent 32%),radial-gradient(circle at 95% 10%,rgba(168,160,255,.08),transparent 30%),var(--bg)}
+.container{max-width:1220px}
+.header{backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);background:color-mix(in srgb,var(--card) 86%,transparent);position:sticky;top:10px;z-index:20;border:1px solid var(--border);box-shadow:0 14px 40px rgba(0,0,0,.08)}
+.header-brand h1{letter-spacing:-.045em}.header-sub{letter-spacing:.02em}
+.home-hero{position:relative;overflow:hidden;border-radius:28px;min-height:560px;padding:58px clamp(26px,6vw,78px);display:flex;align-items:center;background:linear-gradient(135deg,#081018 0%,#0d1824 46%,#10172a 100%);color:#f8fbff;box-shadow:0 30px 90px rgba(7,16,28,.24);border:1px solid rgba(255,255,255,.09)}
+.home-hero:before{content:"";position:absolute;inset:-30%;background:radial-gradient(circle at 22% 28%,rgba(110,231,242,.16),transparent 22%),radial-gradient(circle at 76% 38%,rgba(168,160,255,.15),transparent 25%),radial-gradient(circle at 52% 88%,rgba(140,227,197,.08),transparent 20%);animation:heroFloat 14s ease-in-out infinite alternate}
+.home-grid{position:absolute;inset:0;opacity:.12;background-image:linear-gradient(rgba(255,255,255,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.2) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to right,black,transparent 80%);pointer-events:none}
+.home-content{position:relative;z-index:2;max-width:760px}.home-kicker{display:inline-flex;gap:9px;align-items:center;padding:8px 12px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.045);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#b9c9d8}.home-kicker i{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 18px var(--cyan)}
+.home-title{font-size:clamp(46px,8vw,92px);line-height:.94;letter-spacing:-.07em;margin:24px 0 18px;font-weight:700}.home-title span{background:linear-gradient(100deg,#fff,var(--cyan) 52%,#b8b1ff);-webkit-background-clip:text;background-clip:text;color:transparent}.home-lead{font-size:clamp(16px,2vw,20px);line-height:1.65;color:#b9c5d1;max-width:680px;margin:0 0 30px}.home-actions{display:flex;gap:12px;flex-wrap:wrap}.home-primary{border:0!important;background:linear-gradient(135deg,#dffcff,#8ee9f1)!important;color:#071018!important;box-shadow:0 12px 30px rgba(110,231,242,.18);font-weight:700!important}.home-secondary{background:rgba(255,255,255,.06)!important;color:#eaf2f8!important;border-color:rgba(255,255,255,.14)!important}.home-metrics{position:absolute;right:5%;bottom:7%;display:grid;grid-template-columns:repeat(2,145px);gap:10px;z-index:2}.home-metric{padding:16px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.045);backdrop-filter:blur(16px);border-radius:18px}.home-metric b{display:block;font:600 24px 'JetBrains Mono',monospace;color:#f7fbff}.home-metric span{font-size:10px;color:#8fa1b1;text-transform:uppercase;letter-spacing:.1em}
+.home-modules{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}.home-module{padding:18px;border:1px solid var(--border);background:var(--card);border-radius:18px;transition:.25s ease}.home-module:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(0,0,0,.08)}.home-module b{display:block;margin-bottom:6px}.home-module span{font-size:12px;color:var(--mut)}
+.clinical-card{border-radius:22px;background:linear-gradient(180deg,var(--card),color-mix(in srgb,var(--card) 92%,var(--acc-soft)));border:1px solid var(--border);box-shadow:0 18px 45px rgba(0,0,0,.06);padding:22px;margin-top:16px}.clinical-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--mut2);font-weight:700}.clinical-title{font-size:clamp(21px,3vw,32px);letter-spacing:-.035em;margin:7px 0}.clinical-sub{color:var(--mut);line-height:1.6}.finding-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}.finding-chip{padding:13px 15px;border:1px solid var(--border);border-radius:15px;background:var(--elev2);display:flex;gap:10px;align-items:flex-start}.finding-chip .dot{width:9px;height:9px;border-radius:50%;background:#f59e0b;margin-top:5px;flex:none}.finding-chip.bad .dot{background:#ef6a72;box-shadow:0 0 12px rgba(239,106,114,.25)}
+.panel{animation:panelIn .38s ease both}@keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes heroFloat{from{transform:translate3d(-1%,0,0) scale(1)}to{transform:translate3d(2%,2%,0) scale(1.04)}}
+.help-note{padding:14px 16px;border:1px dashed var(--border);border-radius:15px;background:var(--elev2);color:var(--mut);font-size:12px;line-height:1.65;margin:12px 0}.field label small,.field .hint{display:block;color:var(--mut2);font-size:10px;line-height:1.35;margin-top:4px;font-weight:400}
+@media(max-width:850px){.home-hero{min-height:640px;align-items:flex-start;padding-top:44px}.home-metrics{position:relative;right:auto;bottom:auto;margin-top:28px;grid-template-columns:repeat(2,1fr)}.home-modules{grid-template-columns:repeat(2,1fr)}.finding-list{grid-template-columns:1fr}}
+@media(max-width:560px){.home-hero{border-radius:22px;min-height:690px}.home-title{font-size:54px}.home-actions>*{width:100%}.home-modules{grid-template-columns:1fr}.home-metric{padding:13px}.home-metric b{font-size:20px}}
+
+/* ═════════ ICU CORE v29 — ELEGANT CLINICAL DESIGN SYSTEM ═════════ */
+:root{
+ --bg:#f4f1eb;--card:#fbfaf7;--elev:#f0ede6;--elev2:#f7f5f0;--txt:#252825;--txt2:#4d534f;--mut:#737872;--mut2:#9a9f99;
+ --border:#dedbd2;--border2:#ebe8e0;--acc:#536f68;--acc-soft:#e5eeeb;--acc-hover:#405b55;
+ --ok:#557a61;--ok-bg:#e8f0e9;--warn:#9b7633;--warn-bg:#f4eddb;--bad:#a65350;--bad-bg:#f4e5e3;
+ --radius:16px;--radius-sm:11px;--shadow:0 1px 1px rgba(45,43,38,.03),0 12px 34px rgba(45,43,38,.045);--shadow-md:0 14px 42px rgba(45,43,38,.08);--shadow-lg:0 25px 70px rgba(45,43,38,.13);--t:.25s cubic-bezier(.2,.8,.2,1)
+}
+body{font-family:'Manrope',system-ui,sans-serif;background:radial-gradient(circle at 10% 0%,rgba(125,154,145,.08),transparent 28%),radial-gradient(circle at 90% 12%,rgba(193,177,145,.10),transparent 25%),var(--bg);letter-spacing:-.01em}
+.header{background:rgba(250,248,243,.82);backdrop-filter:blur(18px);border:1px solid rgba(222,219,210,.9);border-radius:18px;padding:13px 16px;box-shadow:0 10px 30px rgba(45,43,38,.045);top:12px}
+.header h1{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:700;letter-spacing:-.035em}.header-sub{font-size:10px;letter-spacing:.08em;text-transform:uppercase}.version{font-family:'Manrope',sans-serif}
+.tabs{background:rgba(236,233,226,.72);border:1px solid var(--border2);border-radius:14px;padding:5px;box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
+.tab{font-family:'Manrope',sans-serif;border-radius:10px}.tab.active{box-shadow:0 4px 15px rgba(45,43,38,.07);color:var(--acc)}
+.card,.chart-card,.dash-summary,.dash-tile,.score-card,.syndrome-block{border-radius:18px;background:rgba(251,250,247,.92);border:1px solid var(--border2);box-shadow:var(--shadow)}
+.card h2,.group-label{font-family:'Manrope',sans-serif}.card h2{letter-spacing:.09em}
+label{font-family:'Manrope',sans-serif;text-transform:none;font-size:11px;letter-spacing:0;color:var(--txt2)}
+label small{display:block;font-size:9.5px;font-weight:400;color:var(--mut2);margin-top:2px;line-height:1.25;letter-spacing:0}
+input,select,textarea{font-family:'Manrope',sans-serif;background:#fffefa;border-color:#ddd9cf;border-radius:10px;box-shadow:inset 0 1px 2px rgba(45,43,38,.025)}
+input:focus,select:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0 4px rgba(83,111,104,.10)}
+.hint{font-family:'Manrope',sans-serif}
+button.primary{background:var(--acc);border-radius:11px;box-shadow:0 8px 22px rgba(83,111,104,.18)}button.primary:hover{background:var(--acc-hover);box-shadow:0 12px 30px rgba(83,111,104,.20)}
+button.ghost{border-color:var(--border);background:rgba(255,254,250,.7);border-radius:11px}
+.result-card,.balance-result,.final-block,.dash-scale,.finding-chip{border-radius:13px;background:var(--elev2);border-color:var(--border2)}
+.result-card:hover,.score-card:hover{border-color:#c8d6d1;box-shadow:0 12px 30px rgba(45,43,38,.06)}
+.dash-value,.score-val{font-family:'JetBrains Mono',monospace}.dash-tile{padding:18px}.dash-summary .main{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:700}.clinical-card{background:linear-gradient(145deg,#fbfaf7,#eef3ef);border-radius:20px;border-color:#dfe5df;box-shadow:var(--shadow-md)}
+.finding-chip{background:rgba(255,255,255,.58)}
+.details,details{border-color:var(--border)}details[open]{background:#f7f5f0}
+.alert,.rec,.finding{border-radius:12px}
+
+/* Hero */
+.elegant-hero{position:relative;min-height:670px;overflow:hidden;border-radius:34px;background:linear-gradient(135deg,#f9f7f2 0%,#eeeae1 48%,#e2e9e5 100%);border:1px solid #dfdcd3;box-shadow:0 32px 90px rgba(52,57,53,.12);display:flex;align-items:center;padding:72px clamp(28px,7vw,92px);isolation:isolate}
+.elegant-hero:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 75% 28%,rgba(100,130,122,.17),transparent 23%),radial-gradient(circle at 87% 75%,rgba(194,167,118,.15),transparent 25%),linear-gradient(115deg,transparent 55%,rgba(255,255,255,.48));z-index:-2}
+.hero-noise{position:absolute;inset:0;opacity:.20;z-index:-1;background-image:radial-gradient(rgba(40,45,42,.16) .5px,transparent .5px);background-size:5px 5px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.4),transparent 80%)}
+.hero-content{max-width:690px;position:relative;z-index:3}.hero-mark{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#69746f;display:flex;align-items:center;gap:9px}.hero-pulse{width:7px;height:7px;border-radius:50%;background:#617e75;box-shadow:0 0 0 5px rgba(97,126,117,.10)}
+.hero-brandline{font-family:'Cormorant Garamond',serif;font-size:clamp(78px,12vw,142px);font-weight:600;line-height:.78;letter-spacing:-.055em;color:#26302d;margin:28px 0 30px}.hero-brandline em{font-style:italic;color:#617c74;font-weight:500}
+.hero-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(27px,3.5vw,43px);line-height:1.02;color:#333a36;margin:0 0 20px;letter-spacing:-.025em}.hero-subtitle strong{font-weight:600;color:#536f68}.hero-copy{max-width:600px;color:#68716c;font-size:14px;line-height:1.8;margin:0 0 30px}.hero-actions{display:flex;gap:18px;align-items:center}.hero-cta{border:0;background:#344d47;color:#fff;border-radius:12px;padding:13px 20px;font:700 12px 'Manrope';letter-spacing:.01em;box-shadow:0 12px 28px rgba(52,77,71,.18);cursor:pointer;transition:var(--t)}.hero-cta:hover{transform:translateY(-2px);background:#293f3a;box-shadow:0 18px 34px rgba(52,77,71,.22)}.hero-link{border:0;background:transparent;color:#53655f;font:600 12px 'Manrope';cursor:pointer;padding:12px 2px}.hero-link:hover{color:#263a35}
+.hero-side{position:absolute;right:7%;top:50%;transform:translateY(-50%);width:min(300px,28vw);z-index:3;display:flex;flex-direction:column;gap:9px}.hero-signal{padding:17px 18px;border:1px solid rgba(91,111,104,.18);background:rgba(255,255,255,.42);backdrop-filter:blur(15px);border-radius:15px;display:grid;grid-template-columns:1fr auto;gap:3px 12px;box-shadow:0 10px 28px rgba(55,65,61,.055);transition:var(--t)}.hero-signal:hover{transform:translateX(-5px);background:rgba(255,255,255,.60)}.hero-signal span{grid-column:1/-1;font:10px 'JetBrains Mono';color:#8a938e}.hero-signal b{font:600 13px 'Manrope';color:#37433f}.hero-signal i{font-style:normal;color:#6f8a82;align-self:center}
+.hero-orbit{position:absolute;border:1px solid rgba(83,111,104,.13);border-radius:50%;z-index:0;pointer-events:none}.orbit-a{width:600px;height:600px;right:-150px;top:-80px;animation:orbitFloat 18s ease-in-out infinite}.orbit-b{width:410px;height:410px;right:-20px;top:15px;animation:orbitFloat 13s ease-in-out infinite reverse}.orbit-c{width:260px;height:260px;right:55px;top:90px;border-color:rgba(170,143,99,.15)}.orbit-a:after,.orbit-b:after{content:'';position:absolute;width:8px;height:8px;border-radius:50%;background:#718c84;top:16%;left:11%;box-shadow:0 0 0 8px rgba(113,140,132,.08)}
+.hero-footer{position:absolute;left:72px;right:72px;bottom:24px;padding-top:14px;border-top:1px solid rgba(86,97,91,.15);display:flex;justify-content:space-between;color:#8a918c;font-size:9px;letter-spacing:.12em;text-transform:uppercase}.home-intro-row{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:end;padding:68px 8px 28px}.section-kicker{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#70827b}.home-intro-row h2{font:600 clamp(30px,4vw,48px) 'Cormorant Garamond',serif;line-height:1.0;letter-spacing:-.02em;margin:8px 0;color:#303633}.home-intro-row p{font-size:13px;line-height:1.8;color:#727974;margin:0}.premium-modules{gap:12px}.home-module.premium{position:relative;min-height:175px;padding:26px 24px 22px;border-radius:18px;background:rgba(251,250,247,.68);border:1px solid var(--border);box-shadow:none}.home-module.premium:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(45,43,38,.07);border-color:#cfd8d4}.home-module.premium b{font:600 21px 'Cormorant Garamond',serif;letter-spacing:-.01em;color:#343b37}.home-module.premium span:not(.module-no){display:block;font-size:11px;line-height:1.65;color:#7b827d;margin-top:10px}.module-no{font:600 9px 'JetBrains Mono';color:#81958d;letter-spacing:.08em;display:block;margin-bottom:25px}.home-note{display:flex;gap:12px;align-items:flex-start;margin-top:22px;padding:16px 18px;border-top:1px solid var(--border);color:#747b76;font-size:11px;line-height:1.65}.home-note>span{color:#617d74}.home-note b{color:#4d5853;font-weight:700}
+@keyframes orbitFloat{0%,100%{transform:rotate(0deg) translateY(0)}50%{transform:rotate(8deg) translateY(10px)}}
+@media(max-width:1000px){.hero-side{right:4%;width:250px}.hero-content{max-width:600px}.hero-brandline{font-size:82px}.home-intro-row{grid-template-columns:1fr;gap:16px}.hero-footer{left:30px;right:30px}}
+@media(max-width:760px){.elegant-hero{min-height:760px;padding:48px 28px;align-items:flex-start}.hero-side{position:relative;right:auto;top:auto;transform:none;width:100%;margin-top:35px}.hero-brandline{font-size:76px}.hero-footer{left:28px;right:28px;gap:12px;flex-wrap:wrap}.hero-footer span:last-child{margin-left:auto}.home-intro-row{padding-top:48px}.premium-modules{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.elegant-hero{border-radius:24px;min-height:790px}.hero-brandline{font-size:64px}.hero-subtitle{font-size:31px}.hero-copy{font-size:12.5px}.hero-actions{flex-direction:column;align-items:flex-start}.hero-cta{width:100%}.hero-link{padding-left:0}.premium-modules{grid-template-columns:1fr}.hero-footer{font-size:8px}.hero-footer span:nth-child(2){display:none}}
+</style>
+
+<style id="v30-1-theme-system">
+.theme-switch{display:flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--border);background:var(--elev);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
+.theme-choice{width:29px;height:28px;border:0;border-radius:9px;background:transparent;color:var(--mut);font:600 14px/1 'Manrope','Inter',sans-serif;cursor:pointer;display:grid;place-items:center;padding:0;transition:background .45s cubic-bezier(.22,1,.36,1),color .35s ease,transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s cubic-bezier(.22,1,.36,1)}
+.theme-choice:hover{color:var(--txt);transform:translateY(-1px)}
+.theme-choice.active{background:var(--card);color:var(--acc);box-shadow:0 4px 14px rgba(20,30,28,.09)}
+html[data-theme="dark"]{
+ --bg:#101514;--card:#18201e;--elev:#1d2724;--elev2:#151c1a;
+ --txt:#e9efec;--txt2:#c6d0cc;--mut:#98a7a1;--mut2:#71807a;
+ --border:#2a3733;--border2:#222d2a;--acc:#86afa5;--acc-soft:#203531;--acc-hover:#a0c5bc;
+ --ok:#78ad85;--ok-bg:#1a2d20;--warn:#d0aa68;--warn-bg:#302819;--bad:#d17c76;--bad-bg:#321f1d;
+ --shadow:0 1px 2px rgba(0,0,0,.28),0 8px 28px rgba(0,0,0,.16);--shadow-md:0 12px 34px rgba(0,0,0,.22);--shadow-lg:0 24px 70px rgba(0,0,0,.28)
+}
+html[data-theme="dark"] body{background:radial-gradient(circle at 8% -5%,rgba(122,168,157,.09),transparent 34rem),radial-gradient(circle at 92% 12%,rgba(173,143,99,.055),transparent 30rem),var(--bg)!important;color:var(--txt)}
+html[data-theme="dark"] .header{background:rgba(18,25,23,.88)!important;border-color:var(--border)!important;box-shadow:0 14px 42px rgba(0,0,0,.18)!important}
+html[data-theme="dark"] .tabs,html[data-theme="dark"] .theme-switch{background:var(--elev)!important;border-color:var(--border)!important}
+html[data-theme="dark"] .tab.active,html[data-theme="dark"] .theme-choice.active{background:#26312e!important;color:#eaf1ee!important;box-shadow:0 5px 18px rgba(0,0,0,.18)!important}
+html[data-theme="dark"] .card,html[data-theme="dark"] .chart-card,html[data-theme="dark"] .dash-summary,html[data-theme="dark"] .dash-tile,html[data-theme="dark"] .score-card,html[data-theme="dark"] .syndrome-block,html[data-theme="dark"] .clinical-card,html[data-theme="dark"] .result-card,html[data-theme="dark"] .balance-result,html[data-theme="dark"] .final-block,html[data-theme="dark"] .dash-scale,html[data-theme="dark"] .finding-chip,html[data-theme="dark"] .home-module.premium,html[data-theme="dark"] .history-panel,html[data-theme="dark"] details,html[data-theme="dark"] .panel{background:var(--card)!important;border-color:var(--border)!important;color:var(--txt)!important;box-shadow:var(--shadow)!important}
+html[data-theme="dark"] input,html[data-theme="dark"] select,html[data-theme="dark"] textarea{background:#131a18!important;color:var(--txt)!important;border-color:#33423e!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.015)!important}
+html[data-theme="dark"] input::placeholder,html[data-theme="dark"] textarea::placeholder{color:#66756f!important}
+html[data-theme="dark"] table,html[data-theme="dark"] th,html[data-theme="dark"] td{border-color:var(--border)!important;color:var(--txt2)!important}
+html[data-theme="dark"] th{background:#1d2724!important;color:#aab8b3!important}html[data-theme="dark"] tr:nth-child(even) td{background:rgba(255,255,255,.012)!important}
+html[data-theme="dark"] .elegant-hero{background:radial-gradient(circle at 72% 22%,rgba(128,171,161,.12),transparent 28%),radial-gradient(circle at 88% 78%,rgba(174,145,100,.06),transparent 30%),linear-gradient(140deg,#141b19,#192320 52%,#1c2522)!important;border-color:#2a3733!important;box-shadow:0 36px 100px rgba(0,0,0,.30)!important}
+html[data-theme="dark"] .hero-brandline,html[data-theme="dark"] .hero-subtitle,html[data-theme="dark"] .home-intro-row h2,html[data-theme="dark"] .home-module.premium b{color:#edf3f0!important}
+html[data-theme="dark"] .hero-copy,html[data-theme="dark"] .hero-mark,html[data-theme="dark"] .hero-link,html[data-theme="dark"] .home-intro-row p,html[data-theme="dark"] .home-module.premium span{color:#9caaa5!important}
+html[data-theme="dark"] .hero-signal{background:rgba(255,255,255,.035)!important;border-color:#2a3733!important}html[data-theme="dark"] .hero-signal b{color:#dce6e2!important}html[data-theme="dark"] .hero-signal span{color:#87968f!important}
+html[data-theme="dark"] canvas{filter:saturate(.78) brightness(.90)}
+html[data-theme="dark"] .toast{background:#26312e!important;color:#edf3f0!important;border-color:#364640!important}
+html[data-theme="dark"] .ghost,html[data-theme="dark"] .icon-btn{background:var(--card)!important;border-color:var(--border)!important;color:var(--txt2)!important}
+html[data-theme="dark"] .risk-pill{background:var(--card)!important;border-color:var(--border)!important;color:var(--txt2)!important}
+html[data-theme="dark"] .small-note,html[data-theme="dark"] .field-help,html[data-theme="dark"] .muted{color:var(--mut)!important}
+html.theme-transitioning body,html.theme-transitioning .header,html.theme-transitioning .tabs,html.theme-transitioning .card,html.theme-transitioning .chart-card,html.theme-transitioning .dash-summary,html.theme-transitioning .dash-tile,html.theme-transitioning .score-card,html.theme-transitioning .syndrome-block,html.theme-transitioning .clinical-card,html.theme-transitioning .result-card,html.theme-transitioning .balance-result,html.theme-transitioning .final-block,html.theme-transitioning .dash-scale,html.theme-transitioning .finding-chip,html.theme-transitioning .home-module.premium,html.theme-transitioning input,html.theme-transitioning select,html.theme-transitioning textarea{transition:background-color .72s cubic-bezier(.22,1,.36,1),background .72s cubic-bezier(.22,1,.36,1),border-color .72s cubic-bezier(.22,1,.36,1),color .5s ease,box-shadow .72s cubic-bezier(.22,1,.36,1)!important}
+@media(max-width:640px){.theme-switch{padding:2px}.theme-choice{width:28px;height:27px}.header-actions{gap:5px}}
+</style>
+</head>
+<body>
+
+<div id="intro-screen">
+  <svg class="intro-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+  <h1 class="intro-title">ICU CORE</h1>
+  <div class="intro-line"></div>
+  <p class="intro-sub">КОС · Stewart · Шкалы · Баланс</p>
+</div>
+
+<div class="container">
+<header class="header">
+  <div class="header-brand">
+    <svg class="header-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    <div>
+      <h1>ICU CORE <span class="version">v30.1</span></h1>
+      <div class="header-sub">КОС · Stewart · Шкалы · Баланс</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <div class="risk-pill" id="riskBadge"><span class="risk-dot"></span><span id="riskValue">—</span></div>
+    <button class="icon-btn" id="historyBtn" onclick="toggleHistory(event)" title="История"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg></button>
+    <div class="theme-switch" id="themeSwitch" role="group" aria-label="Тема интерфейса">
+      <button type="button" class="theme-choice" data-theme-choice="light" onclick="setThemeMode('light')" title="Дневная тема" aria-label="Дневная тема">☀</button>
+      <button type="button" class="theme-choice" data-theme-choice="auto" onclick="setThemeMode('auto')" title="Автоматически" aria-label="Тема как в системе">◐</button>
+      <button type="button" class="theme-choice" data-theme-choice="dark" onclick="setThemeMode('dark')" title="Ночная тема" aria-label="Ночная тема">☾</button>
+    </div>
+    <button class="icon-btn" onclick="shareResult()" title="Копировать"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg></button>
+  </div>
+</header>
+
+
+
+<div class="history-panel" id="historyPanel">
+  <div class="history-header"><b>Последние 5 случаев</b><button class="ghost" style="padding:5px 10px;font-size:11px" onclick="clearHistory(event)">Очистить</button></div>
+  <div id="historyList"></div>
+</div>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="home" onclick="switchTab('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10.5V20h14v-9.5"/><path d="M9 20v-6h6v6"/></svg>Главная</button>
+  <button class="tab" data-tab="dash" onclick="switchTab('dash')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Обзор</button>
+  <button class="tab" data-tab="input" onclick="switchTab('input')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>Ввод</button>
+  <button class="tab" data-tab="results" onclick="switchTab('results')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>Анализ</button>
+  <button class="tab" data-tab="scales" onclick="switchTab('scales')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M12 3v18"/><circle cx="12" cy="12" r="9"/></svg>Шкалы</button>
+  <button class="tab" data-tab="balance" onclick="switchTab('balance')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 7l7-5 7 5M5 17l7 5 7-5"/></svg>Баланс</button>
+  <button class="tab" data-tab="charts" onclick="switchTab('charts')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><circle cx="9" cy="9" r="2"/><circle cx="17" cy="15" r="2"/></svg>Графики</button>
+  <button class="tab" data-tab="final" onclick="switchTab('final')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Итог</button>
+  <button class="tab" data-tab="info" onclick="switchTab('info')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>Как работает</button>
+</nav>
+
+<section class="panel active" id="panel-home">
+  <div class="elegant-hero">
+    <div class="hero-orbit orbit-a"></div><div class="hero-orbit orbit-b"></div><div class="hero-orbit orbit-c"></div>
+    <div class="hero-noise"></div>
+    <div class="hero-content">
+      <div class="hero-mark"><span class="hero-pulse"></span> Система клинического мышления · ОРИТ</div>
+      <div class="hero-brandline">ICU <em>CORE</em></div>
+      <p class="hero-subtitle">Не просто расчёт показателей.<br><strong>Путь от цифр к клиническому смыслу.</strong></p>
+      <p class="hero-copy">Кислотно-основное состояние, электролиты, оксигенация и органная дисфункция — с поиском скрытых сочетанных нарушений и объяснением каждого вывода.</p>
+      <div class="hero-actions"><button class="hero-cta" onclick="switchTab('input')">＋&nbsp; Новый случай</button><button class="hero-link" onclick="switchTab('info')">Как работает&nbsp; →</button></div>
+    </div>
+    <div class="hero-side">
+      <div class="hero-signal"><span>pH</span><b>КОС</b><i>→</i></div>
+      <div class="hero-signal"><span>Na⁺ · K⁺ · Cl⁻</span><b>Электролиты</b><i>→</i></div>
+      <div class="hero-signal"><span>P/F · A–a</span><b>Оксигенация</b><i>→</i></div>
+      <div class="hero-signal"><span>SOFA · APACHE II</span><b>Органы</b><i>→</i></div>
+    </div>
+    <div class="hero-footer"><span>12+ модулей</span><span>скрытые нарушения</span><span>объяснимый вывод</span><span>v30.1</span></div>
+  </div>
+  <div class="home-intro-row"><div><span class="section-kicker">Сначала смысл</span><h2>Откройте данные — ICU CORE соберёт картину.</h2></div><p>Заполняйте только доступные показатели. Чем полнее данные, тем глубже анализ. Отсутствие данных не трактуется как норма.</p></div>
+  <div class="home-modules premium-modules">
+    <div class="home-module premium"><span class="module-no">01</span><b>Кислотно-основное состояние</b><span>pH, pCO₂, HCO₃⁻, компенсация, АП, ΔΔ, Stewart и скрытые смешанные нарушения.</span></div>
+    <div class="home-module premium"><span class="module-no">02</span><b>Электролиты</b><span>Натрий, калий, хлор, кальций, магний, фосфат и клинически значимые находки.</span></div>
+    <div class="home-module premium"><span class="module-no">03</span><b>Оксигенация</b><span>pO₂, FiO₂, P/F, A–a, PEEP и оценка респираторного паттерна.</span></div>
+    <div class="home-module premium"><span class="module-no">04</span><b>Органная дисфункция</b><span>ШКГ, SOFA, APACHE II, NEWS2, qSOFA и клинический контекст.</span></div>
+  </div>
+  <div class="home-note"><span>ⓘ</span><div><b>Поддержка клинического мышления</b><br>ICU CORE помогает структурировать данные и обнаруживать возможные сочетанные нарушения. Итог требует клинической верификации.</div></div>
+</section>
+
+<section class="panel" id="panel-dash">
+  <div class="dash-grid">
+    <div class="dash-tile" id="tile-pH"><div class="dash-label">pH</div><div class="dash-value" id="dash-pH">—</div><div class="dash-unit">7.35–7.45</div><div class="dash-status" id="dash-pH-status">—</div></div>
+    <div class="dash-tile" id="tile-HCO3"><div class="dash-label">HCO₃⁻</div><div class="dash-value" id="dash-HCO3">—</div><div class="dash-unit">ммоль/л</div><div class="dash-status" id="dash-HCO3-status">—</div></div>
+    <div class="dash-tile" id="tile-Na"><div class="dash-label">Натрий</div><div class="dash-value" id="dash-Na">—</div><div class="dash-unit">ммоль/л</div><div class="dash-status" id="dash-Na-status">—</div></div>
+    <div class="dash-tile" id="tile-K"><div class="dash-label">Калий</div><div class="dash-value" id="dash-K">—</div><div class="dash-unit">ммоль/л</div><div class="dash-status" id="dash-K-status">—</div></div>
+    <div class="dash-tile" id="tile-Cl"><div class="dash-label">Хлор</div><div class="dash-value" id="dash-Cl">—</div><div class="dash-unit">ммоль/л</div><div class="dash-status" id="dash-Cl-status">—</div></div>
+    <div class="dash-tile" id="tile-Gluc"><div class="dash-label">Глюкоза</div><div class="dash-value" id="dash-Gluc">—</div><div class="dash-unit">ммоль/л</div><div class="dash-status" id="dash-Gluc-status">—</div></div>
+    <div class="dash-tile" id="tile-Lac"><div class="dash-label">Лактат</div><div class="dash-value" id="dash-Lac">—</div><div class="dash-unit">ммоль/л</div><div class="dash-status" id="dash-Lac-status">—</div></div>
+    <div class="dash-tile" id="tile-PF"><div class="dash-label">P/F</div><div class="dash-value" id="dash-PF">—</div><div class="dash-unit">мм рт.ст.</div><div class="dash-status" id="dash-PF-status">—</div></div>
+  </div>
+
+  <div class="dash-summary">
+    <h3>Клинический вывод КОС</h3>
+    <div class="main" id="dash-syn-title">—</div>
+    <div class="sub" id="dash-syn-detail">—</div>
+  </div>
+  <div class="clinical-card" id="dash-findings-card"><div class="clinical-head"><div><div class="eyebrow">Клиническая синтезация</div><div class="clinical-title">Ключевые находки</div><div class="clinical-sub">То, что система обнаружила помимо основной формулировки КОС.</div></div></div><div class="finding-list" id="dash-findings">—</div></div>
+
+  <details>
+    <summary>Шкалы ОРИТ</summary>
+    <div class="dash-scales">
+      <div class="dash-scale"><div class="name">NEWS2</div><div class="val" id="dash-news2">—</div><div class="interp" id="dash-news2-i">—</div></div>
+      <div class="dash-scale"><div class="name">qSOFA</div><div class="val" id="dash-qsofa">—</div><div class="interp" id="dash-qsofa-i">—</div></div>
+      <div class="dash-scale"><div class="name">SOFA</div><div class="val" id="dash-sofa">—</div><div class="interp" id="dash-sofa-i">—</div></div>
+      <div class="dash-scale"><div class="name">APACHE II</div><div class="val" id="dash-apache">—</div><div class="interp" id="dash-apache-i">—</div></div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Водно-электролитный баланс</summary>
+    <div class="sub" id="dash-balance" style="padding:12px 14px 0">—</div>
+  </details>
+
+  <details>
+    <summary>Полный разбор (все показатели)</summary>
+    <div id="dash-full-results" style="padding:14px"></div>
+  </details>
+
+  <div class="dash-actions">
+    <button class="primary" onclick="switchTab('input')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>К вводу данных</button>
+    <button class="ghost" onclick="switchTab('final')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/></svg>Полный итог</button>
+  </div>
+</section>
+
+<section class="panel" id="panel-input">
+  <div class="card" style="margin-bottom:12px"><h2>Пресеты</h2>
+    <div class="preset-row">
+      <button class="preset-btn" onclick="loadPreset('4.5')">Пример 4.5</button>
+      <button class="preset-btn" onclick="loadPreset('4.6')">Пример 4.6</button>
+      <button class="preset-btn" onclick="loadPreset('4.8')">Пример 4.8</button>
+      <button class="preset-btn" onclick="loadPreset('4.9')">Пример 4.9</button>
+      <button class="preset-btn" onclick="loadPreset('d-lactate')">D-лактат</button>
+      <button class="preset-btn" onclick="loadPreset('dka')">ДКА</button>
+    </div>
+    <div class="btnrow" style="margin-top:10px">
+      <button class="ghost" style="width:100%;flex:1" onclick="clearAll()">Сброс всех полей</button>
+    </div>
+  </div>
+
+  <div class="card" id="quick-card"><h2>Быстрый ввод <button class="toggle-mode" onclick="showProMode()">Показать все поля</button></h2>
+    <div class="quick-fields">
+      <div><label>pH <small>кислотно-основное состояние</small></label><input id="pH" type="number" step=".001" value="7.40" oninput="liveValidate();previewCalc()"><div class="hint">7.35–7.45</div></div>
+      <div><label>pCO₂ <small>дыхательный компонент КОС</small></label><input id="pCO2" type="number" step=".1" value="40" oninput="liveValidate();previewCalc()"><div class="hint">35–45</div></div>
+      <div><label>HCO₃⁻ <small>бикарбонат плазмы</small></label><input id="HCO3in" type="number" step=".1" value="24" oninput="liveValidate();previewCalc()"><div class="hint">22–26</div></div>
+      <div><label>Натрий <small>Na⁺</small></label><input id="Na" type="number" step=".1" value="140" oninput="liveValidate();previewCalc()"><div class="hint">135–145</div></div>
+      <div><label>Хлор <small>Cl⁻</small></label><input id="Cl" type="number" step=".1" value="103" oninput="liveValidate();previewCalc()"><div class="hint">98–107</div></div>
+      <div><label>Калий <small>K⁺</small></label><input id="K" type="number" step=".1" value="4.0" oninput="liveValidate();previewCalc()"><div class="hint">3.5–5.0</div></div>
+      <div><label>Лактат <small>маркер метаболического стресса</small></label><input id="Lac" type="number" step=".1" value="1" oninput="liveValidate();previewCalc()"><div class="hint">&lt; 2</div></div>
+      <div><label>Глюкоза <small>ммоль/л</small></label><input id="Gluc" type="number" step=".1" value="5.5" oninput="liveValidate();previewCalc()"><div class="hint">3.9–5.5</div></div>
+    </div>
+  </div>
+
+  <div id="pro-mode" style="display:none">
+    <div class="card" style="margin-bottom:12px"><h2>Продвинутый режим <button class="toggle-mode" onclick="hideProMode()">Свернуть</button></h2>
+      <div class="small-note">Все 34 поля для точного расчёта. Можно свернуть обратно.</div>
+    </div>
+
+    <div class="grid">
+      <div class="card"><h2>Газы крови</h2>
+        <div class="field-group">
+          <div class="group-label">Оксигенация</div>
+          <div class="field-row">
+            <div><label>pO₂ <small>парциальное давление O₂</small></label><input id="pO2" type="number" step=".1" value="90" oninput="previewCalc()"></div>
+            <div><label>FiO₂ (%) <small>доля кислорода во вдыхаемой смеси</small></label><input id="FiO2" type="number" step="1" value="21" oninput="previewCalc()"></div>
+            <div><label>PEEP <small>положительное давление в конце выдоха</small></label><input id="PEEP" type="number" step=".1" value="0" oninput="previewCalc()"></div>
+            <div><label>SBE <small>стандартный избыток оснований</small></label><input id="SBE" type="number" step=".1" value="0" oninput="previewCalc()"><div class="hint">−2…+2</div></div>
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="group-label">Источники</div>
+          <div class="field-row cols-2">
+            <div><label>Источник SBE <small>от анализатора или расчёт</small></label><select id="sbeMode" onchange="previewCalc()"><option value="input">От анализатора</option><option value="calc">Van Slyke</option></select></div>
+            <div><label>Коррекция натрия <small>для гипергликемии</small></label><select id="naCorr" onchange="previewCalc()"><option value="off">Выкл</option><option value="on">Katz</option></select></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card"><h2>Электролиты / метаболиты</h2>
+        <div class="field-group">
+          <div class="group-label">Доп. электролиты</div>
+          <div class="field-row">
+            <div><label>Кальций Ca²⁺ <small>ионизированный</small></label><input id="Ca" type="number" step=".01" value="1.2" oninput="previewCalc()"></div>
+            <div><label>Магний Mg²⁺</label><input id="Mg" type="number" step=".01" value="0.9" oninput="previewCalc()"></div>
+            <div><label>Альбумин <small>г/л</small></label><input id="Alb" type="number" step=".1" value="40" oninput="liveValidate();previewCalc()"><div class="hint">35–50</div></div>
+            <div><label>Фосфат PO₄ <small>неорганический фосфат</small></label><input id="PO4" type="number" step=".01" value="1.1" oninput="previewCalc()"></div>
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="group-label">Метаболиты</div>
+          <div class="field-row cols-3">
+            <div><label>Мочевина <small>ммоль/л</small></label><input id="Ur" type="number" step=".1" value="5" oninput="previewCalc()"><div class="hint">2.5–8.3</div></div>
+            <div><label>Измеренная осмоляльность <small>мОсм/кг</small></label><input id="Osm_in" type="number" step="1" value="" oninput="previewCalc()"><div class="hint">275–295</div></div>
+            <div><label>Модель Стюарта <small>для расчёта SID и SIG</small></label><select id="sidModel" onchange="previewCalc()"><option value="charged">Полная модель</option><option value="simple">Упрощённая модель</option></select><div class="hint">Полная — Ca²⁺ и Mg²⁺ с зарядом 2. Упрощённая — как +1.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card"><h2>Витальные</h2>
+        <div class="field-group">
+          <div class="group-label">Основные</div>
+          <div class="field-row">
+            <div><label>Масса тела <small>кг</small></label><input id="Weight" type="number" step=".1" value="70" oninput="previewCalc()"></div>
+            <div><label>Частота дыхания <small>в минуту</small></label><input id="RR" type="number" step="1" value="16" oninput="previewCalc()"></div>
+            <div><label>SpO₂ <small>сатурация кислорода</small></label><input id="SpO2" type="number" step="1" value="98" oninput="previewCalc()"></div>
+            <div><label>Частота сердечных сокращений <small>в минуту</small></label><input id="HR" type="number" step="1" value="80" oninput="previewCalc()"></div>
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="group-label">Давление и температура</div>
+          <div class="field-row">
+            <div><label>Систолическое АД <small>мм рт. ст.</small></label><input id="SBP" type="number" step="1" value="120" oninput="previewCalc()"></div>
+            <div><label>Диастолическое АД <small>мм рт. ст.</small></label><input id="DBP" type="number" step="1" value="80" oninput="previewCalc()"></div>
+            <div><label>Температура <small>°C</small></label><input id="Temp" type="number" step=".1" value="36.8" oninput="previewCalc()"></div>
+            <div><label>Возраст <small>лет</small></label><input id="Age" type="number" step="1" value="50" oninput="previewCalc()"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card"><h2>Неврология</h2>
+        <div class="field-group">
+          <div class="group-label">Сознание</div>
+          <div class="field-row cols-2">
+            <div><label>ШКГ <small>шкала комы Глазго</small></label><input id="GCS" type="number" step="1" value="15" oninput="previewCalc()"><div class="hint">3–15</div></div>
+            <div><label>ACVPU <small>быстрая оценка сознания</small></label><select id="ACVPU" onchange="previewCalc()"><option value="A">A — бодр</option><option value="C">C — спутан</option><option value="V">V — голос</option><option value="P">P — боль</option><option value="U">U — нет</option></select></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card"><h2>Профиль</h2>
+        <div class="field-group">
+          <div class="group-label">Пациент</div>
+          <div class="field-row">
+            <div><label>Пол <small>для расчётов</small></label><select id="Sex" onchange="previewCalc()"><option value="M">М</option><option value="F">Ж</option></select></div>
+            <div><label>Кислородная поддержка <small>да / нет</small></label><select id="O2support" onchange="previewCalc()"><option value="no">Нет</option><option value="yes">Да</option></select><div class="hint">Для шкалы NEWS2 — отдельно от SpO₂</div></div>
+            <div><label>Длительность нарушения Na/K <small>для оценки темпа</small></label><select id="acuity" onchange="previewCalc()"><option value="auto">Авто</option><option value="acute">Меньше 48 часов</option><option value="chronic">Больше 48 часов</option></select><div class="hint">Влияет на скорость коррекции Na/K</div></div>
+            <div><label>Хронические заболевания <small>критерий APACHE II</small></label><select id="Chronic" onchange="previewCalc()"><option value="none">Нет</option><option value="mild">Тяжёлые вне ОРИТ</option><option value="severe">Тяжёлые в ОРИТ</option></select><div class="hint">Для APACHE II</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card"><h2>Анализы крови</h2>
+        <div class="field-group">
+          <div class="group-label">Гемограмма</div>
+          <div class="field-row">
+            <div><label>Тромбоциты <small>×10⁹/л</small></label><input id="Plt" type="number" step="1" value="200" oninput="previewCalc()"></div>
+            <div><label>Лейкоциты <small>×10⁹/л</small></label><input id="WBC" type="number" step=".1" value="7" oninput="previewCalc()"></div>
+            <div><label>Палочкоядерные <small>%</small></label><input id="Bands" type="number" step="1" value="3" oninput="previewCalc()"></div>
+            <div><label>Гематокрит <small>%</small></label><input id="Hct" type="number" step=".1" value="40" oninput="previewCalc()"></div>
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="group-label">Биохимия</div>
+          <div class="field-row">
+            <div><label>Креатинин <small>мкмоль/л</small></label><input id="Cr" type="number" step="1" value="80" oninput="previewCalc()"></div>
+            <div><label>Билирубин <small>мкмоль/л</small></label><input id="Bil" type="number" step="1" value="15" oninput="previewCalc()"></div>
+            <div><label>Диурез <small>мл/24 ч</small></label><input id="Urine" type="number" step="10" value="1500" oninput="previewCalc()"><div class="hint">для SOFA: мл/24 ч</div></div>
+            <div><label>Вазопрессоры <small>препарат и доза</small></label><select id="Vaso" onchange="previewCalc()"><option value="none">Нет</option><option value="dopa_low">Допамин ≤5 мкг/кг/мин</option><option value="dopa_mid">Допамин &gt;5</option><option value="dopa_high">Допамин &gt;15</option><option value="norepi_low">Норадреналин ≤0.1 мкг/кг/мин</option><option value="norepi_high">Норадреналин &gt;0.1</option><option value="epi_low">Адреналин ≤0.1 мкг/кг/мин</option><option value="epi_high">Адреналин &gt;0.1</option></select></div>
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="group-label">Критерии ОРДС (Берлинские)</div>
+          <div class="field-row">
+            <div><label>Двусторонние инфильтраты <small>критерий ОРДС</small></label><select id="bilateral" onchange="previewCalc()"><option value="unknown">—</option><option value="yes">Да</option><option value="no">Нет</option></select></div>
+            <div><label>Начало ≤ 1 недели <small>от известного события</small></label><select id="timing" onchange="previewCalc()"><option value="unknown">—</option><option value="yes">Да</option><option value="no">Нет</option></select></div>
+            <div><label>Не полностью объясняется СН <small>критерий ОРДС</small></label><select id="noncardiac" onchange="previewCalc()"><option value="unknown">—</option><option value="yes">Да</option><option value="no">Нет</option></select></div>
+            <div><label>Подозрение на инфекцию <small>для блока сепсиса</small></label><select id="infection" onchange="previewCalc()"><option value="unknown">—</option><option value="yes">Да</option><option value="no">Нет</option></select></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:12px"><h2>Заметки</h2><textarea id="notes" rows="2" placeholder="Контекст, ИВЛ, гемодинамика..."></textarea></div>
+
+  <div class="btnrow" style="margin-top:16px">
+    <button class="primary" onclick="runCalculation(true)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>Рассчитать и сохранить</button>
+    <button class="ghost" onclick="clearAll()">Сброс</button>
+  </div>
+</section>
+
+<section class="panel" id="panel-results">
+  <div class="card" style="margin-bottom:12px"><h2>Синдромальный диагноз КОС</h2><div id="syndrome"></div><div class="clinical-card results-findings" style="margin-top:16px"><div class="clinical-head"><div><div class="eyebrow">Клиническая синтезация</div><div class="clinical-title">Ключевые находки</div><div class="clinical-sub">Находки, выявленные движком помимо основного синдрома КОС.</div></div></div><div class="finding-list" id="results-findings">—</div></div></div>
+
+  <details open style="margin-top:12px">
+    <summary>Как мы считали</summary>
+    <div class="diag" id="diagnosis" style="padding:14px"></div>
+  </details>
+
+  <details>
+    <summary>Формулы и проверка</summary>
+    <div id="explanations" style="padding:14px"></div>
+  </details>
+
+  <details>
+    <summary>Таблица показателей</summary>
+    <div id="results" style="padding:14px"></div>
+  </details>
+</section>
+
+<section class="panel" id="panel-scales">
+  <div class="card"><h2>Шкалы ОРИТ</h2><div id="scalesResults"></div></div>
+  <div class="card" style="margin-top:12px"><h2>Сепсис (Sepsis-3)</h2><div id="sepsisResults"></div></div>
+</section>
+
+<section class="panel" id="panel-balance">
+  <div class="card"><h2>Водно-электролитный баланс</h2>
+    <div class="field-row cols-2" style="margin-bottom:12px">
+      <div><label>Раствор для Натрий</label><select id="naSolution" onchange="runCalculation(false)"><option value="0.9">0.9% NaCl — 154 ммоль/л</option><option value="3">3% NaCl — 513 ммоль/л</option><option value="10">10% NaCl — 1700 ммоль/л</option></select></div>
+      <div><label>Раствор для Калий</label><select id="kSolution" onchange="runCalculation(false)"><option value="4">4% KCl — 536 ммоль/л</option><option value="7.5">7.5% KCl — 1000 ммоль/л</option><option value="10">10% KCl — 1340 ммоль/л</option></select></div>
+    </div>
+    <div id="balanceResults"></div>
+    <div id="balanceExplanations" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<section class="panel" id="panel-charts">
+  <div class="chart-card"><h2>Диаграмма Гэмбла</h2>
+    <div id="gamble-summary" style="margin-bottom:12px"></div>
+    <div class="chart-box"><canvas id="gamble"></canvas></div>
+    <div class="small-note" style="margin-top:10px">Диаграмма показывает баланс катионов и анионов. Суммы должны совпадать. Если нет — есть скрытый анион (лактат, кетоны, токсины) или ошибка ввода.</div>
+  </div>
+  <div class="chart-card" style="margin-top:12px"><h2>Номограмма Сиггаарда-Андерсена</h2>
+    <div class="small-note" style="margin-bottom:12px">
+      <b>Оси:</b> снизу — pH (7.0–7.8), слева — HCO₃⁻ (ммоль/л).<br>
+      <b>Линии</b> — изолинии pCO₂ (мм рт.ст.).<br>
+      <b>Точка</b> — ваш пациент: по ней видно pH, HCO₃⁻ и pCO₂ одновременно.
+    </div>
+    <div class="chart-box" style="height:520px"><canvas id="siggaard"></canvas></div>
+  </div>
+</section>
+
+<section class="panel" id="panel-final">
+  <div class="card"><h2>Общий синдромальный диагноз</h2><div id="finalResults"></div></div>
+</section>
+
+<section class="panel" id="panel-info">
+  <div class="card"><h2>О ICU CORE v30.1</h2>
+    <ol style="line-height:1.9;font-size:13px;color:var(--txt2);padding-left:20px">
+      <li>Клинический вывод отделён от расчётных показателей.</li>
+      <li>Русские названия полей дополнены медицинскими расшифровками.</li>
+      <li>ШКГ используется как основное название; GCS оставлено только как международное обозначение.</li>
+      <li>Клинические находки автоматически попадают в обзор и итоговый отчёт.</li>
+      <li>Единая визуальная система для главного экрана, форм, результатов, графиков и таблиц.</li>
+    </ol>
+  </div>
+  <div class="card" style="margin-top:12px"><h2>Растворы</h2>
+    <table>
+      <thead><tr><th>Раствор</th><th>ммоль/л</th><th>1 мл</th></tr></thead>
+      <tbody>
+        <tr><td>0.9% NaCl</td><td>154 Na</td><td>0.154</td></tr>
+        <tr><td>3% NaCl</td><td>513 Na</td><td>0.513</td></tr>
+        <tr><td>10% NaCl</td><td>1700 Na</td><td>1.7</td></tr>
+        <tr><td>4% KCl</td><td>536 K</td><td>0.536</td></tr>
+        <tr><td>7.5% KCl</td><td>1000 K</td><td>1.0</td></tr>
+        <tr><td>10% KCl</td><td>1340 K</td><td>1.34</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="alert" style="margin-top:12px">Расчётно-образовательный инструмент. Требует клинической верификации.</div>
+</section>
+</div>
+<div class="toast" id="toast">Готово</div>
+
+<script>
+"use strict";
+/* ═══════════════════════════════════════════════════════════════
+   🧠 CORE DIAGNOSTIC ENGINE — НЕ ТРОГАТЬ
+   ═══════════════════════════════════════════════════════════════ */
+const HISTORY_KEY="icu_history_v300";
+let lastReport="",gChart=null,sChart=null;
+const presets={
+'4.5':{pH:7.39,pCO2:39,HCO3in:23,SBE:0,Lac:1,pO2:94,FiO2:21,PEEP:0,Na:124,Cl:100,K:3.9,Ca:1.2,Mg:0.9,Alb:45,PO4:1.1,Gluc:5.5,Ur:5,Weight:70},
+'4.6':{pH:7.53,pCO2:32,HCO3in:27,SBE:4.7,Lac:1,pO2:90,FiO2:21,PEEP:0,Na:144,Cl:93,K:4.2,Ca:1.2,Mg:0.9,Alb:30,PO4:1.1,Gluc:24.9,Ur:5,Weight:70},
+'4.8':{pH:7.18,pCO2:20,HCO3in:8,SBE:-20,Lac:5,pO2:80,FiO2:21,PEEP:0,Na:130,Cl:105,K:3,Ca:1.2,Mg:0.9,Alb:23,PO4:1.6,Gluc:5.5,Ur:8,Weight:70},
+'4.9':{pH:7.19,pCO2:48,HCO3in:18,SBE:-10.1,Lac:3.7,pO2:90,FiO2:21,PEEP:0,Na:145,Cl:111,K:4.5,Ca:1.17,Mg:0.57,Alb:10,PO4:1.7,Gluc:5.5,Ur:5.7,Weight:70},
+'d-lactate':{pH:7.42,pCO2:38.5,HCO3in:24,SBE:.6,Lac:1,pO2:57.4,FiO2:30,PEEP:5,Na:158.4,Cl:103,K:4,Ca:1.2,Mg:0.9,Alb:40,PO4:1.1,Gluc:5.5,Ur:5,Weight:80},
+'dka':{pH:6.82,pCO2:16,HCO3in:5,SBE:-28.8,Lac:1,pO2:93,FiO2:21,PEEP:0,Na:129,Cl:90,K:6.2,Ca:1.2,Mg:0.9,Alb:40,PO4:1.1,Gluc:24,Ur:16.2,Weight:70}
+};
+const ranges={pH:[7.35,7.45],pCO2:[35,45],HCO3in:[22,26],Lac:[0,2],Na:[135,145],Cl:[98,107],K:[3.5,5],Alb:[35,50],Gluc:[3.9,5.5]};
+const physiologic={pH:[6.5,8.0],pCO2:[5,150],HCO3in:[1,50],SBE_input:[-45,45],Lac:[0,30],Na:[100,200],Cl:[60,140],K:[1,10],Ca:[.5,3],Mg:[.3,2.5],Alb:[10,80],PO4:[.1,5],Gluc:[1,60],Ur:[.5,50],pO2:[20,600],FiO2:[21,100]};
+const SOLUTIONS={na:{"0.9":{conc:154,label:"0.9% NaCl",perMl:0.154},"3":{conc:513,label:"3% NaCl",perMl:0.513},"10":{conc:1700,label:"10% NaCl",perMl:1.7}},k:{"4":{conc:536,label:"4% KCl",perMl:0.536},"7.5":{conc:1000,label:"7.5% KCl",perMl:1.0},"10":{conc:1340,label:"10% KCl",perMl:1.34}}};
+function num(id){const e=document.getElementById(id);return e?parseFloat(e.value):NaN}
+function fixed(x,n=2){return Number.isFinite(x)?x.toFixed(n):"—"}
+function escapeHTML(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function getSelect(id){const e=document.getElementById(id);return e?e.value:""}
+function readInputs(){return{pH:num("pH"),pCO2:num("pCO2"),HCO3in:num("HCO3in"),SBE_input:num("SBE"),Lac:num("Lac"),pO2:num("pO2"),FiO2:num("FiO2"),PEEP:num("PEEP"),Na:num("Na"),Cl:num("Cl"),K:num("K"),Ca:num("Ca"),Mg:num("Mg"),Alb:num("Alb"),PO4:num("PO4"),Gluc:num("Gluc"),Ur:num("Ur"),Osm_in:num("Osm_in"),Weight:num("Weight"),RR:num("RR"),SpO2:num("SpO2"),SBP:num("SBP"),DBP:num("DBP"),HR:num("HR"),Temp:num("Temp"),GCS:num("GCS"),Age:num("Age"),Plt:num("Plt"),WBC:num("WBC"),Bands:num("Bands"),Hct:num("Hct"),Cr:num("Cr"),Bil:num("Bil"),Urine:num("Urine"),sbeMode:getSelect("sbeMode"),naCorr:getSelect("naCorr"),chronic:getSelect("chronic"),sidModel:getSelect("sidModel"),O2support:getSelect("O2support"),ACVPU:getSelect("ACVPU"),Chronic:getSelect("Chronic"),Vaso:getSelect("Vaso"),Sex:getSelect("Sex"),acuity:getSelect("acuity"),bilateral:getSelect("bilateral"),timing:getSelect("timing"),noncardiac:getSelect("noncardiac"),infection:getSelect("infection"),notes:((document.getElementById("notes")||{}).value||"").trim()};}
+function validate(d){const required=["pH","pCO2","HCO3in","Lac","Na","Cl","K","Gluc"];const missing=required.filter(k=>!Number.isFinite(d[k]));if(missing.length)return "Заполните: "+missing.join(", ");if(d.Na<=0||d.Cl<=0||d.K<=0)return "Проверьте электролиты.";return "";}
+function physiologicWarnings(d){const w=[];Object.entries(physiologic).forEach(([k,[lo,hi]])=>{const v=d[k];if(Number.isFinite(v)&&(v<lo||v>hi)){w.push(`${k} = ${v} — вне границ (${lo}–${hi})`);}});return w;}
+function getTBWCoeff(d){if(d.Sex==="M"){return d.Age>=65?0.5:0.6;}else{if(d.Age<18)return 0.6;if(d.Age<65)return 0.5;return 0.45;}}
+function getAcuity(d){if(d.acuity==="acute")return "acute";if(d.acuity==="chronic")return "chronic";return "chronic";}
+function calcBasic(d){
+  const HCO3calc=.03*d.pCO2*Math.pow(10,d.pH-6.1);
+  const HCO3=Number.isFinite(d.HCO3in)?d.HCO3in:HCO3calc;
+  let NaCorr=d.Na;
+  if(d.naCorr==="on" && d.Gluc>5.5) NaCorr=d.Na+1.6*((d.Gluc-5.5)/5.5);
+  // ВАЖНО: измеренный Na используется для AG/SID; corrected Na показывается отдельно.
+  const AG=d.Na-(d.Cl+HCO3);
+  const AGcorr=AG+0.25*(40-(d.Alb||40));
+  const AG_Na_corr=d.Na>140?AGcorr-(d.Na-140):AGcorr;
+  const deltaAG=AGcorr-12;
+  const deltaHCO3=24-HCO3;
+  const deltaDelta=(HCO3<22 && deltaAG>0)?deltaAG/deltaHCO3:NaN;
+  const SBE_calc=HCO3-24.4+16.2*(d.pH-7.4);
+  const SBE=d.sbeMode==="calc"?SBE_calc:(isNaN(d.SBE_input)?SBE_calc:d.SBE_input);
+  const Alb=d.Alb||40;
+  const SBE_FW=0.3*(d.Na-140);
+  const SBE_Cl=104-(d.Cl*140/d.Na);
+  const SBE_Alb=(0.148*d.pH-0.818)*(40-Alb);
+  const SBE_UA=SBE-SBE_FW-SBE_Cl-SBE_Alb;
+  const PF=Number.isFinite(d.pO2)&&d.FiO2>0?(d.pO2/(d.FiO2/100)):NaN;
+  const A_a_est=d.FiO2>20&&Number.isFinite(d.pO2)?(d.FiO2/100*713-d.pCO2/0.8-d.pO2):NaN;
+  const Osm_calc=1.86*d.Na+d.Gluc+(d.Ur||0)+9;
+  const Osm_gap=Number.isFinite(d.Osm_in)?(d.Osm_in-Osm_calc):NaN;
+  return{HCO3calc,HCO3,NaCorr,AG,AGcorr,AG_Na_corr,deltaAG,deltaHCO3,deltaDelta,SBE_calc,SBE,SBE_FW,SBE_Cl,SBE_Alb,SBE_UA,PF,A_a_est,Osm_calc,Osm_gap};
+}
+function calcStewart(d,b){let SIDa;const Ca=d.Ca||1.2;const Mg=d.Mg||0.9;if(d.sidModel==="charged"){SIDa=b.NaCorr+d.K+2*Ca+2*Mg-d.Cl-d.Lac;}else{SIDa=b.NaCorr+d.K+Ca+Mg-d.Cl-d.Lac;}const Alb=d.Alb||40;const Alb_gdl=Alb/10;const Alb_charge=Alb_gdl*(0.123*d.pH-0.631)*10;const PO4=d.PO4||1.1;const PO4_charge=PO4*(0.309*d.pH-0.469);const SIDe=b.HCO3+Alb_charge+PO4_charge;let SIDe_corr=SIDe;if(Alb<30){const Alb_charge_norm=(40/10)*(0.123*d.pH-0.631)*10;SIDe_corr=b.HCO3+Alb_charge_norm+PO4_charge;}const SIG=SIDa-SIDe;const SIG_corr=SIDa-SIDe_corr;const SIG_Na_corr=d.Na>145?(SIG-(d.Na-140)):SIG;return{SIDa,Alb_charge,PO4_charge,SIDe,SIDe_corr,SIG,SIG_corr,SIG_Na_corr};}
+function detectPrimary(d,b){
+  const out={acidBase:"normal",resp:null,met:null,respIsCompensation:false,bothOpposite:false,hidden:false,flags:[]};
+  if(d.pH<7.35)out.acidBase="acidemia"; else if(d.pH>7.45)out.acidBase="alkalemia";
+  const metAcid=b.HCO3<22||b.SBE<-2;
+  const metAlk=b.HCO3>26||b.SBE>2;
+  if(metAcid)out.met="metabolic acidosis"; else if(metAlk)out.met="metabolic alkalosis";
+  if(d.pCO2>45){
+    if(metAcid){
+      const lo=1.5*b.HCO3+8-2,hi=1.5*b.HCO3+8+2;
+      if(d.pCO2>hi){out.resp="respiratory acidosis";out.flags.push("добавочный респираторный ацидоз");}
+      else if(d.pCO2>=lo){out.respIsCompensation=true;}
+      else {out.resp="respiratory alkalosis";out.flags.push("респираторный алкалоз на фоне метаболического ацидоза");}
+    } else if(metAlk){
+      const lo=.7*b.HCO3+21-2,hi=.7*b.HCO3+21+2;
+      if(d.pCO2>hi){out.resp="respiratory acidosis";out.flags.push("добавочный респираторный ацидоз");}
+      else if(d.pCO2>=lo)out.respIsCompensation=true;
+      else {out.resp="respiratory alkalosis";out.flags.push("респираторный алкалоз");}
+    } else out.resp="respiratory acidosis";
+  } else if(d.pCO2<35){
+    if(metAcid){
+      const lo=1.5*b.HCO3+8-2,hi=1.5*b.HCO3+8+2;
+      if(d.pCO2<lo){out.resp="respiratory alkalosis";out.flags.push("добавочный респираторный алкалоз");}
+      else if(d.pCO2<=hi)out.respIsCompensation=true;
+      else {out.resp="respiratory acidosis";out.flags.push("респираторная компенсация недостаточна");}
+    } else if(metAlk){
+      const lo=.7*b.HCO3+21-2,hi=.7*b.HCO3+21+2;
+      if(d.pCO2<lo){out.resp="respiratory alkalosis";out.flags.push("добавочный респираторный алкалоз");}
+      else if(d.pCO2<=hi)out.respIsCompensation=true;
+      else {out.resp="respiratory acidosis";out.flags.push("добавочный респираторный ацидоз");}
+    } else out.resp="respiratory alkalosis";
+  }
+  if(out.acidBase==="normal" && (out.met||out.resp)) {out.hidden=true;out.flags.push("pH в нормальном диапазоне не исключает смешанное нарушение");}
+  if(out.met && out.resp) out.bothOpposite=true;
+  return out;
+}
+function compensation(d,b,p){const r={text:"",checks:[]};if(p.met==="metabolic acidosis"){const lo=1.5*b.HCO3+8-2,hi=1.5*b.HCO3+8+2;r.text=`Winter's: ожид. pCO₂ = ${fixed(lo,1)}–${fixed(hi,1)}`;if(d.pCO2>hi)r.checks.push("выше ожид.");else if(d.pCO2<lo)r.checks.push("ниже ожид.");else r.checks.push("адекватна");return r;}if(p.met==="metabolic alkalosis"){const lo=0.7*b.HCO3+21-2,hi=0.7*b.HCO3+21+2;r.text=`Ожид. pCO₂ = ${fixed(lo,1)}–${fixed(hi,1)}`;if(d.pCO2>hi)r.checks.push("выше ожид.");else if(d.pCO2<lo)r.checks.push("ниже ожид.");else r.checks.push("адекватна");return r;}if(p.resp==="respiratory acidosis"){if(d.chronic==="acute"){r.text=`Острое: HCO₃⁻ ~ ${fixed(24+0.1*(d.pCO2-40),1)}`;}else if(d.chronic==="chronic"){r.text=`Хронич.: HCO₃⁻ ~ ${fixed(24+0.35*(d.pCO2-40),1)}`;}else r.text="Хроничность не задана";return r;}if(p.resp==="respiratory alkalosis"){if(d.chronic==="acute"){r.text=`Острое: HCO₃⁻ ~ ${fixed(24-0.2*(40-d.pCO2),1)}`;}else if(d.chronic==="chronic"){r.text=`Хронич.: HCO₃⁻ ~ ${fixed(24-0.4*(40-d.pCO2),1)}`;}else r.text="Хроничность не задана";return r;}r.text="Первичное нарушение не определено";return r;}
+function phCompensation(d){
+  if(d.pH<7.20)return{status:"тяжёлая ацидемия",detail:"pH <7.20; pH сам по себе не определяет наличие/отсутствие смешанного нарушения"};
+  if(d.pH<7.35)return{status:"ацидемия",detail:"pH <7.35"};
+  if(d.pH<=7.45)return{status:"pH в нормальном диапазоне",detail:"7.35–7.45; скрытое смешанное нарушение не исключено"};
+  if(d.pH<=7.60)return{status:"алкалемия",detail:"pH >7.45"};
+  return{status:"тяжёлая алкалемия",detail:"pH >7.60; pH сам по себе не определяет наличие/отсутствие смешанного нарушения"};
+}
+function calcDeltaDelta(d,b){
+  if(!(b.HCO3<22 && b.deltaAG>0))return{value:NaN,classification:"не применимо",suspicion:false};
+  const dd=b.deltaDelta; let classification,suspicion=false;
+  if(dd<0.4)classification="HAGMA + выраженный дополнительный NAGMA (паттерн)";
+  else if(dd<0.9)classification="HAGMA + NAGMA (паттерн)";
+  else if(dd<1.5)classification="HAGMA без явного дополнительного метаболического процесса";
+  else if(dd<=2.0){classification="HAGMA + возможный метаболический алкалоз";suspicion=true;}
+  else {classification="HAGMA + вероятный метаболический алкалоз";suspicion=true;}
+  return{value:dd,classification,suspicion};
+}
+function detectHAGMA(d,b,st){if(b.AGcorr<=14) return{hasHAGMA:false,reason:""};if(b.HCO3<22 || b.SBE<-2) return{hasHAGMA:true,reason:"АП высокий + HCO₃⁻/SBE низкие"};const triggers=[];if(d.Lac>2) triggers.push(`Lac ${fixed(d.Lac,1)}`);if(d.Gluc>15 && b.HCO3<30) triggers.push(`Gluc ${fixed(d.Gluc,1)}`);if(Math.abs(st.SIG_corr)>5) triggers.push(`SIG ${fixed(st.SIG_corr,1)}`);if(triggers.length>0){return{hasHAGMA:true,reason:`Скрытый HAGMA (АП ${fixed(b.AGcorr)}). Триггеры: ${triggers.join(", ")}`};}return{hasHAGMA:false,reason:`АП_корр ${fixed(b.AGcorr)} >14 без мет. ацидоза`};}
+function clinicalFindings(d,b,st,p,dd,hagma){const findings=[],alerts=[];const Alb=d.Alb||40;if(Alb<35)alerts.push(`Гипоальбуминемия: Alb ${fixed(Alb,1)}`);if(Alb>50)findings.push(`Гиперпротеинемия (Alb ${fixed(Alb,1)})`);if(d.Na>145)alerts.push(`Гипернатриемия: Na ${fixed(d.Na,1)}. АП корр. ${fixed(b.AG_Na_corr,2)}. SIG корр. ${fixed(st.SIG_Na_corr,2)}.`);if(d.Na<135)alerts.push(`Гипонатриемия: Na ${fixed(d.Na,1)}`);if(d.K<3.5)findings.push(`Гипокалиемия (K ${fixed(d.K,1)})`);if(d.K>5.5)findings.push(`Гиперкалиемия (K ${fixed(d.K,1)})`);if(d.Cl<98)findings.push(`Гипохлоремия (Cl ${fixed(d.Cl,1)})`);if(d.Cl>107)findings.push(`Гиперхлоремия (Cl ${fixed(d.Cl,1)})`);if(hagma.hasHAGMA){if(d.Lac>2)findings.push(`HAGMA + лактат-ацидоз`);else if(d.Gluc>15)findings.push(`HAGMA + гипергликемия. Кетоацидоз?`);else findings.push(`HAGMA. Источники: D-лактат, кетоны, уремия, токсины.`);}if(Number.isFinite(st.SIG)&&st.SIG>5)findings.push(`SIG повышен (${fixed(st.SIG,1)})`);if(Number.isFinite(b.Osm_gap)){if(b.Osm_gap>20)findings.push(`Осмолярный gap ${fixed(b.Osm_gap,1)} (>20). Рассмотреть токсические спирты и другие причины повышенного осмолярного gap.`);else if(b.Osm_gap>10)findings.push(`Осмолярный gap ${fixed(b.Osm_gap,1)} (10–20)`);}if(Number.isFinite(b.PF)&&b.PF<=300)alerts.push(`P/F ${fixed(b.PF,0)} — гипоксемия`);return{findings,alerts};}
+function dataQuality(d,b,st,sofa){
+  const q=[];
+  if(!Number.isFinite(d.pO2)||!Number.isFinite(d.FiO2))q.push("Для P/F и части SOFA/APACHE II нет полной информации об оксигенации.");
+  if(Number.isFinite(b.PF) && b.PF<200 && d.PEEP<5)q.push("P/F <200, но PEEP <5: респираторный компонент SOFA не может быть корректно выставлен.");
+  if(!Number.isFinite(d.Plt)||!Number.isFinite(d.Bil)||!Number.isFinite(d.Cr)||!Number.isFinite(d.GCS))q.push("SOFA неполный: отсутствуют отдельные органные показатели.");
+  if(Number.isFinite(b.Osm_gap) && b.Osm_gap>20)q.push("Выраженный osmolal gap: требуется клинический поиск причины; это не специфично для токсических спиртов.");
+  if(d.Na>145 && d.naCorr==="on")q.push("Использован corrected Na, но AG и Stewart рассчитаны на измеренном Na.");
+  return q;
+}
+function syndrome(d,b,p,dd,st,hagma,phComp){
+  const parts=[];
+  if(p.resp==="respiratory acidosis")parts.push("респираторный ацидоз");
+  if(p.resp==="respiratory alkalosis")parts.push("респираторный алкалоз");
+  if(p.met==="metabolic acidosis")parts.push("метаболический ацидоз");
+  if(p.met==="metabolic alkalosis")parts.push("метаболический алкалоз");
+  let hagmaType="";
+  if(hagma.hasHAGMA)hagmaType=Number.isFinite(dd.value)?dd.classification:(b.HCO3>26?"HAGMA (скрытый)":"HAGMA");
+  let title="Расстройств КОС не выявлено";
+  const nComponents=parts.length+(hagma.hasHAGMA&&!parts.some(x=>x.includes("метаболический ацидоз"))?1:0);
+  if(nComponents===0&&!hagma.hasHAGMA)title="Расстройств КОС не выявлено";
+  else if(nComponents===1)title="Изолированное нарушение";
+  else if(nComponents===2)title="Смешанное нарушение";
+  else title="Множественное смешанное нарушение";
+  let detail=parts.join(" · ");
+  if(hagmaType)detail+=(detail?" · ":"")+hagmaType;
+  if(p.respIsCompensation && (p.met==="metabolic acidosis"||p.met==="metabolic alkalosis"))detail+=(detail?" · ":"")+"респираторная компенсация в ожидаемом диапазоне";
+  if(p.hidden)detail+=(detail?" · ":"")+"pH нормальный/почти нормальный не исключает скрытое смешанное нарушение";
+  if(!detail && b.AGcorr>14&&!hagma.hasHAGMA)detail="Повышенный AGcorr без подтверждённого метаболического ацидоза — оценить контекст и динамику.";
+  return{title,detail,components:parts};
+}
+function ardsAssessment(d,b){if(!Number.isFinite(b.PF)||d.PEEP<5)return{status:"Недостаточно данных",detail:"Требуется PEEP ≥5 см H₂O"};if(d.bilateral!=="yes"||d.timing!=="yes"||d.noncardiac!=="yes")return{status:"Критерии ОРДС не подтверждены",detail:""};const sev=b.PF>200?"лёгкая":b.PF>100?"средняя":"тяжёлая";return{status:`ОРДС ${sev}`,detail:`P/F ${fixed(b.PF,0)} при PEEP ${fixed(d.PEEP,1)}`};}
+function calcBalance(d){const W=Number.isFinite(d.Weight)&&d.Weight>0?d.Weight:70;const tbwCoef=getTBWCoeff(d);const T=W*tbwCoef;const acuity=getAcuity(d);const res={W,tbwCoef,T,acuity,waterDeficit:NaN,naDeficit:NaN,kDeficit:NaN,clDeficit:NaN,naVolume:NaN,kVolume:NaN,deltaNa:NaN,deltaK:NaN,naSol:SOLUTIONS.na[getSelect("naSolution")||"0.9"],kSol:SOLUTIONS.k[getSelect("kSolution")||"4"]};if(d.Na>145){const naTarget=140;res.waterDeficit=tbwCoef*W*(d.Na-naTarget)/naTarget;}if(d.Na<135){const naTarget=140;res.naDeficit=tbwCoef*W*(naTarget-d.Na);res.naVolume=res.naDeficit/res.naSol.perMl;res.deltaNa=(res.naSol.conc-d.Na)/(T+1);}if(d.K<3.5){const kTarget=4.5;res.kDeficit=W*0.4*(kTarget-d.K);res.kVolume=res.kDeficit/res.kSol.perMl;res.deltaK=res.kDeficit/(W*0.4);}if(d.Cl<98){const clTarget=103;res.clDeficit=W*0.5*(clTarget-d.Cl);}return res;}
+function renderBalance(d,bal){const el=document.getElementById("balanceResults");if(!el)return;let html=`<div class="balance-result"><h4>Параметры</h4><div class="balance-row"><span>Вес</span><span>${fixed(bal.W,1)} кг</span></div><div class="balance-row"><span>Коэф. TBW</span><span>${bal.tbwCoef}</span></div><div class="balance-row"><span>Общая вода</span><span>${fixed(bal.T,1)} л</span></div><div class="balance-row"><span>Темп нарушения</span><span>${bal.acuity==='acute'?'Острое':'Хроническое'}</span></div></div>`;if(Number.isFinite(bal.waterDeficit)&&bal.waterDeficit>0){html+=`<div class="balance-result"><h4>Дефицит воды</h4><div class="balance-row"><span>Na / цель</span><span>${fixed(d.Na,1)} / 140</span></div><div class="balance-row"><span>Дефицит</span><span>${fixed(bal.waterDeficit,2)} л</span></div><div class="balance-row"><span>Раствор</span><span>5% глюкоза</span></div></div>`;}if(Number.isFinite(bal.naDeficit)&&bal.naDeficit>0){html+=`<div class="balance-result"><h4>Дефицит Na</h4><div class="balance-row"><span>Раствор</span><span>${bal.naSol.label}</span></div><div class="balance-row"><span>Дефицит</span><span>${fixed(bal.naDeficit,1)} ммоль</span></div><div class="balance-row"><span>Объём</span><span>${fixed(bal.naVolume,1)} мл</span></div><div class="balance-row"><span>ΔNa</span><span>${fixed(bal.deltaNa,2)} ммоль/л</span></div></div>`;}if(Number.isFinite(bal.kDeficit)&&bal.kDeficit>0){html+=`<div class="balance-result"><h4>Дефицит K</h4><div class="balance-row"><span>Раствор</span><span>${bal.kSol.label}</span></div><div class="balance-row"><span>Дефицит</span><span>${fixed(bal.kDeficit,1)} ммоль</span></div><div class="balance-row"><span>Объём</span><span>${fixed(bal.kVolume,1)} мл</span></div><div class="balance-row"><span>ΔK</span><span>${fixed(bal.deltaK,2)} ммоль/л</span></div><div class="balance-row"><span>Скорость (K&gt;2.5)</span><span>10 ммоль/ч</span></div><div class="balance-row"><span>Скорость (K&lt;2.0)</span><span>40 ммоль/ч (центр)</span></div></div>`;}if(Number.isFinite(bal.clDeficit)&&bal.clDeficit>0){html+=`<div class="balance-result"><h4>Дефицит Cl</h4><div class="balance-row"><span>Дефицит</span><span>${fixed(bal.clDeficit,1)} ммоль</span></div></div>`;}if(html.indexOf("balance-result")===html.lastIndexOf("balance-result")){html+='<div class="small-note">Электролитных нарушений нет.</div>';}el.innerHTML=html;}
+function renderBalanceExplanations(d,bal){const el=document.getElementById("balanceExplanations");if(!el)return;let html=`<h3 style="font:600 11px 'Inter',sans-serif;color:var(--mut);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px">Пошаговые расчёты</h3>`;html+=`<details><summary>Дефицит воды</summary><div class="fml">Дефицит = ${bal.tbwCoef} × ${fixed(bal.W,1)} × (${fixed(d.Na,1)} − 140) / 140 = ${Number.isFinite(bal.waterDeficit)?fixed(bal.waterDeficit,2):"—"} л</div></details>`;html+=`<details><summary>Дефицит Na</summary><div class="fml">Дефицит = ${bal.tbwCoef} × ${fixed(bal.W,1)} × (140 − ${fixed(d.Na,1)}) = ${Number.isFinite(bal.naDeficit)?fixed(bal.naDeficit,1):"—"} ммоль\nОбъём = ${Number.isFinite(bal.naDeficit)?fixed(bal.naDeficit,1):"—"} / ${bal.naSol.perMl} = ${Number.isFinite(bal.naVolume)?fixed(bal.naVolume,1):"—"} мл</div></details>`;html+=`<details><summary>Дефицит K</summary><div class="fml">Дефицит = ${fixed(bal.W,1)} × 0.4 × (4.5 − ${fixed(d.K,1)}) = ${Number.isFinite(bal.kDeficit)?fixed(bal.kDeficit,1):"—"} ммоль\nОбъём = ${Number.isFinite(bal.kDeficit)?fixed(bal.kDeficit,1):"—"} / ${bal.kSol.perMl} = ${Number.isFinite(bal.kVolume)?fixed(bal.kVolume,1):"—"} мл</div></details>`;html+=`<details><summary>Дефицит Cl</summary><div class="fml">Дефицит = ${fixed(bal.W,1)} × 0.5 × (103 − ${fixed(d.Cl,1)}) = ${Number.isFinite(bal.clDeficit)?fixed(bal.clDeficit,1):"—"} ммоль</div></details>`;el.innerHTML=html;}
+function renderFinal(d,b,syn,scales,sepsis,bal,fin){const el=document.getElementById("finalResults");if(!el)return;const news2=scales.find(s=>s.name==="NEWS2");const qsofa=scales.find(s=>s.name==="qSOFA");const sofa=scales.find(s=>s.name==="SOFA");const apache=scales.find(s=>s.name==="APACHE II");const sirs=scales.find(s=>s.name==="SIRS");let html=`<div class="final-block"><h4><span class="num">1</span>КОС</h4><div class="content"><b>${escapeHTML(syn.title)}</b><br>${escapeHTML(syn.detail||'—')}</div></div><div class="final-block"><h4><span class="num">2</span>Клинические находки</h4><div class="content">${fin&&fin.findings&&fin.findings.length?fin.findings.map(x=>`· ${escapeHTML(x)}`).join("<br>"):"Дополнительных находок нет."}${fin&&fin.alerts&&fin.alerts.length?`<br><br><b>Предупреждения</b><br>`+fin.alerts.map(x=>`· ${escapeHTML(x)}`).join("<br>"):""}</div></div><div class="final-block"><h4><span class="num">3</span>Шкалы</h4><div class="content">NEWS2 = ${news2?news2.total:'—'} (${news2?escapeHTML(news2.interp):'—'})<br>qSOFA = ${qsofa?qsofa.total:'—'} · SIRS = ${sirs?sirs.total:'—'}<br>SOFA = ${sofa?sofa.total:'—'} (${sofa?escapeHTML(sofa.interp):'—'})<br>APACHE II = ${apache?apache.total:'—'} (${apache?escapeHTML(apache.interp):'—'})</div></div><div class="final-block"><h4><span class="num">4</span>Сепсис</h4><div class="content">${escapeHTML(sepsis.sepsisStatus)}${sepsis.shockStatus!=="—"?"<br><b>"+escapeHTML(sepsis.shockStatus)+"</b>":""}</div></div><div class="final-block"><h4><span class="num">5</span>Баланс</h4><div class="content">`;if(Number.isFinite(bal.waterDeficit)&&bal.waterDeficit>0)html+=`Дефицит воды ${fixed(bal.waterDeficit,2)} л<br>`;if(Number.isFinite(bal.naDeficit)&&bal.naDeficit>0)html+=`Дефицит Na ${fixed(bal.naDeficit,1)} ммоль → ${fixed(bal.naVolume,1)} мл<br>`;if(Number.isFinite(bal.kDeficit)&&bal.kDeficit>0)html+=`Дефицит K ${fixed(bal.kDeficit,1)} ммоль → ${fixed(bal.kVolume,1)} мл<br>`;if(Number.isFinite(bal.clDeficit)&&bal.clDeficit>0)html+=`Дефицит Cl ${fixed(bal.clDeficit,1)} ммоль<br>`;if(!Number.isFinite(bal.waterDeficit)&&!Number.isFinite(bal.naDeficit)&&!Number.isFinite(bal.kDeficit)&&!Number.isFinite(bal.clDeficit))html+=`Электролитных нарушений нет`;html+=`</div></div><div class="final-block"><h4><span class="num">6</span>Объяснение</h4><div class="content">`;const expl=[];if(syn.title.includes("КОС нет"))expl.push("КОС в норме");else expl.push(`Нарушение КОС: ${escapeHTML(syn.detail||syn.title)}`);if(news2 && news2.total>=7)expl.push(`NEWS2 ${news2.total} — высокий риск`);else if(news2 && news2.total>=5)expl.push(`NEWS2 ${news2.total} — средний риск`);if(sofa && sofa.total>=6)expl.push(`SOFA ${sofa.total} — ПОН`);else if(sofa && sofa.total>=2)expl.push(`SOFA ${sofa.total} — органная дисфункция`);if(sepsis.sepsisStatus.includes("Сепсис"))expl.push(`Критерии сепсиса`);if(sepsis.shockStatus!=="—")expl.push(`Септический шок`);if(Number.isFinite(bal.kDeficit)&&bal.kDeficit>0)expl.push(`Дефицит K ${fixed(bal.kDeficit,1)} ммоль`);if(Number.isFinite(bal.naDeficit)&&bal.naDeficit>0)expl.push(`Дефицит Na ${fixed(bal.naDeficit,1)} ммоль`);if(Number.isFinite(bal.waterDeficit)&&bal.waterDeficit>0)expl.push(`Дефицит воды ${fixed(bal.waterDeficit,2)} л`);expl.push("Автоматические назначения не выдаются");html+=expl.map(e=>`· ${e}`).join("<br>");html+=`</div></div>`;el.innerHTML=html;}
+function calcNEWS2(d){const items=[];let rr=0;if(d.RR<=8)rr=3;else if(d.RR<=11)rr=1;else if(d.RR<=20)rr=0;else if(d.RR<=24)rr=2;else rr=3;items.push({name:"ЧД",score:rr,val:d.RR});let spo=0;if(d.SpO2<=91)spo=3;else if(d.SpO2<=93)spo=2;else if(d.SpO2<=95)spo=1;else spo=0;items.push({name:"SpO2",score:spo,val:d.SpO2});items.push({name:"Кислород",score:d.O2support==="yes"?2:0,val:d.O2support==="yes"?"Да":"Нет"});let sbp=0;if(d.SBP<=90)sbp=3;else if(d.SBP<=100)sbp=2;else if(d.SBP<=110)sbp=1;else if(d.SBP<=219)sbp=0;else sbp=3;items.push({name:"АД сист",score:sbp,val:d.SBP});let hr=0;if(d.HR<=40)hr=3;else if(d.HR<=50)hr=1;else if(d.HR<=90)hr=0;else if(d.HR<=110)hr=1;else if(d.HR<=130)hr=2;else hr=3;items.push({name:"ЧСС",score:hr,val:d.HR});items.push({name:"Сознание",score:d.ACVPU==="A"?0:3,val:d.ACVPU});let t=0;if(d.Temp<=35.0)t=3;else if(d.Temp<=36.0)t=1;else if(d.Temp<=38.0)t=0;else if(d.Temp<=39.0)t=1;else t=2;items.push({name:"Температура",score:t,val:d.Temp});const total=items.reduce((s,i)=>s+i.score,0);const anyThree=items.some(i=>i.score===3);let interp, level;if(total>=7||anyThree){interp="Высокий риск";level="bad";}else if(total>=5){interp="Средний риск";level="warn";}else if(total>=1){interp="Низкий риск";level="ok";}else{interp="Норма";level="ok";}return{name:"NEWS2",total,items,interp,level};}
+function calcQSOFA(d){const items=[];items.push({name:"ЧД ≥ 22",score:d.RR>=22?1:0,val:d.RR});items.push({name:"АД сист ≤ 100",score:d.SBP<=100?1:0,val:d.SBP});items.push({name:"GCS < 15",score:d.GCS<15?1:0,val:d.GCS});const total=items.reduce((s,i)=>s+i.score,0);let interp, level;if(total>=2){interp="Высокий риск";level="bad";}else if(total===1){interp="Промежуточный";level="warn";}else{interp="Низкий риск";level="ok";}return{name:"qSOFA",total,items,interp,level};}
+function calcSIRS(d){const items=[];items.push({name:"T >38 / <36",score:(d.Temp>38||d.Temp<36)?1:0,val:d.Temp});items.push({name:"ЧСС > 90",score:d.HR>90?1:0,val:d.HR});items.push({name:"ЧД > 20 / pCO2 < 32",score:(d.RR>20||d.pCO2<32)?1:0,val:d.RR});items.push({name:"WBC >12 / <4 / пал >10%",score:(d.WBC>12||d.WBC<4||d.Bands>10)?1:0,val:d.WBC});const total=items.reduce((s,i)=>s+i.score,0);let interp, level;if(total>=2){interp="SIRS присутствует";level="bad";}else if(total===1){interp="1 критерий";level="warn";}else{interp="SIRS отсутствует";level="ok";}return{name:"SIRS",total,items,interp,level};}
+function calcSOFA(d,b){
+  const items=[];
+  let resp=null;
+  if(Number.isFinite(b.PF)){
+    if(b.PF>=400)resp=0; else if(b.PF>=300)resp=1; else if(b.PF>=200)resp=2; else if(b.PF>=100 && d.PEEP>=5)resp=3; else if(b.PF<100 && d.PEEP>=5)resp=4;
+  }
+  items.push({name:"PaO₂/FiO₂",score:resp,val:Number.isFinite(b.PF)?fixed(b.PF,0):"—",available:Number.isFinite(resp)});
+  let coa=d.Plt>=150?0:d.Plt>=100?1:d.Plt>=50?2:d.Plt>=20?3:4; items.push({name:"Тромбоциты",score:coa,val:d.Plt});
+  const bilMgdl=d.Bil/17.1; let liv=bilMgdl<1.2?0:bilMgdl<2?1:bilMgdl<6?2:bilMgdl<12?3:4; items.push({name:"Билирубин",score:liv,val:fixed(d.Bil,1)});
+  const meanAP=(d.SBP+2*d.DBP)/3; let cv=0;
+  if(d.Vaso==="none" && meanAP<70)cv=1;
+  else if(["dopa_low","norepi_low","epi_low"].includes(d.Vaso))cv=2;
+  else if(["dopa_mid","norepi_high","epi_high"].includes(d.Vaso))cv=3;
+  else if(d.Vaso==="dopa_high")cv=4;
+  items.push({name:"ССС",score:cv,val:fixed(meanAP,1)});
+  let cns=d.GCS>=15?0:d.GCS>=13?1:d.GCS>=10?2:d.GCS>=6?3:4; items.push({name:"GCS",score:cns,val:d.GCS});
+  const crMgdl=d.Cr/88.4; let ren=0;
+  if(Number.isFinite(d.Urine) && d.Urine<200)ren=4; else if(Number.isFinite(d.Urine) && d.Urine<500)ren=3; else if(crMgdl>=5)ren=4; else if(crMgdl>=3.5)ren=3; else if(crMgdl>=2)ren=2; else if(crMgdl>=1.2)ren=1;
+  items.push({name:"Креатинин / диурез 24 ч",score:ren,val:fixed(d.Cr,0)});
+  const total=items.filter(i=>i.available!==false).reduce((s,i)=>s+i.score,0);
+  const missing=items.filter(i=>i.available===false).map(i=>i.name);
+  let interp,level;
+  if(missing.length){interp=`Неполный SOFA (нет: ${missing.join(", ")})`;level="warn";}
+  else if(total>=11){interp="Тяжёлая ПОН";level="bad";} else if(total>=6){interp="ПОН";level="bad";} else if(total>=2){interp="Органная дисфункция";level="warn";} else {interp="<2";level="ok";}
+  return{name:"SOFA",total,items,interp,level,complete:missing.length===0};
+}
+function calcAPACHE2(d,b){const items=[];let t=0;if(d.Temp>=41)t=4;else if(d.Temp>=39)t=3;else if(d.Temp>=38.5)t=1;else if(d.Temp>=36)t=0;else if(d.Temp>=34)t=1;else if(d.Temp>=32)t=2;else if(d.Temp>=30)t=3;else t=4;items.push({name:"Температура",score:t,val:d.Temp});const meanAP=(d.SBP+2*d.DBP)/3;let map=0;if(meanAP>=160)map=4;else if(meanAP>=130)map=3;else if(meanAP>=110)map=2;else if(meanAP>=70)map=0;else if(meanAP>=50)map=2;else map=4;items.push({name:"Среднее АД",score:map,val:fixed(meanAP,1)});let hr=0;if(d.HR>=180)hr=4;else if(d.HR>=140)hr=3;else if(d.HR>=110)hr=2;else if(d.HR>=70)hr=0;else if(d.HR>=55)hr=2;else if(d.HR>=40)hr=3;else hr=4;items.push({name:"ЧСС",score:hr,val:d.HR});let rr=0;if(d.RR>=50)rr=4;else if(d.RR>=35)rr=3;else if(d.RR>=25)rr=1;else if(d.RR>=12)rr=0;else if(d.RR>=10)rr=1;else if(d.RR>=6)rr=2;else rr=4;items.push({name:"ЧД",score:rr,val:d.RR});let ox=0,oxVal="—",oxName="Оксигенация";
+if(d.FiO2>=50){const aa=b.A_a_est;if(Number.isFinite(aa)){ox=aa>=500?4:aa>=350?3:aa>=200?2:0;oxVal=`A-a ${fixed(aa,0)}`;}else{ox=0;oxVal="недоступно";}}
+else if(Number.isFinite(d.pO2)){ox=d.pO2<55?4:d.pO2<=60?3:d.pO2<=70?1:0;oxVal=`PaO₂ ${fixed(d.pO2,0)}`;}
+else oxVal="недоступно";
+items.push({name:oxName,score:ox,val:oxVal});let ph=0;if(d.pH>=7.7)ph=4;else if(d.pH>=7.6)ph=3;else if(d.pH>=7.5)ph=1;else if(d.pH>=7.33)ph=0;else if(d.pH>=7.25)ph=2;else if(d.pH>=7.15)ph=3;else ph=4;items.push({name:"pH",score:ph,val:d.pH});let na=0;if(d.Na>=180)na=4;else if(d.Na>=160)na=3;else if(d.Na>=155)na=2;else if(d.Na>=150)na=1;else if(d.Na>=130)na=0;else if(d.Na>=120)na=2;else if(d.Na>=111)na=3;else na=4;items.push({name:"Na",score:na,val:d.Na});let k=0;if(d.K>=7)k=4;else if(d.K>=6)k=3;else if(d.K>=5.5)k=1;else if(d.K>=3.5)k=0;else if(d.K>=3)k=1;else if(d.K>=2.5)k=2;else k=4;items.push({name:"K",score:k,val:d.K});const crMgdl=d.Cr/88.4;let cr=0;if(crMgdl>=3.5)cr=4;else if(crMgdl>=2)cr=3;else if(crMgdl>=1.5)cr=2;else if(crMgdl>=0.6)cr=0;else cr=2;items.push({name:"Креатинин",score:cr,val:fixed(crMgdl,2)});let hct=0;if(d.Hct>=60)hct=4;else if(d.Hct>=50)hct=2;else if(d.Hct>=46)hct=1;else if(d.Hct>=30)hct=0;else if(d.Hct>=20)hct=2;else hct=4;items.push({name:"Гематокрит",score:hct,val:d.Hct});let wbc=0;if(d.WBC>=40)wbc=4;else if(d.WBC>=20)wbc=2;else if(d.WBC>=15)wbc=1;else if(d.WBC>=3)wbc=0;else if(d.WBC>=1)wbc=2;else wbc=4;items.push({name:"Лейкоциты",score:wbc,val:d.WBC});const gcsScore=15-d.GCS;items.push({name:"GCS (дефицит)",score:gcsScore,val:d.GCS});let ageScore=0;if(d.Age<=44)ageScore=0;else if(d.Age<=54)ageScore=2;else if(d.Age<=64)ageScore=3;else if(d.Age<=74)ageScore=5;else ageScore=6;items.push({name:"Возраст",score:ageScore,val:d.Age});let chronicScore=0;if(d.Chronic==="severe")chronicScore=5;else if(d.Chronic==="mild")chronicScore=2;items.push({name:"Хроническое",score:chronicScore,val:d.Chronic});const total=items.reduce((s,i)=>s+i.score,0);let interp, level;if(total>=35){interp=">80%";level="bad";}else if(total>=25){interp="55–75%";level="bad";}else if(total>=15){interp="25–40%";level="warn";}else if(total>=10){interp="10–15%";level="warn";}else{interp="<10%";level="ok";}return{name:"APACHE II",total,items,interp,level};}
+function calcSepsis(d,b,sofa,qsofa){
+  const hasInfection=d.infection==="yes";
+  const sofaDelta=sofa.total;
+  let sepsisStatus="Недостаточно данных",shockStatus="—",level="warn";
+  if(hasInfection && sofa.complete && sofaDelta>=2){
+    sepsisStatus="Сепсис: инфекция + острое увеличение SOFA ≥2"; level="bad";
+    const map=(d.SBP+2*d.DBP)/3;
+    const vaso=d.Vaso!=="none";
+    if(vaso && d.Lac>2 && map<65) shockStatus="Критерии септического шока вероятны: вазопрессор + лактат >2 + MAP <65";
+    else if(d.Lac>2) shockStatus="Лактат >2: оценить гипоперфузию и необходимость вазопрессора; критерии шока не подтверждены";
+  } else if(hasInfection && sofa.complete){
+    sepsisStatus="Инфекция без SOFA ≥2"; level="warn";
+  } else if(qsofa.total>=2){
+    sepsisStatus="qSOFA ≥2: сигнал высокого риска; qSOFA не является диагностическим критерием сепсиса"; level="warn";
+  }
+  return{sepsisStatus,shockStatus,level,hasInfection,sofaDelta};
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   🧠 END CORE
+   ═══════════════════════════════════════════════════════════════ */
+
+function updateDash(d,b,syn,scales,sepsis,bal,fin){
+  const setTile=(id,val,status,statusText)=>{const tile=document.getElementById("tile-"+id);const v=document.getElementById("dash-"+id);const s=document.getElementById("dash-"+id+"-status");if(v)v.textContent=val;if(s){s.textContent=statusText;s.className="dash-status "+status;}if(tile){tile.className="dash-tile "+status;}};
+  if(Number.isFinite(d.pH)){let st="ok",txt="норма";if(d.pH<7.35){st="bad";txt="ацидемия";}else if(d.pH>7.45){st="bad";txt="алкалемия";}else if(d.pH<7.38||d.pH>7.42){st="warn";txt="погранично";}setTile("pH",fixed(d.pH,2),st,txt);}
+  if(Number.isFinite(b.HCO3)){let st="ok",txt="норма";if(b.HCO3<22){st="bad";txt="мет. ацидоз";}else if(b.HCO3>26){st="bad";txt="мет. алкалоз";}else if(b.HCO3<23||b.HCO3>25){st="warn";txt="погранично";}setTile("HCO3",fixed(b.HCO3,1),st,txt);}
+  if(Number.isFinite(d.Na)){let st="ok",txt="норма";if(d.Na<135){st="bad";txt="гипоNa";}else if(d.Na>145){st="bad";txt="гиперNa";}else if(d.Na<137||d.Na>143){st="warn";txt="погранично";}setTile("Na",fixed(d.Na,1),st,txt);}
+  if(Number.isFinite(d.K)){let st="ok",txt="норма";if(d.K<3.5){st="bad";txt="гипоK";}else if(d.K>5.0){st="bad";txt="гиперK";}else if(d.K<3.7||d.K>4.8){st="warn";txt="погранично";}setTile("K",fixed(d.K,1),st,txt);}
+  if(Number.isFinite(d.Cl)){let st="ok",txt="норма";if(d.Cl<98){st="bad";txt="гипоCl";}else if(d.Cl>107){st="bad";txt="гиперCl";}else if(d.Cl<100||d.Cl>105){st="warn";txt="погранично";}setTile("Cl",fixed(d.Cl,1),st,txt);}
+  if(Number.isFinite(d.Gluc)){let st="ok",txt="норма";if(d.Gluc<3.9){st="bad";txt="гипогликемия";}else if(d.Gluc>7){st="bad";txt="гипергликемия";}else if(d.Gluc>5.5){st="warn";txt="погранично";}setTile("Gluc",fixed(d.Gluc,1),st,txt);}
+  if(Number.isFinite(d.Lac)){let st="ok",txt="норма";if(d.Lac>4){st="bad";txt="лактат-ацидоз";}else if(d.Lac>2){st="warn";txt="↑ лактат";}setTile("Lac",fixed(d.Lac,1),st,txt);}
+  if(Number.isFinite(b.PF)){let st="ok",txt="норма";if(b.PF<100){st="bad";txt="ОРДС тяж.";}else if(b.PF<200){st="bad";txt="ОРДС сред.";}else if(b.PF<300){st="warn";txt="ОРДС лёгк.";}setTile("PF",fixed(b.PF,0),st,txt);}
+  else{setTile("PF","—","ok","—");}
+  const synT=document.getElementById("dash-syn-title");const synD=document.getElementById("dash-syn-detail");if(synT)synT.textContent=syn.title;if(synD)synD.textContent=syn.detail||"—";
+  const fl=document.getElementById("dash-findings");if(fl){const arr=[...(fin?.findings||[]),...(fin?.alerts||[])];fl.innerHTML=arr.length?arr.map((x,i)=>`<div class="finding-chip ${i<2?'bad':''}"><span class="dot"></span><div>${escapeHTML(x)}</div></div>`).join(''):'<div class="small-note">Дополнительных клинических находок нет.</div>'; }
+  const setScale=(id,s)=>{const v=document.getElementById("dash-"+id);const i=document.getElementById("dash-"+id+"-i");if(v)v.textContent=s?s.total:"—";if(i)i.textContent=s?s.interp:"—";};
+  setScale("news2",scales.find(s=>s.name==="NEWS2"));setScale("qsofa",scales.find(s=>s.name==="qSOFA"));setScale("sofa",scales.find(s=>s.name==="SOFA"));setScale("apache",scales.find(s=>s.name==="APACHE II"));
+  const bEl=document.getElementById("dash-balance");if(bEl){let txt=[];if(Number.isFinite(bal.kDeficit)&&bal.kDeficit>0)txt.push(`Дефицит K ${fixed(bal.kDeficit,1)} ммоль → ${fixed(bal.kVolume,1)} мл`);if(Number.isFinite(bal.naDeficit)&&bal.naDeficit>0)txt.push(`Дефицит Na ${fixed(bal.naDeficit,1)} ммоль → ${fixed(bal.naVolume,1)} мл`);if(Number.isFinite(bal.waterDeficit)&&bal.waterDeficit>0)txt.push(`Дефицит воды ${fixed(bal.waterDeficit,2)} л`);if(Number.isFinite(bal.clDeficit)&&bal.clDeficit>0)txt.push(`Дефицит Cl ${fixed(bal.clDeficit,1)} ммоль`);bEl.innerHTML=txt.length>0?txt.join("<br>"):"Электролитных нарушений нет";}
+}
+function render(d,b,p,comp,dd,st,fin,hagma,syn,ards,phComp){
+  const synEl=document.getElementById("syndrome");if(synEl)synEl.innerHTML=`<div class="syndrome-block"><div class="syn-label">Синдромальный диагноз КОС</div><div class="syn-title">${escapeHTML(syn.title)}</div><div class="syn-detail">${escapeHTML(syn.detail||"—")}</div><div class="syn-detail" style="margin-top:8px"><b>Оксигенация:</b> ${escapeHTML(ards.status)}${ards.detail?" · "+escapeHTML(ards.detail):""}</div>${syn.quality&&syn.quality.length?`<div class="syn-detail" style="margin-top:8px"><b>Ограничения:</b><br>${syn.quality.map(x=>"· "+escapeHTML(x)).join("<br>")}</div>`:""}</div>`;
+  const rGroups=[
+    {title:"КОС",rows:[["HCO₃⁻ (лаб.)",fixed(d.HCO3in,1)+" ммоль/л"],["HCO₃⁻ (H-H)",fixed(b.HCO3calc,1)+" ммоль/л"],["SBE",fixed(b.SBE,1)],["SBE (Van Slyke)",fixed(b.SBE_calc,1)]]},
+    {title:"АП / ΔΔ",rows:[["АП",fixed(b.AG)],["АП_корр (Alb)",fixed(b.AGcorr)],["АП (Na корр.)",fixed(b.AG_Na_corr)],["ΔAG",fixed(b.deltaAG)],["ΔHCO₃⁻",fixed(b.deltaHCO3)],["ΔΔ",Number.isFinite(dd.value)?fixed(dd.value,2):"не применимо"]]},
+    {title:"ΔΔ классификация",rows:[["Классификация",dd.classification],["HAGMA",hagma.hasHAGMA?"ЕСТЬ":"нет"]]},
+    {title:"SBE-разбивка",rows:[["SBE_FW (вода)",fixed(b.SBE_FW)],["SBE_Cl (хлор)",fixed(b.SBE_Cl)],["SBE_Alb (альбумин)",fixed(b.SBE_Alb)],["SBE_UA (прочие)",fixed(b.SBE_UA)]]},
+    {title:"Стюарт",rows:[["SID_a",fixed(st.SIDa)],["SID_e",fixed(st.SIDe)],["SIG",fixed(st.SIG)],["SIG (Alb корр.)",fixed(st.SIG_corr)],["SIG (Na корр.)",fixed(st.SIG_Na_corr)]]},
+    {title:"Осмоляльность",rows:[["Осм_расч",fixed(b.Osm_calc,1)+" мОсм/кг"],["Осм_изм",Number.isFinite(d.Osm_in)?fixed(d.Osm_in,0)+" мОсм/кг":"—"],["Осмолярный gap",Number.isFinite(b.Osm_gap)?fixed(b.Osm_gap,1)+" мОсм/кг":"—"]]},
+    {title:"Оксигенация",rows:[["P/F",Number.isFinite(b.PF)?fixed(b.PF,0):"—"],["A-a градиент",fixed(b.A_a_est,0)]]},
+    {title:"Компенсация",rows:[["Степень (по pH)",phComp.status]]}
+  ];
+  const resultsHTML=`<div class="result-grid">${rGroups.map(g=>{const rowsHTML=g.rows.map(r=>`<div class="result-row"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');return `<div class="result-card"><h4>${g.title}</h4>${rowsHTML}</div>`;}).join('')}</div>`;
+  const resEl=document.getElementById("results");if(resEl)resEl.innerHTML=resultsHTML;
+  const dashFull=document.getElementById("dash-full-results");if(dashFull)dashFull.innerHTML=resultsHTML;
+  const logs=[];logs.push(`<b>pH вектор:</b> ${fixed(d.pH,3)} → ${p.acidBase}`);if(p.resp)logs.push(`<b>Респираторный:</b> ${p.resp}`);if(p.respIsCompensation)logs.push(`<b>Респираторный (компенсация)</b>`);if(p.met)logs.push(`<b>Метаболический:</b> ${p.met}`);if(hagma.hasHAGMA)logs.push(`<b>HAGMA:</b> ${hagma.reason}`);logs.push(`<b>Степень:</b> ${phComp.status}`);
+  let diagHTML=`<h3>Что видно на входе</h3><ul>${logs.map(l=>`<li>${l}</li>`).join('')}</ul>`;
+  diagHTML+=`<h3>Как проверяли компенсацию</h3><div>${escapeHTML(comp.text)}</div><ul>${comp.checks.map(c=>`<li>${escapeHTML(c)}</li>`).join('')}</ul>`;
+  diagHTML+=`<h3>Что нашли по ходу анализа</h3>`;
+  if(fin.findings.length>0)diagHTML+=fin.findings.map(f=>`<div class="finding">${escapeHTML(f)}</div>`).join('');
+  if(fin.alerts.length>0)diagHTML+=fin.alerts.map(a=>`<div class="alert">${escapeHTML(a)}</div>`).join('');
+  if(fin.findings.length===0 && fin.alerts.length===0) diagHTML+=`<div class="small-note">Дополнительных находок нет.</div>`;
+  diagHTML+=`<h3>Итог по КОС</h3><div><b>${escapeHTML(syn.title)}</b>${syn.detail?"<br>"+escapeHTML(syn.detail):""}</div>`;
+  const diagEl=document.getElementById("diagnosis");if(diagEl)diagEl.innerHTML=diagHTML;const rf=document.getElementById("results-findings");if(rf)rf.innerHTML=(fin.findings.length||fin.alerts.length)?[...fin.findings.map(x=>`<div class="finding-chip"><span class="dot"></span><div>${escapeHTML(x)}</div></div>`),...fin.alerts.map(x=>`<div class="finding-chip bad"><span class="dot"></span><div>${escapeHTML(x)}</div></div>`)].join(""):"<div class=\"small-note\">Дополнительных клинических находок нет.</div>";
+  const exEl=document.getElementById("explanations");if(exEl)exEl.innerHTML=`<details open><summary>АП и АП_корр</summary><div class="fml">АП = Na − (Cl + HCO3) = ${fixed(b.AG)}\nАП_корр = АП + 0.25 × (40 − Alb) = ${fixed(b.AGcorr)}\nАП (Na корр.) = ${fixed(b.AG_Na_corr)}</div></details><details><summary>ΔΔ</summary><div class="fml">ΔAG = ${fixed(b.deltaAG)}\nΔHCO3 = ${fixed(b.deltaHCO3)}\nΔΔ = ${Number.isFinite(b.deltaDelta)?fixed(b.deltaDelta,2):"—"}</div></details><details><summary>SBE + разбивка</summary><div class="fml">SBE = ${fixed(b.SBE_calc,1)}\nSBE_FW = ${fixed(b.SBE_FW)}\nSBE_Cl = ${fixed(b.SBE_Cl)}\nSBE_Alb = ${fixed(b.SBE_Alb)}\nSBE_UA = ${fixed(b.SBE_UA)}</div></details><details><summary>Стюарт</summary><div class="fml">SID_a = ${fixed(st.SIDa)}\nSID_e = ${fixed(st.SIDe)}\nSIG = ${fixed(st.SIG)}</div></details><details><summary>Осмоляльность</summary><div class="fml">Осм_расч = 1.86 × Na + Gluc + Ur + 9 = ${fixed(b.Osm_calc,1)}\n${Number.isFinite(b.Osm_gap)?"Осм_gap = "+fixed(b.Osm_gap,1):""}</div></details>`;
+  const strip=s=>s.replace(/<[^>]+>/g,'');const L=["═══ ICU CORE v30.1 ═══","","Дата: "+new Date().toLocaleString('ru-RU'),""];L.push("── СИНДРОМ ──",syn.title,syn.detail||"");L.push("","── КЛИНИЧЕСКИЕ НАХОДКИ ──");(fin.findings||[]).forEach(x=>L.push("· "+x));(fin.alerts||[]).forEach(x=>L.push("⚠ "+x));L.push("","── РАСЧЁТЫ ──");rGroups.forEach(g=>{g.rows.forEach(r=>L.push(`${g.title} · ${r[0]}: ${r[1]}`))});L.push("","── ХОД ──");logs.forEach(l=>L.push("· "+strip(l)));L.push("","Сформировано: ICU CORE v30.1");lastReport=L.join("\n");
+}
+function renderScales(scales,sepsis,d){const scEl=document.getElementById("scalesResults");if(scEl)scEl.innerHTML=scales.map(s=>{const itemsHTML=s.items.map(i=>`<div class="score-row"><span>${escapeHTML(i.name)}${i.val!=null?" ("+escapeHTML(String(i.val))+")":""}</span><span>${i.score}</span></div>`).join('');return `<div class="score-card"><h4>${escapeHTML(s.name)}</h4><div class="score-val">${s.total}</div><div class="score-interp"><span class="badge-${s.level}">${escapeHTML(s.interp)}</span></div>${itemsHTML}</div>`;}).join('');const spEl=document.getElementById("sepsisResults");if(spEl)spEl.innerHTML=`<div class="score-card"><h4>Сепсис (Sepsis-3)</h4><div class="score-val" style="font-size:16px">${escapeHTML(sepsis.sepsisStatus)}</div><div class="score-row"><span>Инфекция</span><span>${sepsis.hasInfection?'Да':'Нет'}</span></div><div class="score-row"><span>SOFA</span><span>${sepsis.sofaDelta}</span></div>${sepsis.shockStatus!=="—"?`<div class="score-row"><span>Шок</span><span>${escapeHTML(sepsis.shockStatus)}</span></div>`:''}</div>`;}
+function makeHistory(d,syn){return{date:new Date().toLocaleString('ru-RU'),diag:syn.title+(syn.detail?": "+syn.detail:""),data:Object.fromEntries(["pH","pCO2","HCO3in","SBE","Lac","pO2","FiO2","PEEP","Na","Cl","K","Ca","Mg","Alb","PO4","Gluc","Ur","Osm_in","Weight","RR","SpO2","SBP","DBP","HR","Temp","GCS","Age","Plt","WBC","Bands","Hct","Cr","Bil","Urine"].map(k=>[k,d[k]])),notes:d.notes,sbeMode:d.sbeMode,naCorr:d.naCorr,chronic:d.chronic,sidModel:d.sidModel,O2support:d.O2support,ACVPU:d.ACVPU,Chronic:d.Chronic,Vaso:d.Vaso,Sex:d.Sex,acuity:d.acuity,bilateral:d.bilateral,timing:d.timing,noncardiac:d.noncardiac,infection:d.infection};}
+function runCalculation(save=false){try{const d=readInputs(),err=validate(d);if(err){showToast(err);return}const physioWarn=physiologicWarnings(d);if(physioWarn.length>0 && save){const proceed=confirm("Нефизиологические значения:\n\n"+physioWarn.join("\n")+"\n\nПродолжить?");if(!proceed){showToast("Проверьте ввод");return}}const b=calcBasic(d);const p=detectPrimary(d,b);const comp=compensation(d,b,p);const phComp=phCompensation(d);const dd=calcDeltaDelta(d,b);const st=calcStewart(d,b);const hagma=detectHAGMA(d,b,st);const fin=clinicalFindings(d,b,st,p,dd,hagma);const syn=syndrome(d,b,p,dd,st,hagma,phComp);const ards=ardsAssessment(d,b);const news2=calcNEWS2(d);const qsofa=calcQSOFA(d);const sirs=calcSIRS(d);const sofa=calcSOFA(d,b);const apache2=calcAPACHE2(d,b);const scales=[news2,qsofa,sirs,sofa,apache2];const sepsis=calcSepsis(d,b,sofa,qsofa);const bal=calcBalance(d);const quality=dataQuality(d,b,st,sofa);syn.quality=quality;render(d,b,p,comp,dd,st,fin,hagma,syn,ards,phComp);renderScales(scales,sepsis,d);renderBalance(d,bal);renderBalanceExplanations(d,bal);renderFinal(d,b,syn,scales,sepsis,bal,fin);updateDash(d,b,syn,scales,sepsis,bal,fin);updateRisk(d,b,p,scales,sepsis);if(save){saveHistory(makeHistory(d,syn));showToast("Сохранено");}try{drawCharts(b,d,st)}catch(e){}if(save)switchTab("dash");}catch(e){console.error("runCalculation:",e);}}
+function previewCalc(){try{if(document.getElementById("pH").value)runCalculation(false)}catch(e){}}
+function liveValidate(){try{Object.entries(ranges).forEach(([id,[lo,hi]])=>{const e=document.getElementById(id);if(!e)return;const v=parseFloat(e.value);e.classList.remove("ok-field","warn-field","bad-field");if(!Number.isFinite(v))return;if(v>=lo&&v<=hi)e.classList.add("ok-field");else if(v<lo*.95||v>hi*1.05)e.classList.add("bad-field");else e.classList.add("warn-field");});}catch(e){}}
+function updateRisk(d,b,p,scales,sepsis){try{let risk=0;if(d.pH<7.2||d.pH>7.6)risk+=30;else if(d.pH<7.3||d.pH>7.5)risk+=15;if(d.Lac>4)risk+=20;else if(d.Lac>2)risk+=10;if(Number.isFinite(b.PF)){if(b.PF<100)risk+=20;else if(b.PF<200)risk+=12;else if(b.PF<300)risk+=6;}if(Math.abs(b.SBE)>10)risk+=15;else if(Math.abs(b.SBE)>5)risk+=8;const news=scales.find(s=>s.name==="NEWS2");if(news){if(news.total>=7)risk+=15;else if(news.total>=5)risk+=8;}const sofa=scales.find(s=>s.name==="SOFA");if(sofa){if(sofa.total>=11)risk+=15;else if(sofa.total>=6)risk+=8;}const apache=scales.find(s=>s.name==="APACHE II");if(apache){if(apache.total>=25)risk+=15;else if(apache.total>=15)risk+=8;}if(sepsis.level==="bad")risk+=10;risk=Math.min(98,risk);const e=document.getElementById("riskBadge");const v=document.getElementById("riskValue");if(e){e.className="risk-pill "+(risk>50?"bad":risk>20?"warn":"ok");}if(v)v.textContent=risk+"%";}catch(e){}}
+
+/* === CHARTS === */
+function drawCharts(b,d,st){try{
+  const isDark=document.documentElement.dataset.theme==='dark';
+  const txtColor=isDark?'#F2F3F5':'#1A1A1A';
+  const mutColor=isDark?'#8A8F99':'#5A5A5A';
+  const gridColor=isDark?'#2C3038':'#E8E6E3';
+
+  const ctx=document.getElementById("gamble");
+  if(ctx){
+    if(gChart)gChart.destroy();
+    const cations=b.NaCorr+(d.K||0)+(d.Ca||0)+(d.Mg||0);
+    const anions=(d.Cl||0)+b.HCO3+(d.Lac||0)+(st.SIG>0?st.SIG:0);
+    const diff=cations-anions;
+    const sumEl=document.getElementById("gamble-summary");
+    if(sumEl){
+      const ok=Math.abs(diff)<=2;
+      const cls=ok?'rec':'alert';
+      const icon=ok?'✅':'⚠';
+      sumEl.innerHTML=`<div class="${cls}" style="margin:0">${icon} Сумма катионов: <b>${fixed(cations,1)}</b> мЭкв/л · Сумма анионов: <b>${fixed(anions,1)}</b> мЭкв/л · Разница: <b>${fixed(diff,1)}</b> мЭкв/л ${ok?"— баланс сошёлся":"— есть скрытый анион или ошибка ввода"}</div>`;
+    }
+    gChart=new Chart(ctx,{type:"bar",data:{labels:["Катионы (+)","Анионы (−)"],datasets:[
+      {label:"Натрий",data:[b.NaCorr,0],backgroundColor:"#294056"},
+      {label:"Калий",data:[d.K,0],backgroundColor:"#3D566E"},
+      {label:"Ca²⁺",data:[d.Ca||0,0],backgroundColor:"#5A7690"},
+      {label:"Mg²⁺",data:[d.Mg||0,0],backgroundColor:"#7B93A8"},
+      {label:"Хлор",data:[0,d.Cl],backgroundColor:"#9E3A38"},
+      {label:"HCO₃⁻",data:[0,b.HCO3],backgroundColor:"#A87B0B"},
+      {label:"Лактат",data:[0,d.Lac],backgroundColor:"#7C6A9B"},
+      {label:"SIG",data:[0,st.SIG>0?st.SIG:0],backgroundColor:"#8A8F99"}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:txtColor,font:{family:"Inter",size:11,weight:"500"}}}},scales:{x:{stacked:true,ticks:{color:mutColor,font:{family:"Inter",size:12}},grid:{display:false}},y:{stacked:true,ticks:{color:mutColor,font:{family:"JetBrains Mono"}},grid:{color:gridColor},title:{display:true,text:"мЭкв/л",color:mutColor,font:{family:"Inter"}}}}}});
+  }
+
+  const sctx=document.getElementById("siggaard");
+  if(sctx){
+    if(sChart)sChart.destroy();
+    const pco2From=(hco3,ph)=>hco3/(0.03*Math.pow(10,ph-6.1));
+    const phRange=[];for(let x=7.0;x<=7.8;x+=.02)phRange.push(+x.toFixed(3));
+    const pco2Levels=[20,30,40,60,80,100];
+    const colors=['#B8C7D2','#9BAFBE','#7D97AA','#5F7F96','#3F6783','#294056'];
+    const ds=[];
+    pco2Levels.forEach((pco2,i)=>{
+      const isNorm=pco2===40;
+      const data=phRange.map(ph=>{
+        const hco3=0.03*pco2*Math.pow(10,ph-6.1);
+        return {x:ph,y:hco3};
+      }).filter(pt=>pt.y>=0 && pt.y<=45);
+      ds.push({
+        label:"pCO₂ "+pco2+(isNorm?" (норма)":""),
+        data,
+        borderColor:isNorm?'#3F7A4F':(isDark?'#4A5560':colors[i]),
+        borderWidth:isNorm?2.5:1,
+        borderDash:isNorm?[]:[5,4],
+        pointRadius:0,tension:.15,order:isNorm?1:5
+      });
+    });
+    ds.push({
+      label:"Зона нормы",
+      data:[{x:7.35,y:22},{x:7.45,y:22},{x:7.45,y:26},{x:7.35,y:26},{x:7.35,y:22}],
+      borderColor:'rgba(63,122,79,.5)',
+      backgroundColor:'rgba(63,122,79,.12)',
+      borderWidth:1.5,pointRadius:0,fill:true,order:10
+    });
+    ds.push({
+      label:"Пациент",
+      data:[{x:d.pH,y:b.HCO3}],
+      borderColor:'#9E3A38',backgroundColor:'#9E3A38',
+      pointRadius:9,pointBorderColor:'#fff',pointBorderWidth:2.5,
+      showLine:false,order:0
+    });
+    sChart=new Chart(sctx,{type:"line",data:{datasets:ds},options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{labels:{color:txtColor,font:{family:"Inter",size:10}}},
+        tooltip:{callbacks:{label:(c)=>{
+          if(c.dataset.label==="Пациент"){const pco2=pco2From(b.HCO3,d.pH);return `pH ${fixed(d.pH,3)} · HCO₃⁻ ${fixed(b.HCO3,1)} · pCO₂ ${fixed(pco2,1)}`;}
+          if(c.dataset.label==="Зона нормы")return "Зона нормы (pH 7.35–7.45, HCO₃⁻ 22–26)";
+          return `${c.dataset.label}: pH ${fixed(c.parsed.x,2)}, HCO₃⁻ ${fixed(c.parsed.y,1)}`;
+        }}}
+      },
+      scales:{
+        x:{type:"linear",min:7.0,max:7.8,
+          title:{display:true,text:"pH крови (снизу)",color:mutColor,font:{family:"Inter",size:12,weight:"600"}},
+          ticks:{color:mutColor,font:{family:"JetBrains Mono"},stepSize:.1},
+          grid:{color:gridColor}},
+        y:{min:0,max:45,
+          title:{display:true,text:"HCO₃⁻, ммоль/л (слева)",color:mutColor,font:{family:"Inter",size:12,weight:"600"}},
+          ticks:{color:mutColor,font:{family:"JetBrains Mono"}},
+          grid:{color:gridColor}}
+      }
+    }});
+  }
+}catch(e){console.error("drawCharts:",e);}}
+
+function loadPreset(n){try{const p=presets[n];if(!p)return;Object.entries(p).forEach(([k,v])=>{const e=document.getElementById(k);if(e)e.value=v});["bilateral","timing","noncardiac","infection"].forEach(k=>{const e=document.getElementById(k);if(e)e.value="unknown"});liveValidate();runCalculation(false);showToast("Пресет "+n);}catch(e){}}
+function clearAll(){try{const vals={pH:7.40,pCO2:40,HCO3in:24,SBE:0,Lac:1,pO2:90,FiO2:21,PEEP:0,Na:140,Cl:103,K:4,Ca:1.2,Mg:0.9,Alb:40,PO4:1.1,Gluc:5.5,Ur:5,Osm_in:"",Weight:70,RR:16,SpO2:98,SBP:120,DBP:80,HR:80,Temp:36.8,GCS:15,Age:50,Plt:200,WBC:7,Bands:3,Hct:40,Cr:80,Bil:15,Urine:1500};Object.entries(vals).forEach(([k,v])=>{const e=document.getElementById(k);if(e)e.value=v});const e=document.getElementById("notes");if(e)e.value="";["sbeMode","naCorr","chronic","sidModel","O2support","ACVPU","Chronic","Vaso","Sex","acuity","bilateral","timing","noncardiac","infection"].forEach(k=>{const el=document.getElementById(k);if(el)el.value=el.id==="sbeMode"?"input":el.id==="naCorr"?"off":el.id==="chronic"?"auto":el.id==="sidModel"?"charged":el.id==="O2support"?"no":el.id==="ACVPU"?"A":el.id==="Chronic"?"none":el.id==="Vaso"?"none":el.id==="Sex"?"M":el.id==="acuity"?"auto":"unknown"});liveValidate();runCalculation(false);showToast("Сброшено");}catch(e){}}
+function showProMode(){document.getElementById("quick-card").style.display="none";document.getElementById("pro-mode").style.display="block";runCalculation(false);}
+function hideProMode(){document.getElementById("pro-mode").style.display="none";document.getElementById("quick-card").style.display="block";runCalculation(false);showToast("Свернуто");}
+function switchTab(n){
+  try{
+    const current=document.querySelector(".panel.active");
+    const next=document.getElementById("panel-"+n);
+    if(!next) return;
+    document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.tab===n));
+    const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const show=()=>{
+      document.querySelectorAll(".panel").forEach(x=>{x.classList.remove("active");x.style.display="none"});
+      next.style.display="block";next.classList.add("active");
+      if(!reduce) next.animate([{opacity:0,transform:"translateY(14px) scale(.994)"},{opacity:1,transform:"translateY(0) scale(1)"}],{duration:620,easing:"cubic-bezier(.22,1,.36,1)"});
+      if(n==="charts") setTimeout(()=>{try{gChart&&gChart.resize();sChart&&sChart.resize();}catch(e){}},120);
+    };
+    if(!current||current===next||reduce){show();return;}
+    const a=current.animate([{opacity:1,transform:"translateY(0) scale(1)"},{opacity:0,transform:"translateY(-7px) scale(.997)"}],{duration:210,easing:"cubic-bezier(.4,0,1,1)"});
+    a.finished.then(show).catch(show);
+  }catch(e){console.error("switchTab:",e);}
+}
+function resolvedTheme(mode){
+  if(mode==="auto") return (window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";
+  return mode==="dark"?"dark":"light";
+}
+function applyThemeMode(mode,save=true){
+  const m=(mode==="light"||mode==="dark"||mode==="auto")?mode:"auto";
+  const t=resolvedTheme(m);
+  document.documentElement.setAttribute("data-theme",t);
+  document.documentElement.setAttribute("data-theme-mode",m);
+  if(save){try{localStorage.setItem("icu_theme_mode",m);localStorage.removeItem("icu_theme");}catch(e){}}
+  document.querySelectorAll(".theme-choice").forEach(b=>b.classList.toggle("active",b.dataset.themeChoice===m));
+  try{const d=readInputs(),bb=calcBasic(d),st=calcStewart(d,bb);if(typeof drawCharts==="function") drawCharts(bb,d,st);}catch(e){}
+}
+function setThemeMode(mode){
+  document.documentElement.classList.add("theme-transitioning");
+  applyThemeMode(mode,true);
+  window.setTimeout(()=>document.documentElement.classList.remove("theme-transitioning"),760);
+}
+function toggleTheme(){
+  const m=document.documentElement.getAttribute("data-theme-mode")||"auto";
+  setThemeMode(m==="dark"?"light":"dark");
+}
+function initTheme(){
+  let m=null;try{m=localStorage.getItem("icu_theme_mode");if(!m){const old=localStorage.getItem("icu_theme");if(old==="dark"||old==="light")m=old;}}catch(e){}
+  if(m!=="dark"&&m!=="light"&&m!=="auto")m="auto";
+  applyThemeMode(m,false);
+  if(window.matchMedia){const mq=window.matchMedia("(prefers-color-scheme: dark)");const sync=()=>{if((document.documentElement.getAttribute("data-theme-mode")||"auto")==="auto")applyThemeMode("auto",false)};try{mq.addEventListener("change",sync)}catch(e){try{mq.addListener(sync)}catch(_){}}}
+}
+function getHistory(){try{return JSON.parse(localStorage.getItem(HISTORY_KEY)||"[]")}catch(e){return[]}}
+function saveHistory(x){try{let h=getHistory();h.unshift(x);localStorage.setItem(HISTORY_KEY,JSON.stringify(h.slice(0,5)))}catch(e){}}
+function renderHistory(){try{const list=document.getElementById("historyList"),h=getHistory();if(!list)return;if(!h.length){list.innerHTML='<div class="small-note" style="padding:14px">Нет случаев</div>';return}list.innerHTML=h.map((x,i)=>`<div class="history-item" onclick="loadHistory(${i})"><div class="hi-date">${escapeHTML(x.date)}</div><div class="hi-main">pH ${fixed(parseFloat(x.data.pH),2)} · pCO₂ ${fixed(parseFloat(x.data.pCO2),0)} · HCO₃ ${fixed(parseFloat(x.data.HCO3in),1)}</div><div class="hi-diag">${escapeHTML(x.diag)}</div></div>`).join("");}catch(e){}}
+function loadHistory(i){try{const x=getHistory()[i];if(!x)return;Object.entries(x.data||{}).forEach(([k,v])=>{const e=document.getElementById(k);if(e)e.value=v});["notes","sbeMode","naCorr","chronic","sidModel","O2support","ACVPU","Chronic","Vaso","Sex","acuity","bilateral","timing","noncardiac","infection"].forEach(k=>{if(x[k]!=null){const e=document.getElementById(k);if(e)e.value=x[k]}});const p=document.getElementById("historyPanel");if(p)p.classList.remove("show");liveValidate();runCalculation(false);showToast("Загружено");}catch(e){}}
+function toggleHistory(e){try{e&&e.stopPropagation();const p=document.getElementById("historyPanel");if(!p)return;p.classList.toggle("show");if(p.classList.contains("show"))renderHistory();}catch(err){}}
+function clearHistory(e){try{e&&e.stopPropagation();localStorage.removeItem(HISTORY_KEY);renderHistory();showToast("Очищена")}catch(err){}}
+document.addEventListener("click",e=>{try{const p=document.getElementById("historyPanel");const b=document.getElementById("historyBtn");if(p&&p.classList.contains("show")&&!p.contains(e.target)&&b&&!b.contains(e.target))p.classList.remove("show");}catch(err){}});
+function copyResult(){try{if(!lastReport)runCalculation(false);if(navigator.clipboard){navigator.clipboard.writeText(lastReport).then(()=>showToast("Скопировано")).catch(()=>fallbackCopy());}else fallbackCopy();}catch(e){fallbackCopy();}function fallbackCopy(){try{const t=document.createElement("textarea");t.value=lastReport;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();showToast("Скопировано");}catch(e){}}}
+function shareResult(){try{if(!lastReport)runCalculation(false);if(navigator.share)navigator.share({title:"ICU CORE",text:lastReport}).catch(()=>{});else copyResult();}catch(e){}}
+function showToast(m){try{const t=document.getElementById("toast");if(!t)return;t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1800);}catch(e){}}
+window.addEventListener("load",()=>{try{initTheme();liveValidate();runCalculation(false);switchTab("home");}catch(e){console.error("load:",e);}});
+</script>
+
+
+
+
+</body>
+</html>
