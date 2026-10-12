@@ -1,0 +1,30 @@
+{
+  "repository": "https://github.com/biologia2505-rgb/icu-core",
+  "branch": "v31.0-dev",
+  "status": "v31.0-dev",
+  "date": "2026-10-12",
+  "codeCommit": "238a7fa9b80cdf1057ca28cf8dacbc5afa2fca15",
+  "sourceSHA256": "cbb5f6922291fe7bc6c3d96410dd9c3ff76ddce5b0fd8959f9b11306a40aa9f7",
+  "sourceGitBlob": "30bea2e66dcd76a0e57af596a34bd284fa3b22af",
+  "mainPreserved": true,
+  "mainCommit": "2628cd6da7a137722c83c2495fe66f6ebfbf5d3c",
+  "mainSourceSHA256": "48dd6fda126fe9e10501ef114f11ad8e8c1230d5b6b7ff6f2ba37efe1afa468c",
+  "freezePerformed": false,
+  "archiveSHA256": "341a92d4a484f37f4a08f5b1e960a4de0b03bf7629819e563c837586fde943b3",
+  "archiveParts": [
+    {
+      "bytes": 27000000,
+      "gitBlob": "51c6c094ff59d80ab8c6bc2dc66824e05e6bd550"
+    },
+    {
+      "bytes": 27118666,
+      "gitBlob": "196bab3bb04f811a2258222afd0dc7ce09798218"
+    }
+  ],
+  "validation": {
+    "v31Suites": 18,
+    "originalV30Suites": 21,
+    "separateAHChecks": 22,
+    "contributorsChecks": 17
+  }
+}

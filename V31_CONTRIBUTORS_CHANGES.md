@@ -1,6 +1,6 @@
 # V31 — processes / continuous contributors
 
-12.10.2026. Статус **v31.0-dev**. Freeze/push не выполнялись.
+12.10.2026. Статус **v31.0-dev**. Freeze не выполнялся. Ветка v31.0-dev опубликована на GitHub по прямой команде пользователя; ниже результаты клинического пакета до публикации.
 
 Удалены диагностические эвристики corrected HCO₃ >28, SBE_Cl ≤−5, SBE_Cl ≥+5, SBE_Alb ≥+5. Это исправление неутверждённых implementation heuristics, **не замена medical rules**. Другие числовые пороги не введены. Отдельное прямое уточнение пользователя для существующей Δ/Δ policy: >2 → probable metabolic alkalinizing component; classic alkalosis не назначается из ratio.
 
