@@ -1,0 +1,52 @@
+[
+  {
+    "id": "DD-class-1.99",
+    "before": {
+      "NAGMA": false,
+      "alk": false,
+      "possible": false,
+      "supportedComponent": true
+    },
+    "after": {
+      "NAGMA": false,
+      "alk": false,
+      "possible": true,
+      "supportedComponent": false
+    },
+    "projection": "alkalinizing-components",
+    "reason": "Removed unapproved corrected >28 / SBE_Cl >=5 promotion; approved borderline ratio remains possible."
+  },
+  {
+    "id": "DD-class-2",
+    "before": {
+      "NAGMA": false,
+      "alk": false,
+      "possible": false,
+      "supportedComponent": true
+    },
+    "after": {
+      "NAGMA": false,
+      "alk": false,
+      "possible": true,
+      "supportedComponent": false
+    },
+    "projection": "alkalinizing-components",
+    "reason": "Removed unapproved corrected >28 / SBE_Cl >=5 promotion; approved borderline ratio remains possible."
+  },
+  {
+    "id": "DD-class-2.01",
+    "before": {
+      "NAGMA": false,
+      "alk": true,
+      "possible": false
+    },
+    "after": {
+      "NAGMA": false,
+      "alk": false,
+      "possible": false,
+      "probableComponent": true
+    },
+    "projection": "probable-alkalinizing-component",
+    "reason": "Explicit approved Δ/Δ >2 wording: probable component, no classic diagnosis from ratio."
+  }
+]

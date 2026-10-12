@@ -1,0 +1,6 @@
+[
+ {"id":"DD-class-1.51","before":{"NAGMA":false,"alk":false,"possible":true},"after":{"NAGMA":false,"alk":false,"possible":true,"supportedComponent":false},"projection":"alkalinizing-components","rule":"v31 rules 3–4: borderline ratio is a possible alkalinizing component, not classic metabolic alkalosis; AG/corrected HCO3 is one evidence line"},
+ {"id":"DD-class-1.99","before":{"NAGMA":false,"alk":false,"possible":true},"after":{"NAGMA":false,"alk":false,"possible":false,"supportedComponent":true},"projection":"alkalinizing-components","rule":"v31 rule 4: high corrected HCO3 plus SBE_Cl supports an alkalinizing component; borderline ratio still does not prove classic alkalosis"},
+ {"id":"DD-class-2","before":{"NAGMA":false,"alk":false,"possible":true},"after":{"NAGMA":false,"alk":false,"possible":false,"supportedComponent":true},"projection":"alkalinizing-components","rule":"v31 rule 4: high corrected HCO3 plus SBE_Cl supports an alkalinizing component; ratio 2 does not prove classic alkalosis"},
+ {"id":"AG-composition-24-40","before":{"supported":true,"unqualifiedIsolated":true},"after":{"supported":true,"unqualifiedIsolated":false},"rule":"v31 rules 1–4,8–9: normal final bicarbonate no longer removes a corroborated hidden metabolic alkalinizing component"}
+]

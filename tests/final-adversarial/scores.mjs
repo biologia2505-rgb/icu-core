@@ -1,0 +1,58 @@
+import {base,gas,engine,createEngine,basis,check,record,score,fp,finish} from './common.mjs';
+const component=(d,fn,name)=>{const e=engine(d),b=e.call('calcBasic',d);return score(e.call(fn,d,b),name);};
+// Independent tabular cutpoints, not imported/extracted from application functions.
+function lowerTier(x,thresholds,points){let i=0;while(i<thresholds.length&&x>=thresholds[i])i++;return points[i];}
+function upperTier(x,thresholds,points){let i=0;while(i<thresholds.length&&x>thresholds[i])i++;return points[i];}
+const apache=[
+ ['Temp','Температура',[30,32,34,36,38.5,39,41],[4,3,2,1,0,1,3,4]],
+ ['MAP','Среднее АД',[50,70,110,130,160],[4,2,0,2,3,4]],
+ ['HR','ЧСС',[40,55,70,110,140,180],[4,3,2,0,2,3,4]],
+ ['RR','ЧД',[6,10,12,25,35,50],[4,2,1,0,1,3,4]],
+ ['pH','pH',[7.15,7.25,7.33,7.5,7.6,7.7],[4,3,2,0,1,3,4]],
+ ['Na','Na',[111,120,130,150,155,160,180],[4,3,2,0,1,2,3,4]],
+ ['K','K',[2.5,3,3.5,5.5,6,7],[4,2,1,0,1,3,4]],
+ ['Cr-mg','Креатинин',[.6,1.5,2,3.5],[2,0,2,3,4]],
+ ['Hct','Гематокрит',[20,30,46,50,60],[4,2,0,1,2,4]],
+ ['WBC','Лейкоциты',[1,3,15,20,40],[4,2,0,1,2,4]]
+];
+for(const [field,name,thresholds,points]of apache)for(const t of thresholds)for(const delta of [-.01,0,.01]){
+ const x=t+delta,d={...base,...(field==='MAP'?{SBP:x,DBP:x}:field==='Cr-mg'?{Cr:x*88.4}:{[field]:x})};
+ const expected=lowerTier(x,thresholds,points),actual=component(d,'calcAPACHE2',name);
+ check('AP-'+field+'-'+t+'-'+delta,'7 APACHE boundaries',d,{score:expected},{score:actual},['SC-05'],basis.apache,'Creatinine expected uses mg/dL with explicit88.4conversion; only exact representation can differ at cutpoint.');
+}
+for(const gcs of [3,5,6,9,10,12,13,14,15])check('AP-GCS-'+gcs,'7 APACHE GCS',{...base,GCS:gcs},{score:15-gcs},{score:component({...base,GCS:gcs},'calcAPACHE2','GCS (дефицит)')},[],basis.apache);
+for(const age of [44,45,54,55,64,65,74,75])check('AP-age-'+age,'7 APACHE age',{...base,Age:age},{score:age<45?0:age<55?2:age<65?3:age<75?5:6},{score:component({...base,Age:age},'calcAPACHE2','Возраст')},[],basis.apache);
+for(const arf of ['no','yes','unknown'])for(const [cr,points]of [[.6,0],[1.5,2],[2,3],[3.5,4]]){const d={...base,Cr:cr*88.4,acuteRenalFailure:arf},r=engine(d).compute(d).scales[4];check('AP-ARF-'+arf+'-'+cr,'7 ARF',d,{score:arf==='unknown'?null:arf==='yes'?2*points:points,unknownTotal:arf==='unknown'},{score:score(r,'Креатинин'),unknownTotal:Number.isNaN(r.total)},[],basis.policy);}
+for(const [pO2,expected]of [[54.99,4],[55,3],[55.01,3],[59.99,3],[60,3],[60.01,1],[69.99,1],[70,1],[70.01,0]]){const d={...base,pO2,FiO2:49};check('AP-PaO2-'+pO2,'7 APACHE oxygen',d,{score:expected},{score:component(d,'calcAPACHE2','Оксигенация')},[],basis.apache);}
+for(const aa of [199.99,200,200.01,349.99,350,350.01,499.99,500,500.01]){const d={...base,FiO2:100,pCO2:40,pO2:713-50-aa},expected=aa>=500?4:aa>=350?3:aa>=200?2:0;check('AP-AA-'+aa,'7 APACHE A–a',d,{score:expected},{score:component(d,'calcAPACHE2','Оксигенация')},['SC-05'],basis.apache,'Uses the existing sea-level713 and R=.8 profile, no alternativeformula asserted.');}
+for(const [fi,expected]of [[49.99,1],[50,2],[50.01,2]]){const d={...base,FiO2:fi,pO2:70,pCO2:40};check('AP-FIO2-switch-'+fi,'7 APACHE FiO2 switch',d,{score:expected},{score:component(d,'calcAPACHE2','Оксигенация')},[],basis.apache);}
+// SOFA renal chooses highest independently computed known criterion.
+for(const cr of [.59,1.19,1.2,1.21,1.99,2,2.01,3.49,3.5,3.51,4.99,5,5.01])for(const urine of [199.99,200,200.01,499.99,500,500.01,1500]){
+ const d={...base,Cr:cr*88.4,Urine:urine},cs=lowerTier(cr,[1.2,2,3.5,5],[0,1,2,3,4]),us=urine<200?4:urine<500?3:0;
+ check('SOFA-renal-'+cr+'-'+urine,'7 SOFA renal',d,{score:Math.max(cs,us)},{score:component(d,'calcSOFA','Креатинин / диурез 24 ч')},['SC-05'],basis.sofa);
+}
+for(const [field,name,ts,ps]of [['Plt','Тромбоциты',[20,50,100,150],[4,3,2,1,0]],['Bil-mg','Билирубин',[1.2,2,6,12],[0,1,2,3,4]],['GCS','GCS',[6,10,13,15],[4,3,2,1,0]]])for(const t of ts)for(const delta of [-.01,0,.01]){
+ const x=t+delta,d={...base,...(field==='Bil-mg'?{Bil:x*17.1}:{[field]:x})};check('SOFA-'+field+'-'+t+'-'+delta,'7 SOFA components',d,{score:lowerTier(x,ts,ps)},{score:component(d,'calcSOFA',name)},['SC-05'],basis.sofa,'Fractional GCS used onlyas mechanicalthresholdperturbation; unsupported clinicalGCSfractionsnotanewcriterion.');
+}
+for(const [vaso,s]of [['none',0],['dopa_low',2],['dopa_mid',3],['dopa_high',4],['norepi_low',3],['norepi_high',4],['epi_low',3],['epi_high',4]])for(const map of [69.99,70,70.01]){const d={...base,Vaso:vaso,SBP:map,DBP:map};check('SOFA-CV-'+vaso+'-'+map,'7 SOFA cardiovascular',d,{score:vaso==='none'&&map<70?1:s},{score:component(d,'calcSOFA','ССС')},[],basis.sofa);}
+for(const pf of [99.99,100,100.01,199.99,200,200.01,299.99,300,300.01,399.99,400,400.01])for(const support of ['yes','no','unknown']){
+ const d={...base,FiO2:50,pO2:pf*.5,respiratorySupport:support},s=pf>=400?0:pf>=300?1:pf>=200?2:support==='yes'?(pf>=100?3:4):support==='no'?2:null;
+ check('SOFA-resp-'+pf+'-'+support,'6,7 respiratory support',d,{score:s},{score:component(d,'calcSOFA','PaO₂/FiO₂')},['SC-02'],basis.sofa,'Explicit no support retains applicable<300tier2; unknown<200must not invent3/4.');
+}
+for(const missing of ['Plt','Bil','GCS','SBP','DBP']){const d={...base,[missing]:NaN,infection:'yes',infectionRelatedOrganDysfunction:'yes'},r=engine(d).compute(d);check('SOFA-missing-'+missing,'5,7 missing data',d,{complete:false,sepsisConfirmed:false},{complete:r.scales[3].complete,sepsisConfirmed:r.sepsis.sepsisConfirmed},['SC-01'],basis.sofa);}
+for(const missing of ['Temp','HR','RR','Cr','Hct','WBC','Age','GCS','pO2','FiO2']){const d={...base,[missing]:NaN},r=engine(d).compute(d).scales[4];check('AP-missing-'+missing,'5,7 missing data',d,{unqualifiedFinal:false},{unqualifiedFinal:r.acuteRenalFailure!=='unknown'&&!r.interp.includes('неполный')&&!r.interp.includes('недостаточно')},['SC-03'],basis.history,'No disclosed imputation policy; missing must not silently fall into extreme score or NaN/<10%normalrisk. This is not an argument against explicit validatedzero-imputation policy.');}
+const news=[['RR','ЧД',[8,11,20,24],[3,1,0,2,3]],['SpO2','SpO2',[91,93,95],[3,2,1,0]],['SBP','АД сист',[90,100,110,219],[3,2,1,0,3]],['HR','ЧСС',[40,50,90,110,130],[3,1,0,1,2,3]],['Temp','Температура',[35,36,38,39],[3,1,0,1,2]]];
+for(const [field,name,ts,ps]of news)for(const t of ts)for(const delta of [-.01,0,.01]){const d={...base,[field]:t+delta};check('NEWS-'+field+'-'+t+'-'+delta,'7 NEWS2 scale1 boundaries',d,{score:upperTier(t+delta,ts,ps)},{score:component(d,'calcNEWS2',name)},[],basis.news);}
+for(const acvpu of ['A','C','V','P','U']){const d={...base,ACVPU:acvpu};check('NEWS-consciousness-'+acvpu,'7 NEWS2 ACVPU',d,{score:acvpu==='A'?0:3},{score:component(d,'calcNEWS2','Сознание')},[],basis.news);}
+for(const o2 of ['no','yes']){const d={...base,O2support:o2};check('NEWS-oxygen-'+o2,'7 NEWS2 oxygen',d,{score:o2==='yes'?2:0},{score:component(d,'calcNEWS2','Кислород')},[],basis.news);}
+for(const [x,expected]of [[{RR:25},'low-medium-red'],[{RR:25,O2support:'yes'},'medium'],[{RR:25,SBP:90,O2support:'yes'},'high'],[{RR:21,O2support:'yes'},'low'],[{RR:21,Temp:39.1,O2support:'yes'},'medium']]){const d={...base,...x},r=engine(d).compute(d).scales[0],risk=r.interp==='Высокий риск'?'high':r.interp==='Средний риск'?'medium':r.total>0?'low':'normal';check('NEWS-risk-'+JSON.stringify(x),'7 NEWS2 risk',d,{risk:expected},{risk},['SC-04'],basis.news);}
+for(const spo of [83,84,85,86,87,88,90,92,93,94,95,96,97,98])for(const oxygen of ['no','yes']){const d={...base,SpO2:spo,O2support:oxygen,news2Scale:'2',news2ScaleClinicianConfirmed:'yes',notes:'Clinician explicitly selected NEWS2 Scale2, targetSpO2 88–92%, confirmed hypercapnic respiratoryfailure.'};const expected=spo<=83?3:spo<=85?2:spo<=87?1:spo<=92?0:oxygen==='no'?0:spo<=94?1:spo<=96?2:3;check('NEWS-scale2-'+spo+'-'+oxygen,'7 NEWS2 scale2 capability',d,{SpO2score:expected},{SpO2score:component(d,'calcNEWS2','SpO2')},['SC-06'],basis.news,'Existing UI/API cannot encode thisclinicianselection. This documents a capability gap; no automatic inference or newfield implemented.');}
+for(const fn of ['calcNEWS2','calcQSOFA','calcSIRS'])for(const field of fn==='calcNEWS2'?['RR','SpO2','SBP','HR','Temp']:fn==='calcQSOFA'?['RR','SBP','GCS']:['Temp','HR','RR','WBC']){const d={...base,[field]:NaN},r=engine(d).call(fn,d);check(fn+'-missing-'+field,'5,7 missing scores',d,{disclosedPartial:true},{disclosedPartial:!!r.complete===false&&/непол|недостат|нет:/.test(r.interp)},['SC-07'],basis.history,'Unknown inputs are not measured normal or worst values; do not label an undisclosed estimate as the fullscore.');}
+// qSOFA and SIRS precise established boundaries; no sepsis veto.
+for(const [f,t,condition]of [['RR',22,'ge'],['SBP',100,'le'],['GCS',15,'lt']])for(const delta of [-.01,0,.01]){const d={...base,[f]:t+delta},name=f==='RR'?'ЧД ≥ 22':f==='SBP'?'АД сист ≤ 100':'GCS < 15',s=condition==='ge'?d[f]>=t?1:0:condition==='le'?d[f]<=t?1:0:d[f]<t?1:0;check('qSOFA-'+f+'-'+delta,'7 qSOFA boundaries',d,{score:s},{score:component(d,'calcQSOFA',name)},[],basis.sepsis);}
+for(const [f,t,name]of [['Temp',36,'T >38 / <36'],['Temp',38,'T >38 / <36'],['HR',90,'ЧСС > 90'],['RR',20,'ЧД > 20 / pCO2 < 32'],['pCO2',32,'ЧД > 20 / pCO2 < 32'],['WBC',4,'WBC >12 / <4 / пал >10%'],['WBC',12,'WBC >12 / <4 / пал >10%'],['Bands',10,'WBC >12 / <4 / пал >10%']])for(const delta of [-.01,0,.01]){const d={...base,[f]:t+delta},s=name.startsWith('T ')?+(d.Temp<36||d.Temp>38):f==='HR'?+(d.HR>90):name.startsWith('ЧД ')?+(d.RR>20||d.pCO2<32):+(d.WBC<4||d.WBC>12||d.Bands>10);check('SIRS-'+f+'-'+t+'-'+delta,'7 SIRS boundaries',d,{score:s},{score:component(d,'calcSIRS',name)},[],basis.policy);}
+for(const [chronic,operation,expected]of [['mild','non-operative',5],['mild','emergency postoperative',5],['severe','elective postoperative',2]]){const d={...base,Chronic:chronic,operationStatus:operation,notes:'Severeorganinsufficiency/immunocompromise; '+operation};check('AP-chronic-'+chronic+'-'+operation,'7 APACHE chronic-health UI',d,{points:expected},{points:component(d,'calcAPACHE2','Хроническое')},['SC-08'],basis.apache,'UIlabels are severity/locationin/outICU; original2/5points dependon electivevsnonelectiveoperation, notlocation. No surgerycontextinput exists.');}
+for(const [FiO2,pO2,PEEP]of [[50,50,5],[50,100,5],[50,150,5],[50,150.005,5]]){const pf=pO2/(FiO2/100),d={...base,FiO2,pO2,PEEP,bilateral:'yes',timing:'yes',noncardiac:'yes'},r=engine(d).compute(d);check('BERLIN-anchor-'+pf,'6 Berlin severity',d,{confirmed:pf<=300,severity:pf>300?null:pf<=100?'severe':pf<=200?'moderate':'mild'},{confirmed:r.ards.confirmed,severity:r.ards.severity},[],basis.berlin);}
+for(const pf of [99.99,100,100.01,199.99,200,200.01,299.99,300,300.01])for(const peep of [4.99,5,5.01,NaN])for(const context of ['yes','no','unknown']){const d={...base,FiO2:50,pO2:pf*.5,PEEP:peep,bilateral:context,timing:'yes',noncardiac:'yes'},r=engine(d).compute(d);check('BERLIN-'+pf+'-'+peep+'-'+context,'6 Berlin boundaries/context',d,{confirmed:pf<=300&&peep>=5&&context==='yes'},{confirmed:r.ards.confirmed},[],basis.berlin);}
+for(const fi of [21,50,100]){const d={...base,FiO2:fi,pO2:60,PEEP:5,bilateral:'yes',timing:'yes',noncardiac:'yes',respiratorySupport:'yes',gasSampleType:'venous'},r=engine(d).compute(d);check('VENOUS-oxygen-'+fi,'5,6 venous oxygen context',d,{ARDSconfirmed:false,arterialSOFAAvailable:false},{ARDSconfirmed:r.ards.confirmed,arterialSOFAAvailable:r.scales[3].items[0].available},['OX-01'],basis.berlin,'VenouspO2 cannot establisharterialPF/ARDS; mathematicaldivisionretainedbutdiagnosticusemustunavailable/conditional.');}
+finish('scores-oxygen-matrix');

@@ -1,0 +1,7 @@
+{
+  "cases": 35,
+  "originalFixtureSHA256": "1df00b47246a194bad3db4226b2bba74175c0e88082956d85cca369a4efe0791",
+  "goldSHA256": "50c4c875be8543a71b32bd2d958fab1ded724679701e877bc0fc9705b9dd428c",
+  "confidencePolicySHA256": "125a15a072a2dd93ccd02fa449b7a2a5826bf05753c7c90a165539c585df6584",
+  "construction": "Decimal profile + measured Na Stewart + Kellum + explicit anchors parsed from clinician gold; confidence labels from explicit clinician amendment; no application import"
+}

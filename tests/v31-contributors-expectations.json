@@ -1,0 +1,665 @@
+[
+  {
+    "suite": "regression-300",
+    "id": "DOUBLE-11",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "DOUBLE-12",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "DOUBLE-13",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "DOUBLE-14",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "DOUBLE-15",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "DOUBLE-16",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "DOUBLE-17",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "DOUBLE-18",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "DOUBLE-19",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "DOUBLE-20",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-01",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-02",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-03",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-04",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-05",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-06",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-07",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-08",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-09",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-10",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-11",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory acidosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory acidosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-12",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory acidosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory acidosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-13",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory acidosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory acidosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-14",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory acidosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory acidosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-15",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory acidosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory acidosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-16",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory acidosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory acidosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-17",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory acidosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory acidosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-18",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory acidosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory acidosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-19",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory acidosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory acidosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "TRIPLE-20",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory acidosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory acidosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-05",
+    "label": "possible processes are not proven",
+    "before": [
+      "metabolic alkalinizing component"
+    ],
+    "after": [],
+    "reason": "Remove unapproved corrected >28 heuristic: contributors alone do not create a process.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-06",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "respiratory alkalosis"
+    ],
+    "reason": "Remove unapproved corrected >28 / SBE_Cl >=5 confidence promotion. Δ/Δ 1.5–2 remains possible.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-06",
+    "label": "possible processes are not proven",
+    "before": [],
+    "after": [
+      "metabolic alkalinizing component"
+    ],
+    "reason": "Remove unapproved corrected >28 / SBE_Cl >=5 confidence promotion. Δ/Δ 1.5–2 remains possible.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-07",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "respiratory alkalosis"
+    ],
+    "reason": "Remove unapproved corrected >28 / SBE_Cl >=5 confidence promotion. Δ/Δ 1.5–2 remains possible.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-07",
+    "label": "possible processes are not proven",
+    "before": [],
+    "after": [
+      "metabolic alkalinizing component"
+    ],
+    "reason": "Remove unapproved corrected >28 / SBE_Cl >=5 confidence promotion. Δ/Δ 1.5–2 remains possible.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-08",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "respiratory alkalosis"
+    ],
+    "reason": "Remove unapproved corrected >28 / SBE_Cl >=5 confidence promotion. Δ/Δ 1.5–2 remains possible.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-08",
+    "label": "possible processes are not proven",
+    "before": [],
+    "after": [
+      "metabolic alkalinizing component"
+    ],
+    "reason": "Remove unapproved corrected >28 / SBE_Cl >=5 confidence promotion. Δ/Δ 1.5–2 remains possible.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-09",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "respiratory alkalosis"
+    ],
+    "reason": "Remove unapproved corrected >28 / SBE_Cl >=5 confidence promotion. Δ/Δ 1.5–2 remains possible.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-09",
+    "label": "possible processes are not proven",
+    "before": [],
+    "after": [
+      "metabolic alkalinizing component"
+    ],
+    "reason": "Remove unapproved corrected >28 / SBE_Cl >=5 confidence promotion. Δ/Δ 1.5–2 remains possible.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-10",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "metabolic alkalosis",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "reason": "Approved Δ/Δ >2 policy: probable metabolic alkalinizing component, no classic alkalosis from ratio. No formula change.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "HYPOALBUMINEMIA-06",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "NAGMA"
+    ],
+    "after": [
+      "HAGMA"
+    ],
+    "reason": "Remove unapproved SBE_Cl <=-5 diagnostic branch; chloride remains a contributor, not an added NAGMA.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "HYPOALBUMINEMIA-06",
+    "label": "single primary with compensation is isolated",
+    "before": "Смешанное нарушение",
+    "after": "Изолированное нарушение",
+    "reason": "Remove unapproved SBE_Cl <=-5 diagnostic branch; chloride remains a contributor, not an added NAGMA.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  },
+  {
+    "suite": "regression-300",
+    "id": "HYPOALBUMINEMIA-07",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "NAGMA"
+    ],
+    "after": [
+      "HAGMA"
+    ],
+    "reason": "Remove unapproved SBE_Cl <=-5 diagnostic branch; chloride remains a contributor, not an added NAGMA.",
+    "approval": "Explicit user instruction 2026-10-12; removal of implementation heuristics, not a new numeric medical rule"
+  }
+]

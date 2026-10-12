@@ -1,0 +1,33 @@
+import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';
+import {base,createEngine,engine,check,finish,root,encode,source,sourceHash} from './final-core-testkit.mjs';
+import {capture300} from './final-core-capture.mjs';
+// Independent piecewise oracle; no application function generates expected values.
+const oracle=(Cr,Age,Sex)=>{const female=Sex==='F',ratio=(Cr/88.4)/(female?.7:.9),exponent=ratio<=1?(female?-.241:-.302):-1.2;return 142*ratio**exponent*.9938**Age*(female?1.012:1);};
+for(const [Sex,Cr,Age]of [['M',40,50],['M',150,50],['F',40,50],['F',150,50],...['M','F'].flatMap(Sex=>{const k=Sex==='M'?79.56:61.88;return[k-.01,k,k+.01].map(Cr=>[Sex,Cr,50]);}),['M',80,18],['F',80,18]]){
+ const d={...base,Cr,Age,Sex},e=engine(d),r=e.call('calcEGFR',d);check(`eGFR-${Sex}-${Cr}-${Age}-math`,'EGFR',d,{value:oracle(Cr,Age,Sex)},r,'Independent piecewise CKD-EPI 2021 oracle','approx');check(`eGFR-${Sex}-${Cr}-${Age}-available`,'EGFR',d,true,r.available);
+ e.run();check(`eGFR-${Sex}-${Cr}-${Age}-tile`,'EGFR-UI',d,oracle(Cr,Age,Sex).toFixed(0),e.text('dash-eGFR'));
+ const report=e.evaluate('lastReport');check(`eGFR-${Sex}-${Cr}-${Age}-report-once`,'EGFR-UI',d,1,(report.match(/рСКФ \(CKD-EPI 2021\)/g)||[]).length);
+ for(const id of ['results','dash-full-results','finalResults'])check(`eGFR-${Sex}-${Cr}-${Age}-${id}`,'EGFR-UI',d,true,e.text(id).includes('рСКФ (CKD-EPI 2021)'));
+ for(const id of ['dash-findings','syndrome','diagnosis'])check(`eGFR-${Sex}-${Cr}-${Age}-not-in-${id}`,'EGFR-UI',d,false,/рСКФ|eGFR/.test(e.text(id)));
+}
+for(const [label,extra]of [['Cr-missing',{Cr:undefined}],['Cr-NaN',{Cr:NaN}],['Cr-zero',{Cr:0}],['Cr-negative',{Cr:-1}],['Cr-infinity',{Cr:Infinity}],['Age-missing',{Age:undefined}],['Age-NaN',{Age:NaN}],['Age-17',{Age:17}],['Sex-missing',{Sex:undefined}],['Sex-unknown',{Sex:'unknown'}]]){
+ const d={...base,...extra},e=engine(d),r=e.call('calcEGFR',d);check('eGFR-'+label+'-unavailable','EGFR',d,false,r.available);check('eGFR-'+label+'-no-value','EGFR',d,true,Number.isNaN(r.value));e.run();check('eGFR-'+label+'-tile','EGFR-UI',d,'не рассчитано',e.text('dash-eGFR'));check('eGFR-'+label+'-report','EGFR-UI',d,1,(e.evaluate('lastReport').match(/рСКФ \(CKD-EPI 2021\): не рассчитано/g)||[]).length);if(label==='Age-17')check('eGFR-age17-applicability','EGFR',d,'CKD-EPI 2021 для взрослых не применяется',r.reason);
+}
+const postZero=JSON.parse(fs.readFileSync(path.join(root,'reference/post-zero-review/outputs-300.json'))),actual=capture300();
+for(let i=0;i<300;i++){
+ const a=actual[i],b=postZero.cases[i];
+ check('display-isolation-'+b.id,'EGFR-ISOLATION-300',{number:b.number,id:b.id},{direct:b.direct,ui:b.ui,qc:b.qc,form:b.form,history:b.history},{direct:a.direct,ui:a.ui,qc:a.qc,form:a.form,history:a.history},'Full numerical/clinical/scale/QC/input/history results match post-zero-review baseline.');
+ const report=a.report.split('\n').filter(l=>!l.startsWith('Почечный расчёт · рСКФ (CKD-EPI 2021):')).join('\n');check('report-isolation-'+b.id,'EGFR-ISOLATION-300',null,b.report,report,'Only one new display line.');
+}
+const e=createEngine();check('UI-no-pseudo-hero','UI',null,false,/hero-side|hero-signal/.test(source));check('UI-retains-orbits','UI',null,true,/class="hero-orbit orbit-a"/.test(source));check('UI-hero-new-case-wiring','UI',null,true,/class="hero-cta" onclick="clearAll\(\);switchTab\('input'\)"/.test(source));
+e.input({Cr:700,notes:'old patient'});e.call('clearAll');e.call('switchTab','input');check('UI-new-case-reset','UI',null,{Cr:80,notes:''},{Cr:e.read().Cr,notes:e.read().notes});check('UI-input-navigation','UI',null,true,e.elements.get('panel-input').classList.contains('active'));e.call('switchTab','info');check('UI-info-navigation','UI',null,true,e.elements.get('panel-info').classList.contains('active'));
+const info=source.match(/<section class="panel" id="panel-info">([\s\S]*?)<\/section>/)[1];check('UI-workflow-seven-cards','UI',null,7,(info.match(/workflow-card/g)||[]).length);for(const title of ['Ввод данных','Проверка качества','Расчёт','Клиническая композиция','Шкалы','Результат','Ограничения'])check('UI-info-'+title,'UI',null,true,info.includes(title));check('UI-no-changelog','UI',null,false,/Русские названия|Единая визуальная|ШКГ используется/.test(info));check('UI-action-rows','UI',null,2,(source.match(/class="dash-actions patient-actions"/g)||[]).length);
+for(const theme of ['light','dark']){e.call('applyThemeMode',theme,true);check('UI-theme-'+theme,'UI',null,theme,e.document.documentElement.getAttribute('data-theme'));}
+e.run();e.input({Cr:900});e.call('patientInputChanged',{target:e.elements.get('Cr')});check('UI-egfr-stale-clear','UI',null,'—',e.text('dash-eGFR'));check('UI-copy-stale-block','UI',null,null,e.call('exportCurrentReport'));e.run();check('UI-copy-recalculated','UI',null,true,!!e.call('exportCurrentReport'));
+const storage=new Map(),h=createEngine({storage});h.input({...base,Cr:180,Age:60,Sex:'F'});h.run();const shown=h.text('dash-eGFR');h.call('saveHistory',h.call('makeHistory',h.read(),h.compute(h.read()).syn));const fresh=createEngine({storage});fresh.call('loadHistory',0);check('UI-egfr-history-reload','EGFR-UI',null,shown,fresh.text('dash-eGFR'));
+// Responsive CSS contracts, not screenshots or native browser layout measurements.
+for(const width of [1440,1024,768,390])check('UI-responsive-contract-'+width,'UI-CSS',{width},true,source.includes('repeat(auto-fit,minmax(min(100%,max(180px,calc((100% - 20px)/3))),1fr))')&&source.includes('repeat(auto-fit,minmax(min(100%,240px),1fr))'));
+check('UI-no-extra-libraries','UI',null,(fs.readFileSync(path.join(root,'reference/post-zero-review/index.html'),'utf8').match(/<script[^>]*src="[^" ]+"/g)||[]),(source.match(/<script[^>]*src="[^" ]+"/g)||[]));
+const saved=process.env.ICU_SOURCE;process.env.ICU_SOURCE=path.join(root,'reference/post-zero-review/index.html');const previous=await import('./adapter/icu-html.mjs?ui-isolation-source');if(saved===undefined)delete process.env.ICU_SOURCE;else process.env.ICU_SOURCE=saved;const prior=previous.createEngine(),now=createEngine();
+for(const name of previous.functionNames.filter(n=>!['render','renderFinal','updateDash','markResultStale'].includes(n)))check('UI-source-isolation-'+name,'EGFR-ISOLATION-SOURCE',null,prior.evaluate(name+'.toString()'),now.evaluate(name+'.toString()'));
+finish('egfr-ui');

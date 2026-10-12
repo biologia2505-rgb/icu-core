@@ -1,0 +1,770 @@
+{
+  "schema": "final-adversarial-approved-ledger-v1",
+  "baselineSHA256": "b1e7d49af5a211f3a6e25f587b99424719b1960327f245209573c317ce877a3f",
+  "rules": "Entries are explicit approved expectations or semantic extraction migrations. No original raw probe or raw expected is edited. All unlisted expectations remain in force.",
+  "entries": [
+    {
+      "probeId": "AP-missing-Temp",
+      "kind": "extraction",
+      "projection": "apache-availability",
+      "oldExpected": {
+        "unqualifiedFinal": false
+      },
+      "newApprovedExpected": {
+        "unqualifiedFinal": false
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §7 SC-03: each required component has availability; missing required component => APACHE incomplete, no final total.",
+      "note": "Old string projection matched lowercase only; replacement reads actual complete/total state, and preserves the original expected false.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AP-missing-HR",
+      "kind": "extraction",
+      "projection": "apache-availability",
+      "oldExpected": {
+        "unqualifiedFinal": false
+      },
+      "newApprovedExpected": {
+        "unqualifiedFinal": false
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §7 SC-03: each required component has availability; missing required component => APACHE incomplete, no final total.",
+      "note": "Old string projection matched lowercase only; replacement reads actual complete/total state, and preserves the original expected false.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AP-missing-RR",
+      "kind": "extraction",
+      "projection": "apache-availability",
+      "oldExpected": {
+        "unqualifiedFinal": false
+      },
+      "newApprovedExpected": {
+        "unqualifiedFinal": false
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §7 SC-03: each required component has availability; missing required component => APACHE incomplete, no final total.",
+      "note": "Old string projection matched lowercase only; replacement reads actual complete/total state, and preserves the original expected false.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AP-missing-Cr",
+      "kind": "extraction",
+      "projection": "apache-availability",
+      "oldExpected": {
+        "unqualifiedFinal": false
+      },
+      "newApprovedExpected": {
+        "unqualifiedFinal": false
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §7 SC-03: each required component has availability; missing required component => APACHE incomplete, no final total.",
+      "note": "Old string projection matched lowercase only; replacement reads actual complete/total state, and preserves the original expected false.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AP-missing-Hct",
+      "kind": "extraction",
+      "projection": "apache-availability",
+      "oldExpected": {
+        "unqualifiedFinal": false
+      },
+      "newApprovedExpected": {
+        "unqualifiedFinal": false
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §7 SC-03: each required component has availability; missing required component => APACHE incomplete, no final total.",
+      "note": "Old string projection matched lowercase only; replacement reads actual complete/total state, and preserves the original expected false.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AP-missing-WBC",
+      "kind": "extraction",
+      "projection": "apache-availability",
+      "oldExpected": {
+        "unqualifiedFinal": false
+      },
+      "newApprovedExpected": {
+        "unqualifiedFinal": false
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §7 SC-03: each required component has availability; missing required component => APACHE incomplete, no final total.",
+      "note": "Old string projection matched lowercase only; replacement reads actual complete/total state, and preserves the original expected false.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AP-missing-Age",
+      "kind": "extraction",
+      "projection": "apache-availability",
+      "oldExpected": {
+        "unqualifiedFinal": false
+      },
+      "newApprovedExpected": {
+        "unqualifiedFinal": false
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §7 SC-03: each required component has availability; missing required component => APACHE incomplete, no final total.",
+      "note": "Old string projection matched lowercase only; replacement reads actual complete/total state, and preserves the original expected false.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AP-missing-GCS",
+      "kind": "extraction",
+      "projection": "apache-availability",
+      "oldExpected": {
+        "unqualifiedFinal": false
+      },
+      "newApprovedExpected": {
+        "unqualifiedFinal": false
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §7 SC-03: each required component has availability; missing required component => APACHE incomplete, no final total.",
+      "note": "Old string projection matched lowercase only; replacement reads actual complete/total state, and preserves the original expected false.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AP-missing-pO2",
+      "kind": "extraction",
+      "projection": "apache-availability",
+      "oldExpected": {
+        "unqualifiedFinal": false
+      },
+      "newApprovedExpected": {
+        "unqualifiedFinal": false
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §7 SC-03: each required component has availability; missing required component => APACHE incomplete, no final total.",
+      "note": "Old string projection matched lowercase only; replacement reads actual complete/total state, and preserves the original expected false.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AP-missing-FiO2",
+      "kind": "extraction",
+      "projection": "apache-availability",
+      "oldExpected": {
+        "unqualifiedFinal": false
+      },
+      "newApprovedExpected": {
+        "unqualifiedFinal": false
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §7 SC-03: each required component has availability; missing required component => APACHE incomplete, no final total.",
+      "note": "Old string projection matched lowercase only; replacement reads actual complete/total state, and preserves the original expected false.",
+      "remainReview": false
+    },
+    {
+      "probeId": "NEWS-risk-{\"RR\":25}",
+      "kind": "extraction",
+      "projection": "news-risk",
+      "oldExpected": {
+        "risk": "low-medium-red"
+      },
+      "newApprovedExpected": {
+        "risk": "low-medium-red"
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §8 SC-04: single parameter3 is red/escalation, not aggregate High; aggregate5–6 medium,≥7 high.",
+      "note": "Old projection inferred risk only from exact generic interp labels. riskBand preserves the approved separate trigger.",
+      "remainReview": false
+    },
+    {
+      "probeId": "SOFA-GCS-15-0.01",
+      "kind": "approved-expectation",
+      "projection": "raw",
+      "oldExpected": {
+        "score": 0
+      },
+      "newApprovedExpected": {
+        "score": null
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §18 QC-02: GCS allowed domain3–15; invalid input must be visible and dependent scoring unavailable.",
+      "note": "15.01 is beyond the now explicitly approved domain; the old expectation0 assumed unrestricted mathematical GCS.",
+      "remainReview": false
+    },
+    {
+      "probeId": "qSOFA-GCS-0.01",
+      "kind": "approved-expectation",
+      "projection": "raw",
+      "oldExpected": {
+        "score": 0
+      },
+      "newApprovedExpected": {
+        "score": null
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §18 QC-02: GCS allowed domain3–15; invalid input must be visible and dependent scoring unavailable.",
+      "note": "15.01 is beyond the now explicitly approved domain; the old expectation0 assumed unrestricted mathematical GCS.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AP-chronic-mild-non-operative",
+      "kind": "approved-expectation",
+      "projection": "raw",
+      "oldExpected": {
+        "points": 5
+      },
+      "newApprovedExpected": {
+        "points": null
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §11 SC-08: legacy mild/severe must not be silently translated; legacy APACHE chronic-health context requires review.",
+      "note": "No missing surgical/chronic context is inferred from notes or operationStatus; raw synthetic input is preserved.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AP-chronic-mild-emergency postoperative",
+      "kind": "approved-expectation",
+      "projection": "raw",
+      "oldExpected": {
+        "points": 5
+      },
+      "newApprovedExpected": {
+        "points": null
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §11 SC-08: legacy mild/severe must not be silently translated; legacy APACHE chronic-health context requires review.",
+      "note": "No missing surgical/chronic context is inferred from notes or operationStatus; raw synthetic input is preserved.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AP-chronic-severe-elective postoperative",
+      "kind": "approved-expectation",
+      "projection": "raw",
+      "oldExpected": {
+        "points": 2
+      },
+      "newApprovedExpected": {
+        "points": null
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §11 SC-08: legacy mild/severe must not be silently translated; legacy APACHE chronic-health context requires review.",
+      "note": "No missing surgical/chronic context is inferred from notes or operationStatus; raw synthetic input is preserved.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AG-composition-24-40",
+      "kind": "approved-expectation",
+      "projection": "raw",
+      "oldExpected": {
+        "supported": true,
+        "unqualifiedIsolated": false
+      },
+      "newApprovedExpected": {
+        "supported": true,
+        "unqualifiedIsolated": true
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §4 AB-04: isolated title is prohibited when a confirmed metabolic/respiratory process PLUS supported anion component exists. Supported HAGMA alone is one process.",
+      "note": "This probe has no separate respiratory or metabolic primary. HAGMA remains present in confirmed structured composition.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AB-R-50-chronic-below",
+      "kind": "approved-expectation",
+      "projection": "ambiguous-primary",
+      "oldExpected": {
+        "resp": "respiratory acidosis",
+        "met": "metabolic acidosis",
+        "status": "below"
+      },
+      "newApprovedExpected": {
+        "resp": "respiratory acidosis",
+        "met": null,
+        "primaryProcessCertain": false,
+        "possibleMetabolicProcesses": [
+          "metabolic acidosis",
+          "metabolic alkalosis"
+        ],
+        "selectedHCO3Range": {
+          "low": 27,
+          "high": 28
+        }
+      },
+      "exactApprovedRule": "FINAL_CORE_PRIMARY_AND_FIO2_AMENDMENT.md: at pH7.35–7.45 compare physiologically admissible compensation interpretations; when alternatives cannot be uniquely ordered expose primaryProcessCertain=false, without a new threshold.",
+      "note": "Old probe forced respiratory primary from chronicity. Formula ranges and original numeric input remain unchanged; compensation status is no longer an assertion of uniquely established primary order.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AB-R-50-chronic-above",
+      "kind": "approved-expectation",
+      "projection": "ambiguous-primary",
+      "oldExpected": {
+        "resp": "respiratory acidosis",
+        "met": "metabolic alkalosis",
+        "status": "above"
+      },
+      "newApprovedExpected": {
+        "resp": "respiratory acidosis",
+        "met": "metabolic alkalosis",
+        "primaryProcessCertain": false,
+        "possibleMetabolicProcesses": [],
+        "selectedHCO3Range": {
+          "low": 27,
+          "high": 28
+        }
+      },
+      "exactApprovedRule": "FINAL_CORE_PRIMARY_AND_FIO2_AMENDMENT.md: at pH7.35–7.45 compare physiologically admissible compensation interpretations; when alternatives cannot be uniquely ordered expose primaryProcessCertain=false, without a new threshold.",
+      "note": "Old probe forced respiratory primary from chronicity. Formula ranges and original numeric input remain unchanged; compensation status is no longer an assertion of uniquely established primary order.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AB-R-60-chronic-above",
+      "kind": "approved-expectation",
+      "projection": "ambiguous-primary",
+      "oldExpected": {
+        "resp": "respiratory acidosis",
+        "met": "metabolic alkalosis",
+        "status": "above"
+      },
+      "newApprovedExpected": {
+        "resp": "respiratory acidosis",
+        "met": "metabolic alkalosis",
+        "primaryProcessCertain": false,
+        "possibleMetabolicProcesses": [],
+        "selectedHCO3Range": {
+          "low": 30,
+          "high": 32
+        }
+      },
+      "exactApprovedRule": "FINAL_CORE_PRIMARY_AND_FIO2_AMENDMENT.md: at pH7.35–7.45 compare physiologically admissible compensation interpretations; when alternatives cannot be uniquely ordered expose primaryProcessCertain=false, without a new threshold.",
+      "note": "Old probe forced respiratory primary from chronicity. Formula ranges and original numeric input remain unchanged; compensation status is no longer an assertion of uniquely established primary order.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AB-R-30-chronic-below",
+      "kind": "approved-expectation",
+      "projection": "ambiguous-primary",
+      "oldExpected": {
+        "resp": "respiratory alkalosis",
+        "met": "metabolic acidosis",
+        "status": "below"
+      },
+      "newApprovedExpected": {
+        "resp": "respiratory alkalosis",
+        "met": "metabolic acidosis",
+        "primaryProcessCertain": false,
+        "possibleMetabolicProcesses": [],
+        "selectedHCO3Range": {
+          "low": 19,
+          "high": 20
+        }
+      },
+      "exactApprovedRule": "FINAL_CORE_PRIMARY_AND_FIO2_AMENDMENT.md: at pH7.35–7.45 compare physiologically admissible compensation interpretations; when alternatives cannot be uniquely ordered expose primaryProcessCertain=false, without a new threshold.",
+      "note": "Old probe forced respiratory primary from chronicity. Formula ranges and original numeric input remain unchanged; compensation status is no longer an assertion of uniquely established primary order.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AB-R-30-chronic-above",
+      "kind": "approved-expectation",
+      "projection": "ambiguous-primary",
+      "oldExpected": {
+        "resp": "respiratory alkalosis",
+        "met": "metabolic alkalosis",
+        "status": "above"
+      },
+      "newApprovedExpected": {
+        "resp": "respiratory alkalosis",
+        "met": null,
+        "primaryProcessCertain": false,
+        "possibleMetabolicProcesses": [
+          "metabolic acidosis",
+          "metabolic alkalosis"
+        ],
+        "selectedHCO3Range": {
+          "low": 19,
+          "high": 20
+        }
+      },
+      "exactApprovedRule": "FINAL_CORE_PRIMARY_AND_FIO2_AMENDMENT.md: at pH7.35–7.45 compare physiologically admissible compensation interpretations; when alternatives cannot be uniquely ordered expose primaryProcessCertain=false, without a new threshold.",
+      "note": "Old probe forced respiratory primary from chronicity. Formula ranges and original numeric input remain unchanged; compensation status is no longer an assertion of uniquely established primary order.",
+      "remainReview": false
+    },
+    {
+      "probeId": "AB-R-25-chronic-below",
+      "kind": "approved-expectation",
+      "projection": "ambiguous-primary",
+      "oldExpected": {
+        "resp": "respiratory alkalosis",
+        "met": "metabolic acidosis",
+        "status": "below"
+      },
+      "newApprovedExpected": {
+        "resp": "respiratory alkalosis",
+        "met": "metabolic acidosis",
+        "primaryProcessCertain": false,
+        "possibleMetabolicProcesses": [],
+        "selectedHCO3Range": {
+          "low": 16.5,
+          "high": 18
+        }
+      },
+      "exactApprovedRule": "FINAL_CORE_PRIMARY_AND_FIO2_AMENDMENT.md: at pH7.35–7.45 compare physiologically admissible compensation interpretations; when alternatives cannot be uniquely ordered expose primaryProcessCertain=false, without a new threshold.",
+      "note": "Old probe forced respiratory primary from chronicity. Formula ranges and original numeric input remain unchanged; compensation status is no longer an assertion of uniquely established primary order.",
+      "remainReview": false
+    },
+    {
+      "probeId": "QC-nonsynchronous-context",
+      "kind": "extraction",
+      "projection": "nonsynchronous-report",
+      "oldExpected": {
+        "contextDisclosed": true
+      },
+      "newApprovedExpected": {
+        "contextDisclosed": true
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §25 UI-04: sampleSimultaneity=no appears in QC/report and may suppress PaO2–SpO2 direct comparison.",
+      "note": "Old regex did not match approved wording «Измерения не одновременны». Requires both explicit QC code and its current message in the report.",
+      "remainReview": false
+    },
+    {
+      "probeId": "QC-invalid-fractionFiO2",
+      "kind": "extraction",
+      "projection": "invalid-report",
+      "oldExpected": {
+        "invalidDisclosed": true
+      },
+      "newApprovedExpected": {
+        "invalidDisclosed": true
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §18 QC-02 and FINAL_CORE_PRIMARY_AND_FIO2_AMENDMENT.md: invalid domains/percent units disclosed already in preview/current report; no correction; FiO2100 valid,>100 invalid.",
+      "note": "Old regex was case-sensitive and did not recognize explicit INVALID_* warning codes or current wording.",
+      "remainReview": false,
+      "warningCode": "INVALID_FIO2"
+    },
+    {
+      "probeId": "QC-invalid-zeroFiO2",
+      "kind": "extraction",
+      "projection": "invalid-report",
+      "oldExpected": {
+        "invalidDisclosed": true
+      },
+      "newApprovedExpected": {
+        "invalidDisclosed": true
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §18 QC-02 and FINAL_CORE_PRIMARY_AND_FIO2_AMENDMENT.md: invalid domains/percent units disclosed already in preview/current report; no correction; FiO2100 valid,>100 invalid.",
+      "note": "Old regex was case-sensitive and did not recognize explicit INVALID_* warning codes or current wording.",
+      "remainReview": false,
+      "warningCode": "INVALID_FIO2"
+    },
+    {
+      "probeId": "QC-invalid-highFiO2",
+      "kind": "extraction",
+      "projection": "invalid-report",
+      "oldExpected": {
+        "invalidDisclosed": true
+      },
+      "newApprovedExpected": {
+        "invalidDisclosed": true
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §18 QC-02 and FINAL_CORE_PRIMARY_AND_FIO2_AMENDMENT.md: invalid domains/percent units disclosed already in preview/current report; no correction; FiO2100 valid,>100 invalid.",
+      "note": "Old regex was case-sensitive and did not recognize explicit INVALID_* warning codes or current wording.",
+      "remainReview": false,
+      "warningCode": "INVALID_FIO2"
+    },
+    {
+      "probeId": "QC-invalid-baselineNegative",
+      "kind": "extraction",
+      "projection": "invalid-report",
+      "oldExpected": {
+        "invalidDisclosed": true
+      },
+      "newApprovedExpected": {
+        "invalidDisclosed": true
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §18 QC-02 and FINAL_CORE_PRIMARY_AND_FIO2_AMENDMENT.md: invalid domains/percent units disclosed already in preview/current report; no correction; FiO2100 valid,>100 invalid.",
+      "note": "Old regex was case-sensitive and did not recognize explicit INVALID_* warning codes or current wording.",
+      "remainReview": false,
+      "warningCode": "INVALID_BASELINE_SOFA"
+    },
+    {
+      "probeId": "QC-invalid-baseline25",
+      "kind": "extraction",
+      "projection": "invalid-report",
+      "oldExpected": {
+        "invalidDisclosed": true
+      },
+      "newApprovedExpected": {
+        "invalidDisclosed": true
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §18 QC-02 and FINAL_CORE_PRIMARY_AND_FIO2_AMENDMENT.md: invalid domains/percent units disclosed already in preview/current report; no correction; FiO2100 valid,>100 invalid.",
+      "note": "Old regex was case-sensitive and did not recognize explicit INVALID_* warning codes or current wording.",
+      "remainReview": false,
+      "warningCode": "INVALID_BASELINE_SOFA"
+    },
+    {
+      "probeId": "QC-invalid-negativeUrine",
+      "kind": "extraction",
+      "projection": "invalid-report",
+      "oldExpected": {
+        "invalidDisclosed": true
+      },
+      "newApprovedExpected": {
+        "invalidDisclosed": true
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §18 QC-02 and FINAL_CORE_PRIMARY_AND_FIO2_AMENDMENT.md: invalid domains/percent units disclosed already in preview/current report; no correction; FiO2100 valid,>100 invalid.",
+      "note": "Old regex was case-sensitive and did not recognize explicit INVALID_* warning codes or current wording.",
+      "remainReview": false,
+      "warningCode": "INVALID_URINE"
+    },
+    {
+      "probeId": "QC-invalid-negativeGlucose",
+      "kind": "extraction",
+      "projection": "invalid-report",
+      "oldExpected": {
+        "invalidDisclosed": true
+      },
+      "newApprovedExpected": {
+        "invalidDisclosed": true
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §18 QC-02 and FINAL_CORE_PRIMARY_AND_FIO2_AMENDMENT.md: invalid domains/percent units disclosed already in preview/current report; no correction; FiO2100 valid,>100 invalid.",
+      "note": "Old regex was case-sensitive and did not recognize explicit INVALID_* warning codes or current wording.",
+      "remainReview": false,
+      "warningCode": "INVALID_GLUCOSE"
+    },
+    {
+      "probeId": "AB-SBE-1.99",
+      "kind": "approved-oracle-resolution",
+      "projection": "raw",
+      "oldExpected": {
+        "met": null
+      },
+      "newApprovedExpected": {
+        "met": "metabolic alkalosis"
+      },
+      "exactApprovedRule": "current application behavior is expected.",
+      "note": "fixture does not isolate SBE; HCO3 >26 independently supports metabolic alkalosis.",
+      "remainReview": false,
+      "approvalSource": "FINAL ZERO-REVIEW CLEANUP — user attached specification",
+      "priorAssessedStatus": "REVIEW"
+    },
+    {
+      "probeId": "AB-SBE-2",
+      "kind": "approved-oracle-resolution",
+      "projection": "raw",
+      "oldExpected": {
+        "met": null
+      },
+      "newApprovedExpected": {
+        "met": "metabolic alkalosis"
+      },
+      "exactApprovedRule": "current application behavior is expected.",
+      "note": "fixture does not isolate SBE; HCO3 >26 independently supports metabolic alkalosis.",
+      "remainReview": false,
+      "approvalSource": "FINAL ZERO-REVIEW CLEANUP — user attached specification",
+      "priorAssessedStatus": "REVIEW"
+    },
+    {
+      "probeId": "REVIEW-risk-24-40",
+      "kind": "approved-review-resolution",
+      "projection": "qc-risk-status",
+      "oldExpected": "Clinicalmeaning/calibrationandhandlingofconflictingSBErequireexplicitpolicy",
+      "newApprovedExpected": {
+        "noPercent": true,
+        "statusAllowed": true
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §29 EXTRA-RISK-01: remove fake probability percent; retain only data/QC statuses driven by QC/availability. §32: disclose REVIEW cases resolved by approved architecture.",
+      "note": "The explicitly approved removal resolves the old probability-calibration review; no replacement outcome model is introduced.",
+      "remainReview": false
+    },
+    {
+      "probeId": "REVIEW-risk-26-60",
+      "kind": "approved-review-resolution",
+      "projection": "qc-risk-status",
+      "oldExpected": "Clinicalmeaning/calibrationandhandlingofconflictingSBErequireexplicitpolicy",
+      "newApprovedExpected": {
+        "noPercent": true,
+        "statusAllowed": true
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §29 EXTRA-RISK-01: remove fake probability percent; retain only data/QC statuses driven by QC/availability. §32: disclose REVIEW cases resolved by approved architecture.",
+      "note": "The explicitly approved removal resolves the old probability-calibration review; no replacement outcome model is introduced.",
+      "remainReview": false
+    },
+    {
+      "probeId": "REVIEW-risk-31-60",
+      "kind": "approved-review-resolution",
+      "projection": "qc-risk-status",
+      "oldExpected": "Clinicalmeaning/calibrationandhandlingofconflictingSBErequireexplicitpolicy",
+      "newApprovedExpected": {
+        "noPercent": true,
+        "statusAllowed": true
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §29 EXTRA-RISK-01: remove fake probability percent; retain only data/QC statuses driven by QC/availability. §32: disclose REVIEW cases resolved by approved architecture.",
+      "note": "The explicitly approved removal resolves the old probability-calibration review; no replacement outcome model is introduced.",
+      "remainReview": false
+    },
+    {
+      "probeId": "REVIEW-renal-one-missing-80-NaN",
+      "kind": "approved-review-resolution",
+      "projection": "renal-partial",
+      "oldExpected": "Agreewhetherknowncriterionislowerboundorcompleteorganscorewhenothercriterionmissing",
+      "newApprovedExpected": {
+        "score": 0,
+        "fullyDetermined": false,
+        "lowerBound": true,
+        "complete": false
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §5 SC-01: complete=true only when final result is fully determined; §34 requires renal partial/lower-bound tests; §33 retains max(creatinine,urine). §32: disclose REVIEW cases resolved by approved architecture.",
+      "note": "One known criterion gives a lower bound. A known maximum4 completely determines max regardless of the missing criterion; no renal threshold changed.",
+      "remainReview": false
+    },
+    {
+      "probeId": "REVIEW-renal-one-missing-NaN-1500",
+      "kind": "approved-review-resolution",
+      "projection": "renal-partial",
+      "oldExpected": "Agreewhetherknowncriterionislowerboundorcompleteorganscorewhenothercriterionmissing",
+      "newApprovedExpected": {
+        "score": 0,
+        "fullyDetermined": false,
+        "lowerBound": true,
+        "complete": false
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §5 SC-01: complete=true only when final result is fully determined; §34 requires renal partial/lower-bound tests; §33 retains max(creatinine,urine). §32: disclose REVIEW cases resolved by approved architecture.",
+      "note": "One known criterion gives a lower bound. A known maximum4 completely determines max regardless of the missing criterion; no renal threshold changed.",
+      "remainReview": false
+    },
+    {
+      "probeId": "REVIEW-renal-one-missing-NaN-100",
+      "kind": "approved-review-resolution",
+      "projection": "renal-partial",
+      "oldExpected": "Agreewhetherknowncriterionislowerboundorcompleteorganscorewhenothercriterionmissing",
+      "newApprovedExpected": {
+        "score": 4,
+        "fullyDetermined": true,
+        "lowerBound": false,
+        "complete": true
+      },
+      "exactApprovedRule": "FINAL_CORE_SPEC_USER.md §5 SC-01: complete=true only when final result is fully determined; §34 requires renal partial/lower-bound tests; §33 retains max(creatinine,urine). §32: disclose REVIEW cases resolved by approved architecture.",
+      "note": "One known criterion gives a lower bound. A known maximum4 completely determines max regardless of the missing criterion; no renal threshold changed.",
+      "remainReview": false
+    },
+    {
+      "probeId": "REVIEW-pH-representation-7.35--1.63202784619898e-15",
+      "oldExpected": "Literalmathematicalboundaryandexternallycomputedrepresentationrequireagreedprecisionpolicy",
+      "remainReview": false,
+      "approvalSource": "FINAL ZERO-REVIEW CLEANUP — user attached specification",
+      "priorAssessedStatus": "REVIEW",
+      "kind": "approved-representation-resolution",
+      "projection": "raw",
+      "newApprovedExpected": "normal",
+      "exactApprovedRule": "7.35≤pH≤7.45 normal-range; 4×Number.EPSILON×max(1,abs(value),abs(threshold)) representation epsilon only.",
+      "note": "Original pH and HCO3 retained; raw expected/actual remain visible."
+    },
+    {
+      "probeId": "REVIEW-pH-representation-7.35-0",
+      "oldExpected": "Literalmathematicalboundaryandexternallycomputedrepresentationrequireagreedprecisionpolicy",
+      "remainReview": false,
+      "approvalSource": "FINAL ZERO-REVIEW CLEANUP — user attached specification",
+      "priorAssessedStatus": "REVIEW",
+      "kind": "approved-representation-resolution",
+      "projection": "raw",
+      "newApprovedExpected": "normal",
+      "exactApprovedRule": "7.35≤pH≤7.45 normal-range; 4×Number.EPSILON×max(1,abs(value),abs(threshold)) representation epsilon only.",
+      "note": "Original pH and HCO3 retained; raw expected/actual remain visible."
+    },
+    {
+      "probeId": "REVIEW-pH-representation-7.35-1.63202784619898e-15",
+      "oldExpected": "Literalmathematicalboundaryandexternallycomputedrepresentationrequireagreedprecisionpolicy",
+      "remainReview": false,
+      "approvalSource": "FINAL ZERO-REVIEW CLEANUP — user attached specification",
+      "priorAssessedStatus": "REVIEW",
+      "kind": "approved-representation-resolution",
+      "projection": "raw",
+      "newApprovedExpected": "normal",
+      "exactApprovedRule": "7.35≤pH≤7.45 normal-range; 4×Number.EPSILON×max(1,abs(value),abs(threshold)) representation epsilon only.",
+      "note": "Original pH and HCO3 retained; raw expected/actual remain visible."
+    },
+    {
+      "probeId": "REVIEW-pH-representation-7.45--1.6542323066914833e-15",
+      "oldExpected": "Literalmathematicalboundaryandexternallycomputedrepresentationrequireagreedprecisionpolicy",
+      "remainReview": false,
+      "approvalSource": "FINAL ZERO-REVIEW CLEANUP — user attached specification",
+      "priorAssessedStatus": "REVIEW",
+      "kind": "approved-representation-resolution",
+      "projection": "raw",
+      "newApprovedExpected": "normal",
+      "exactApprovedRule": "7.35≤pH≤7.45 normal-range; 4×Number.EPSILON×max(1,abs(value),abs(threshold)) representation epsilon only.",
+      "note": "Original pH and HCO3 retained; raw expected/actual remain visible."
+    },
+    {
+      "probeId": "REVIEW-pH-representation-7.45-0",
+      "oldExpected": "Literalmathematicalboundaryandexternallycomputedrepresentationrequireagreedprecisionpolicy",
+      "remainReview": false,
+      "approvalSource": "FINAL ZERO-REVIEW CLEANUP — user attached specification",
+      "priorAssessedStatus": "REVIEW",
+      "kind": "approved-representation-resolution",
+      "projection": "raw",
+      "newApprovedExpected": "normal",
+      "exactApprovedRule": "7.35≤pH≤7.45 normal-range; 4×Number.EPSILON×max(1,abs(value),abs(threshold)) representation epsilon only.",
+      "note": "Original pH and HCO3 retained; raw expected/actual remain visible."
+    },
+    {
+      "probeId": "REVIEW-pH-representation-7.45-1.6542323066914833e-15",
+      "oldExpected": "Literalmathematicalboundaryandexternallycomputedrepresentationrequireagreedprecisionpolicy",
+      "remainReview": false,
+      "approvalSource": "FINAL ZERO-REVIEW CLEANUP — user attached specification",
+      "priorAssessedStatus": "REVIEW",
+      "kind": "approved-representation-resolution",
+      "projection": "raw",
+      "newApprovedExpected": "normal",
+      "exactApprovedRule": "7.35≤pH≤7.45 normal-range; 4×Number.EPSILON×max(1,abs(value),abs(threshold)) representation epsilon only.",
+      "note": "Original pH and HCO3 retained; raw expected/actual remain visible."
+    },
+    {
+      "probeId": "REVIEW-pressure-vs-support-5-no",
+      "oldExpected": "Agreeinterpretationofexplicitcontradictorypressure/supportcontext",
+      "remainReview": false,
+      "approvalSource": "FINAL ZERO-REVIEW CLEANUP — user attached specification",
+      "priorAssessedStatus": "REVIEW",
+      "kind": "approved-context-resolution",
+      "projection": "independent-support",
+      "newApprovedExpected": {
+        "BerlinConfirmed": true,
+        "SOFARespiratory": 2,
+        "PEEP": 5,
+        "respiratorySupport": "no",
+        "O2support": "no",
+        "NEWSOxygen": 0,
+        "contextWarning": true
+      },
+      "exactApprovedRule": "PEEP/CPAP→Berlin, explicit respiratorySupport→SOFA, O2support→NEWS2, independent; Case A warning, Case B valid.",
+      "note": "No input corrected or context inferred."
+    },
+    {
+      "probeId": "REVIEW-pressure-vs-support-0-yes",
+      "oldExpected": "Agreeinterpretationofexplicitcontradictorypressure/supportcontext",
+      "remainReview": false,
+      "approvalSource": "FINAL ZERO-REVIEW CLEANUP — user attached specification",
+      "priorAssessedStatus": "REVIEW",
+      "kind": "approved-context-resolution",
+      "projection": "independent-support",
+      "newApprovedExpected": {
+        "BerlinConfirmed": false,
+        "SOFARespiratory": 3,
+        "PEEP": 0,
+        "respiratorySupport": "yes",
+        "O2support": "no",
+        "NEWSOxygen": 0,
+        "contextWarning": false
+      },
+      "exactApprovedRule": "PEEP/CPAP→Berlin, explicit respiratorySupport→SOFA, O2support→NEWS2, independent; Case A warning, Case B valid.",
+      "note": "No input corrected or context inferred."
+    },
+    {
+      "probeId": "REVIEW-APACHE-population-14",
+      "oldExpected": "ScopeofadultAPACHEIIoutsideoriginalvalidatedpopulationneedsdisclosure",
+      "remainReview": false,
+      "approvalSource": "FINAL ZERO-REVIEW CLEANUP — user attached specification",
+      "priorAssessedStatus": "REVIEW",
+      "kind": "approved-applicability-resolution",
+      "projection": "apache-population",
+      "newApprovedExpected": {
+        "applicable": false,
+        "finalTotalAvailable": false,
+        "status": "APACHE II не применяется: исходная система не валидировалась для пациентов ≤16 лет."
+      },
+      "exactApprovedRule": "Age≤16: standard APACHE II not applicable; Age>16 retains existing calculation.",
+      "note": "No pediatric replacement or mortality prediction."
+    },
+    {
+      "probeId": "REVIEW-APACHE-population-16",
+      "oldExpected": "ScopeofadultAPACHEIIoutsideoriginalvalidatedpopulationneedsdisclosure",
+      "remainReview": false,
+      "approvalSource": "FINAL ZERO-REVIEW CLEANUP — user attached specification",
+      "priorAssessedStatus": "REVIEW",
+      "kind": "approved-applicability-resolution",
+      "projection": "apache-population",
+      "newApprovedExpected": {
+        "applicable": false,
+        "finalTotalAvailable": false,
+        "status": "APACHE II не применяется: исходная система не валидировалась для пациентов ≤16 лет."
+      },
+      "exactApprovedRule": "Age≤16: standard APACHE II not applicable; Age>16 retains existing calculation.",
+      "note": "No pediatric replacement or mortality prediction."
+    }
+  ]
+}

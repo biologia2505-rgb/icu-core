@@ -1,0 +1,3789 @@
+{
+  "sourceHash": "cbb5f6922291fe7bc6c3d96410dd9c3ff76ddce5b0fd8959f9b11306a40aa9f7",
+  "independentRepeat": true,
+  "runner": "tests/v31-synthesis.mjs",
+  "summary": {
+    "sourceHash": "cbb5f6922291fe7bc6c3d96410dd9c3ff76ddce5b0fd8959f9b11306a40aa9f7",
+    "cases": 22,
+    "pass": 22,
+    "fail": 0,
+    "review": 0,
+    "fixtures": 8
+  },
+  "checks": [
+    {
+      "id": "A-yes",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "A-no",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "A-unknown",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "B-probable-ratio-policy",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "C-hidden-unknown",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "C-hidden-yes",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "D-three-acidifying-components",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "E-ratio-NAGMA-Winter",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "F-possible-component-SBE-warning",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "F-Winter-independent-primary-assignment",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "G-sodium-one-liter-all-surfaces",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "H-triad-three-conditional-scenarios",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "corrected-bicarbonate-alone-not-diagnosis",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "borderline-delta-no-independent-alk-evidence",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "SIG-alone-not-HAGMA-hyperglycemia-not-ketones",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "mild-lactate-not-lactic-acidosis",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "isolated-respiratory-renal-compensation",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "history-report-confirmation-roundtrip",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "measured-Na-frozen-with-Katz-enabled",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "missing-measured-HCO3-no-corrected-substitution",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "sodium-limits-corrected-inference",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    },
+    {
+      "id": "syndrome-all-structured-components-in-report",
+      "defectIds": [
+        "v31 approved rules"
+      ],
+      "input": null,
+      "expected": true,
+      "actual": true,
+      "status": "PASS",
+      "note": ""
+    }
+  ],
+  "cases": [
+    {
+      "id": "A",
+      "input": {
+        "pH": 7.53,
+        "pCO2": 33.43817061874548,
+        "HCO3in": 27,
+        "SBE_input": 4.7059999999999995,
+        "Lac": 1,
+        "pO2": 90,
+        "FiO2": 21,
+        "PEEP": 0,
+        "Na": 138,
+        "Cl": 80,
+        "K": 4,
+        "Ca": 1.2,
+        "Mg": 0.9,
+        "Alb": 40,
+        "PO4": 1.1,
+        "Gluc": 30,
+        "Ur": 5,
+        "Osm_in": null,
+        "Weight": 70,
+        "RR": 16,
+        "SpO2": 98,
+        "SBP": 120,
+        "DBP": 80,
+        "HR": 80,
+        "Temp": 36.8,
+        "GCS": 15,
+        "Age": 30,
+        "Plt": 200,
+        "WBC": 7,
+        "Bands": 3,
+        "Hct": 40,
+        "Cr": 80,
+        "Bil": 15,
+        "Urine": 1500,
+        "baselineSOFA": 0,
+        "AGupperLimit": null,
+        "sbeMode": "input",
+        "naCorr": "off",
+        "chronic": "unknown",
+        "sidModel": "charged",
+        "O2support": "no",
+        "ACVPU": "A",
+        "Vaso": "none",
+        "Sex": "M",
+        "acuity": "auto",
+        "bilateral": "unknown",
+        "timing": "unknown",
+        "noncardiac": "unknown",
+        "infection": "unknown",
+        "anionSourceConfirmed": "unknown",
+        "acuteRenalFailure": "no",
+        "respiratorySupport": "unknown",
+        "infectionRelatedOrganDysfunction": "unknown",
+        "adequateResuscitation": "unknown",
+        "vasopressorRequirement": "unknown",
+        "sampleSimultaneity": "yes",
+        "gasSampleType": "arterial",
+        "news2Scale": "1",
+        "chronicHealth": "no",
+        "surgicalContext": "unknown",
+        "naSolution": "0.9",
+        "kSolution": "4",
+        "chronicity": "unknown",
+        "notes": "",
+        "legacyApacheReview": false,
+        "legacyApacheChronicValue": "",
+        "Chronic": "none"
+      },
+      "result": {
+        "title": "Смешанное нарушение",
+        "detail": "метаболический алкалоз [поддерживается утверждёнными критериями] + респираторный алкалоз [поддерживается утверждёнными критериями] · Возможен: HAGMA — анионный ацидифицирующий компонент [possible]; не подтверждён как самостоятельный диагноз · Corrected HCO₃ 46.0 ммоль/л; delta gap 22.0; continuous contributors, не самостоятельные диагнозы · Физиологические вклады (contributors): SBE_Cl 22.84 ммоль/л — алкализирующий; SBE_Alb 0.00 ммоль/л — нулевой; SIDa 65.20 мЭкв/л — направление общего эффекта требует reference; SIDe 40.85 мЭкв/л — направление общего эффекта требует reference. Общие Na/Cl/Alb не считаются независимыми методами и не повышают уверенность процесса · Opposing metabolic contributors: противоположно направленные ацидифицирующие и алкализирующие вклады; сами по себе не устанавливают дополнительные диагнозы",
+        "components": [
+          "метаболический алкалоз",
+          "респираторный алкалоз"
+        ],
+        "composition": {
+          "processes": [
+            "metabolic alkalosis",
+            "respiratory alkalosis"
+          ],
+          "possibleProcesses": [
+            "HAGMA"
+          ],
+          "processConfidence": {
+            "HAGMA": "possible",
+            "metabolic alkalosis": "supported",
+            "respiratory alkalosis": "supported"
+          },
+          "contributors": [
+            {
+              "id": "anion",
+              "value": 31,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+            },
+            {
+              "id": "correctedHCO3",
+              "value": 46,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+            },
+            {
+              "id": "deltaGap",
+              "value": 22,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+            },
+            {
+              "id": "SBE_Cl",
+              "value": 22.840579710144922,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl"
+              ],
+              "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+            },
+            {
+              "id": "SBE_Alb",
+              "value": 0,
+              "unit": "ммоль/л",
+              "direction": "neutral",
+              "applicable": true,
+              "inputs": [
+                "pH",
+                "Alb"
+              ],
+              "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+            },
+            {
+              "id": "SIDa",
+              "value": 65.19999999999999,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "K",
+                "Ca",
+                "Mg",
+                "Cl",
+                "Lac"
+              ],
+              "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+            },
+            {
+              "id": "SIDe",
+              "value": 40.851147000000005,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": true,
+              "inputs": [
+                "HCO3",
+                "pH",
+                "Alb",
+                "PO4"
+              ],
+              "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+            }
+          ],
+          "evidence": {
+            "HAGMA": [
+              "Повышенный AG / возможный анионный ацидотический компонент на фоне смешанного нарушения; по одному AG диагноз HAGMA не устанавливается"
+            ],
+            "metabolic alkalosis": [
+              "Метаболический алкалоз по существующей газовой / компенсационной модели"
+            ],
+            "respiratory alkalosis": [
+              "Респираторный компонент по газам и компенсационным моделям"
+            ]
+          },
+          "corrected": {
+            "value": 46,
+            "deltaGap": 22,
+            "applicable": true,
+            "reason": "HCO₃_corr = HCO₃_measured + ΔAG; вспомогательный признак, не самостоятельный диагноз"
+          },
+          "winter": {
+            "applicable": false,
+            "status": "not-indicated",
+            "text": "Winter не применяется: метаболический ацидифицирующий компонент не установлен",
+            "checks": []
+          },
+          "opposingMetabolicContributors": true,
+          "maskedMetabolicPattern": false,
+          "metabolic": {
+            "anion": {
+              "confidence": "possible",
+              "sourceConfirmed": false,
+              "evidence": []
+            },
+            "nonAnion": {
+              "supported": false,
+              "chlorideDirection": "alkalinizing",
+              "expectedRenalCompensation": false
+            },
+            "alkalinizing": {
+              "name": "metabolic alkalosis",
+              "confidence": "supported",
+              "supported": true,
+              "classic": true,
+              "deltaBorderline": false,
+              "evidence": [
+                "Метаболический алкалоз по существующей газовой / компенсационной модели"
+              ]
+            }
+          },
+          "respiratory": {
+            "process": "respiratory alkalosis",
+            "adequateCompensation": false
+          },
+          "interpretationBlocked": false
+        },
+        "processes": [
+          "metabolic alkalosis",
+          "respiratory alkalosis"
+        ],
+        "possibleProcesses": [
+          "HAGMA"
+        ],
+        "processConfidence": {
+          "HAGMA": "possible",
+          "metabolic alkalosis": "supported",
+          "respiratory alkalosis": "supported"
+        },
+        "contributors": [
+          {
+            "id": "anion",
+            "value": 31,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+          },
+          {
+            "id": "correctedHCO3",
+            "value": 46,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+          },
+          {
+            "id": "deltaGap",
+            "value": 22,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+          },
+          {
+            "id": "SBE_Cl",
+            "value": 22.840579710144922,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl"
+            ],
+            "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+          },
+          {
+            "id": "SBE_Alb",
+            "value": 0,
+            "unit": "ммоль/л",
+            "direction": "neutral",
+            "applicable": true,
+            "inputs": [
+              "pH",
+              "Alb"
+            ],
+            "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+          },
+          {
+            "id": "SIDa",
+            "value": 65.19999999999999,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "K",
+              "Ca",
+              "Mg",
+              "Cl",
+              "Lac"
+            ],
+            "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+          },
+          {
+            "id": "SIDe",
+            "value": 40.851147000000005,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": true,
+            "inputs": [
+              "HCO3",
+              "pH",
+              "Alb",
+              "PO4"
+            ],
+            "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+          }
+        ],
+        "evidence": {
+          "HAGMA": [
+            "Повышенный AG / возможный анионный ацидотический компонент на фоне смешанного нарушения; по одному AG диагноз HAGMA не устанавливается"
+          ],
+          "metabolic alkalosis": [
+            "Метаболический алкалоз по существующей газовой / компенсационной модели"
+          ],
+          "respiratory alkalosis": [
+            "Респираторный компонент по газам и компенсационным моделям"
+          ]
+        },
+        "corrected": {
+          "value": 46,
+          "deltaGap": 22,
+          "applicable": true,
+          "reason": "HCO₃_corr = HCO₃_measured + ΔAG; вспомогательный признак, не самостоятельный диагноз"
+        },
+        "winter": {
+          "applicable": false,
+          "status": "not-indicated",
+          "text": "Winter не применяется: метаболический ацидифицирующий компонент не установлен",
+          "checks": []
+        },
+        "opposingMetabolicContributors": true,
+        "maskedMetabolicPattern": false,
+        "metabolic": {
+          "anion": {
+            "confidence": "possible",
+            "sourceConfirmed": false,
+            "evidence": []
+          },
+          "nonAnion": {
+            "supported": false,
+            "chlorideDirection": "alkalinizing",
+            "expectedRenalCompensation": false
+          },
+          "alkalinizing": {
+            "name": "metabolic alkalosis",
+            "confidence": "supported",
+            "supported": true,
+            "classic": true,
+            "deltaBorderline": false,
+            "evidence": [
+              "Метаболический алкалоз по существующей газовой / компенсационной модели"
+            ]
+          }
+        },
+        "respiratory": {
+          "process": "respiratory alkalosis",
+          "adequateCompensation": false
+        },
+        "interpretationBlocked": false,
+        "primaryProcessCertain": false,
+        "primaryDetail": "Порядок возникновения / первичность процессов не установлены",
+        "acidifyingShift": false,
+        "anionComponentConfidence": "possible"
+      },
+      "balance": {
+        "W": 70,
+        "tbwCoef": 0.6,
+        "T": 42,
+        "acuity": "unknown",
+        "available": true,
+        "waterDeficit": null,
+        "naDeficit": null,
+        "kDeficit": null,
+        "clDeficit": 805,
+        "naVolume": null,
+        "kVolume": null,
+        "deltaNa": null,
+        "deltaK": null,
+        "naSol": {
+          "conc": 154,
+          "label": "0.9% NaCl",
+          "perMl": 0.154
+        },
+        "kSol": {
+          "conc": 536,
+          "label": "4% KCl",
+          "perMl": 0.536
+        }
+      },
+      "QC": {
+        "status": "NO_TECHNICAL_CONFLICT",
+        "warnings": [],
+        "pending": [],
+        "HCO3difference": 3.552713678800501e-15,
+        "SBEdifference": 0,
+        "interpretationConditional": false,
+        "summary": "Технический QC ICU CORE: исходные значения сохранены; ограничения и клинический контекст оцениваются отдельно"
+      }
+    },
+    {
+      "id": "B",
+      "input": {
+        "pH": 7.23,
+        "pCO2": 22.239307239027486,
+        "HCO3in": 9,
+        "SBE_input": -18.153999999999996,
+        "Lac": 1,
+        "pO2": 90,
+        "FiO2": 21,
+        "PEEP": 0,
+        "Na": 140,
+        "Cl": 77,
+        "K": 4,
+        "Ca": 1.2,
+        "Mg": 0.9,
+        "Alb": 40,
+        "PO4": 1.1,
+        "Gluc": 5.5,
+        "Ur": 5,
+        "Osm_in": null,
+        "Weight": 70,
+        "RR": 16,
+        "SpO2": 98,
+        "SBP": 120,
+        "DBP": 80,
+        "HR": 80,
+        "Temp": 36.8,
+        "GCS": 15,
+        "Age": 30,
+        "Plt": 200,
+        "WBC": 7,
+        "Bands": 3,
+        "Hct": 40,
+        "Cr": 80,
+        "Bil": 15,
+        "Urine": 1500,
+        "baselineSOFA": 0,
+        "AGupperLimit": null,
+        "sbeMode": "input",
+        "naCorr": "off",
+        "chronic": "unknown",
+        "sidModel": "charged",
+        "O2support": "no",
+        "ACVPU": "A",
+        "Vaso": "none",
+        "Sex": "M",
+        "acuity": "auto",
+        "bilateral": "unknown",
+        "timing": "unknown",
+        "noncardiac": "unknown",
+        "infection": "unknown",
+        "anionSourceConfirmed": "unknown",
+        "acuteRenalFailure": "no",
+        "respiratorySupport": "unknown",
+        "infectionRelatedOrganDysfunction": "unknown",
+        "adequateResuscitation": "unknown",
+        "vasopressorRequirement": "unknown",
+        "sampleSimultaneity": "yes",
+        "gasSampleType": "arterial",
+        "news2Scale": "1",
+        "chronicHealth": "no",
+        "surgicalContext": "unknown",
+        "naSolution": "0.9",
+        "kSolution": "4",
+        "chronicity": "unknown",
+        "notes": "",
+        "legacyApacheReview": false,
+        "legacyApacheChronicValue": "",
+        "Chronic": "none"
+      },
+      "result": {
+        "title": "Смешанное нарушение",
+        "detail": "HAGMA — анионный ацидифицирующий компонент [поддерживается утверждёнными критериями] + дополнительный метаболический алкализирующий компонент [вероятный (probable)] · probable metabolic alkalinizing component по утверждённой Δ/Δ policy; отдельный классический метаболический алкалоз из ratio не назначен · Corrected HCO₃ 51.0 ммоль/л; delta gap 27.0; continuous contributors, не самостоятельные диагнозы · Физиологические вклады (contributors): SBE_Cl 27.00 ммоль/л — алкализирующий; SBE_Alb 0.00 ммоль/л — нулевой; SIDa 70.20 мЭкв/л — направление общего эффекта требует reference; SIDe 21.27 мЭкв/л — направление общего эффекта требует reference. Общие Na/Cl/Alb не считаются независимыми методами и не повышают уверенность процесса · Opposing metabolic contributors: противоположно направленные ацидифицирующие и алкализирующие вклады; сами по себе не устанавливают дополнительные диагнозы · Winter: ожидаемый PaCO₂ 19.5–23.5 мм рт. ст. PaCO₂ соответствует ожидаемому диапазону Winter; адекватная респираторная компенсация. Модель оценивает компенсацию итогового сниженного HCO₃⁻; не устанавливает первичность и величину каждого противоположного процесса.",
+        "components": [
+          "HAGMA — анионный ацидифицирующий компонент",
+          "дополнительный метаболический алкализирующий компонент"
+        ],
+        "composition": {
+          "processes": [
+            "HAGMA",
+            "metabolic alkalinizing component"
+          ],
+          "possibleProcesses": [],
+          "processConfidence": {
+            "HAGMA": "supported",
+            "metabolic alkalinizing component": "probable"
+          },
+          "contributors": [
+            {
+              "id": "anion",
+              "value": 54,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+            },
+            {
+              "id": "correctedHCO3",
+              "value": 51,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+            },
+            {
+              "id": "deltaGap",
+              "value": 27,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+            },
+            {
+              "id": "SBE_Cl",
+              "value": 27,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl"
+              ],
+              "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+            },
+            {
+              "id": "SBE_Alb",
+              "value": 0,
+              "unit": "ммоль/л",
+              "direction": "neutral",
+              "applicable": true,
+              "inputs": [
+                "pH",
+                "Alb"
+              ],
+              "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+            },
+            {
+              "id": "SIDa",
+              "value": 70.19999999999999,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "K",
+                "Ca",
+                "Mg",
+                "Cl",
+                "Lac"
+              ],
+              "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+            },
+            {
+              "id": "SIDe",
+              "value": 21.273177,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": true,
+              "inputs": [
+                "HCO3",
+                "pH",
+                "Alb",
+                "PO4"
+              ],
+              "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+            }
+          ],
+          "evidence": {
+            "HAGMA": [
+              "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated"
+            ],
+            "metabolic alkalinizing component": [
+              "Δ/Δ 2.80 >2: probable metabolic alkalinizing component; ratio не устанавливает classic metabolic alkalosis"
+            ]
+          },
+          "corrected": {
+            "value": 51,
+            "deltaGap": 27,
+            "applicable": true,
+            "reason": "HCO₃_corr = HCO₃_measured + ΔAG; вспомогательный признак, не самостоятельный диагноз"
+          },
+          "winter": {
+            "applicable": true,
+            "status": "within",
+            "low": 19.5,
+            "high": 23.5,
+            "respiratoryProcess": null,
+            "checks": [
+              "адекватна"
+            ],
+            "text": "Winter: ожидаемый PaCO₂ 19.5–23.5 мм рт. ст. PaCO₂ соответствует ожидаемому диапазону Winter; адекватная респираторная компенсация. Модель оценивает компенсацию итогового сниженного HCO₃⁻; не устанавливает первичность и величину каждого противоположного процесса."
+          },
+          "opposingMetabolicContributors": true,
+          "maskedMetabolicPattern": false,
+          "metabolic": {
+            "anion": {
+              "confidence": "supported",
+              "sourceConfirmed": false,
+              "evidence": [
+                "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated"
+              ]
+            },
+            "nonAnion": {
+              "supported": false,
+              "chlorideDirection": "alkalinizing",
+              "expectedRenalCompensation": false
+            },
+            "alkalinizing": {
+              "name": "metabolic alkalinizing component",
+              "confidence": "probable",
+              "supported": false,
+              "classic": false,
+              "deltaBorderline": false,
+              "evidence": [
+                "Δ/Δ 2.80 >2: probable metabolic alkalinizing component; ratio не устанавливает classic metabolic alkalosis"
+              ]
+            }
+          },
+          "respiratory": {
+            "process": null,
+            "adequateCompensation": true
+          },
+          "interpretationBlocked": false
+        },
+        "processes": [
+          "HAGMA",
+          "metabolic alkalinizing component"
+        ],
+        "possibleProcesses": [],
+        "processConfidence": {
+          "HAGMA": "supported",
+          "metabolic alkalinizing component": "probable"
+        },
+        "contributors": [
+          {
+            "id": "anion",
+            "value": 54,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+          },
+          {
+            "id": "correctedHCO3",
+            "value": 51,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+          },
+          {
+            "id": "deltaGap",
+            "value": 27,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+          },
+          {
+            "id": "SBE_Cl",
+            "value": 27,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl"
+            ],
+            "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+          },
+          {
+            "id": "SBE_Alb",
+            "value": 0,
+            "unit": "ммоль/л",
+            "direction": "neutral",
+            "applicable": true,
+            "inputs": [
+              "pH",
+              "Alb"
+            ],
+            "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+          },
+          {
+            "id": "SIDa",
+            "value": 70.19999999999999,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "K",
+              "Ca",
+              "Mg",
+              "Cl",
+              "Lac"
+            ],
+            "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+          },
+          {
+            "id": "SIDe",
+            "value": 21.273177,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": true,
+            "inputs": [
+              "HCO3",
+              "pH",
+              "Alb",
+              "PO4"
+            ],
+            "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+          }
+        ],
+        "evidence": {
+          "HAGMA": [
+            "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated"
+          ],
+          "metabolic alkalinizing component": [
+            "Δ/Δ 2.80 >2: probable metabolic alkalinizing component; ratio не устанавливает classic metabolic alkalosis"
+          ]
+        },
+        "corrected": {
+          "value": 51,
+          "deltaGap": 27,
+          "applicable": true,
+          "reason": "HCO₃_corr = HCO₃_measured + ΔAG; вспомогательный признак, не самостоятельный диагноз"
+        },
+        "winter": {
+          "applicable": true,
+          "status": "within",
+          "low": 19.5,
+          "high": 23.5,
+          "respiratoryProcess": null,
+          "checks": [
+            "адекватна"
+          ],
+          "text": "Winter: ожидаемый PaCO₂ 19.5–23.5 мм рт. ст. PaCO₂ соответствует ожидаемому диапазону Winter; адекватная респираторная компенсация. Модель оценивает компенсацию итогового сниженного HCO₃⁻; не устанавливает первичность и величину каждого противоположного процесса."
+        },
+        "opposingMetabolicContributors": true,
+        "maskedMetabolicPattern": false,
+        "metabolic": {
+          "anion": {
+            "confidence": "supported",
+            "sourceConfirmed": false,
+            "evidence": [
+              "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated"
+            ]
+          },
+          "nonAnion": {
+            "supported": false,
+            "chlorideDirection": "alkalinizing",
+            "expectedRenalCompensation": false
+          },
+          "alkalinizing": {
+            "name": "metabolic alkalinizing component",
+            "confidence": "probable",
+            "supported": false,
+            "classic": false,
+            "deltaBorderline": false,
+            "evidence": [
+              "Δ/Δ 2.80 >2: probable metabolic alkalinizing component; ratio не устанавливает classic metabolic alkalosis"
+            ]
+          }
+        },
+        "respiratory": {
+          "process": null,
+          "adequateCompensation": true
+        },
+        "interpretationBlocked": false,
+        "primaryProcessCertain": true,
+        "primaryDetail": "",
+        "acidifyingShift": false,
+        "anionComponentConfidence": "supported"
+      },
+      "balance": {
+        "W": 70,
+        "tbwCoef": 0.6,
+        "T": 42,
+        "acuity": "unknown",
+        "available": true,
+        "waterDeficit": null,
+        "naDeficit": null,
+        "kDeficit": null,
+        "clDeficit": 910,
+        "naVolume": null,
+        "kVolume": null,
+        "deltaNa": null,
+        "deltaK": null,
+        "naSol": {
+          "conc": 154,
+          "label": "0.9% NaCl",
+          "perMl": 0.154
+        },
+        "kSol": {
+          "conc": 536,
+          "label": "4% KCl",
+          "perMl": 0.536
+        }
+      },
+      "QC": {
+        "status": "NO_TECHNICAL_CONFLICT",
+        "warnings": [],
+        "pending": [],
+        "HCO3difference": 1.7763568394002505e-15,
+        "SBEdifference": 0,
+        "interpretationConditional": false,
+        "summary": "Технический QC ICU CORE: исходные значения сохранены; ограничения и клинический контекст оцениваются отдельно"
+      }
+    },
+    {
+      "id": "C",
+      "input": {
+        "pH": 7.4,
+        "pCO2": 40.09497869018172,
+        "HCO3in": 24,
+        "SBE_input": -0.3999999999999986,
+        "Lac": 1,
+        "pO2": 90,
+        "FiO2": 21,
+        "PEEP": 0,
+        "Na": 140,
+        "Cl": 95,
+        "K": 4,
+        "Ca": 1.2,
+        "Mg": 0.9,
+        "Alb": 40,
+        "PO4": 1.1,
+        "Gluc": 5.5,
+        "Ur": 5,
+        "Osm_in": null,
+        "Weight": 70,
+        "RR": 16,
+        "SpO2": 98,
+        "SBP": 120,
+        "DBP": 80,
+        "HR": 80,
+        "Temp": 36.8,
+        "GCS": 15,
+        "Age": 30,
+        "Plt": 200,
+        "WBC": 7,
+        "Bands": 3,
+        "Hct": 40,
+        "Cr": 80,
+        "Bil": 15,
+        "Urine": 1500,
+        "baselineSOFA": 0,
+        "AGupperLimit": null,
+        "sbeMode": "input",
+        "naCorr": "off",
+        "chronic": "unknown",
+        "sidModel": "charged",
+        "O2support": "no",
+        "ACVPU": "A",
+        "Vaso": "none",
+        "Sex": "M",
+        "acuity": "auto",
+        "bilateral": "unknown",
+        "timing": "unknown",
+        "noncardiac": "unknown",
+        "infection": "unknown",
+        "anionSourceConfirmed": "unknown",
+        "acuteRenalFailure": "no",
+        "respiratorySupport": "unknown",
+        "infectionRelatedOrganDysfunction": "unknown",
+        "adequateResuscitation": "unknown",
+        "vasopressorRequirement": "unknown",
+        "sampleSimultaneity": "yes",
+        "gasSampleType": "arterial",
+        "news2Scale": "1",
+        "chronicHealth": "no",
+        "surgicalContext": "unknown",
+        "naSolution": "0.9",
+        "kSolution": "4",
+        "chronicity": "unknown",
+        "notes": "",
+        "legacyApacheReview": false,
+        "legacyApacheChronicValue": "",
+        "Chronic": "none"
+      },
+      "result": {
+        "title": "Маскированный / opposing metabolic pattern",
+        "detail": "Возможен: HAGMA — анионный ацидифицирующий компонент [possible]; не подтверждён как самостоятельный диагноз · Corrected HCO₃ 33.0 ммоль/л; delta gap 9.0; continuous contributors, не самостоятельные диагнозы · Физиологические вклады (contributors): SBE_Cl 9.00 ммоль/л — алкализирующий; SBE_Alb 0.00 ммоль/л — нулевой; SIDa 52.20 мЭкв/л — направление общего эффекта требует reference; SIDe 37.17 мЭкв/л — направление общего эффекта требует reference. Общие Na/Cl/Alb не считаются независимыми методами и не повышают уверенность процесса · Opposing metabolic contributors: противоположно направленные ацидифицирующие и алкализирующие вклады; сами по себе не устанавливают дополнительные диагнозы · Уверенность процессов: анионный — возможный (possible); алкализирующий — не установлен. Нормальные итоговые газы не исключают противоположные физиологические вклады",
+        "components": [],
+        "composition": {
+          "processes": [],
+          "possibleProcesses": [
+            "HAGMA"
+          ],
+          "processConfidence": {
+            "HAGMA": "possible"
+          },
+          "contributors": [
+            {
+              "id": "anion",
+              "value": 21,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+            },
+            {
+              "id": "correctedHCO3",
+              "value": 33,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+            },
+            {
+              "id": "deltaGap",
+              "value": 9,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+            },
+            {
+              "id": "SBE_Cl",
+              "value": 9,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl"
+              ],
+              "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+            },
+            {
+              "id": "SBE_Alb",
+              "value": 0,
+              "unit": "ммоль/л",
+              "direction": "neutral",
+              "applicable": true,
+              "inputs": [
+                "pH",
+                "Alb"
+              ],
+              "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+            },
+            {
+              "id": "SIDa",
+              "value": 52.19999999999999,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "K",
+                "Ca",
+                "Mg",
+                "Cl",
+                "Lac"
+              ],
+              "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+            },
+            {
+              "id": "SIDe",
+              "value": 37.16736,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": true,
+              "inputs": [
+                "HCO3",
+                "pH",
+                "Alb",
+                "PO4"
+              ],
+              "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+            }
+          ],
+          "evidence": {
+            "HAGMA": [
+              "Повышенный AG / возможный анионный ацидотический компонент; клиническая интерпретация требует контекста; по одному AG диагноз HAGMA не устанавливается"
+            ]
+          },
+          "corrected": {
+            "value": 33,
+            "deltaGap": 9,
+            "applicable": true,
+            "reason": "HCO₃_corr = HCO₃_measured + ΔAG; вспомогательный признак, не самостоятельный диагноз"
+          },
+          "winter": {
+            "applicable": false,
+            "status": "not-indicated",
+            "text": "Winter не применяется: метаболический ацидифицирующий компонент не установлен",
+            "checks": []
+          },
+          "opposingMetabolicContributors": true,
+          "maskedMetabolicPattern": true,
+          "metabolic": {
+            "anion": {
+              "confidence": "possible",
+              "sourceConfirmed": false,
+              "evidence": []
+            },
+            "nonAnion": {
+              "supported": false,
+              "chlorideDirection": "alkalinizing",
+              "expectedRenalCompensation": false
+            },
+            "alkalinizing": {
+              "name": null,
+              "confidence": "not-established",
+              "supported": false,
+              "classic": false,
+              "deltaBorderline": false,
+              "evidence": []
+            }
+          },
+          "respiratory": {
+            "process": null,
+            "adequateCompensation": false
+          },
+          "interpretationBlocked": false
+        },
+        "processes": [],
+        "possibleProcesses": [
+          "HAGMA"
+        ],
+        "processConfidence": {
+          "HAGMA": "possible"
+        },
+        "contributors": [
+          {
+            "id": "anion",
+            "value": 21,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+          },
+          {
+            "id": "correctedHCO3",
+            "value": 33,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+          },
+          {
+            "id": "deltaGap",
+            "value": 9,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+          },
+          {
+            "id": "SBE_Cl",
+            "value": 9,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl"
+            ],
+            "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+          },
+          {
+            "id": "SBE_Alb",
+            "value": 0,
+            "unit": "ммоль/л",
+            "direction": "neutral",
+            "applicable": true,
+            "inputs": [
+              "pH",
+              "Alb"
+            ],
+            "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+          },
+          {
+            "id": "SIDa",
+            "value": 52.19999999999999,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "K",
+              "Ca",
+              "Mg",
+              "Cl",
+              "Lac"
+            ],
+            "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+          },
+          {
+            "id": "SIDe",
+            "value": 37.16736,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": true,
+            "inputs": [
+              "HCO3",
+              "pH",
+              "Alb",
+              "PO4"
+            ],
+            "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+          }
+        ],
+        "evidence": {
+          "HAGMA": [
+            "Повышенный AG / возможный анионный ацидотический компонент; клиническая интерпретация требует контекста; по одному AG диагноз HAGMA не устанавливается"
+          ]
+        },
+        "corrected": {
+          "value": 33,
+          "deltaGap": 9,
+          "applicable": true,
+          "reason": "HCO₃_corr = HCO₃_measured + ΔAG; вспомогательный признак, не самостоятельный диагноз"
+        },
+        "winter": {
+          "applicable": false,
+          "status": "not-indicated",
+          "text": "Winter не применяется: метаболический ацидифицирующий компонент не установлен",
+          "checks": []
+        },
+        "opposingMetabolicContributors": true,
+        "maskedMetabolicPattern": true,
+        "metabolic": {
+          "anion": {
+            "confidence": "possible",
+            "sourceConfirmed": false,
+            "evidence": []
+          },
+          "nonAnion": {
+            "supported": false,
+            "chlorideDirection": "alkalinizing",
+            "expectedRenalCompensation": false
+          },
+          "alkalinizing": {
+            "name": null,
+            "confidence": "not-established",
+            "supported": false,
+            "classic": false,
+            "deltaBorderline": false,
+            "evidence": []
+          }
+        },
+        "respiratory": {
+          "process": null,
+          "adequateCompensation": false
+        },
+        "interpretationBlocked": false,
+        "primaryProcessCertain": true,
+        "primaryDetail": "",
+        "acidifyingShift": false,
+        "anionComponentConfidence": "possible"
+      },
+      "balance": {
+        "W": 70,
+        "tbwCoef": 0.6,
+        "T": 42,
+        "acuity": "unknown",
+        "available": true,
+        "waterDeficit": null,
+        "naDeficit": null,
+        "kDeficit": null,
+        "clDeficit": 280,
+        "naVolume": null,
+        "kVolume": null,
+        "deltaNa": null,
+        "deltaK": null,
+        "naSol": {
+          "conc": 154,
+          "label": "0.9% NaCl",
+          "perMl": 0.154
+        },
+        "kSol": {
+          "conc": 536,
+          "label": "4% KCl",
+          "perMl": 0.536
+        }
+      },
+      "QC": {
+        "status": "NO_TECHNICAL_CONFLICT",
+        "warnings": [],
+        "pending": [],
+        "HCO3difference": -3.552713678800501e-15,
+        "SBEdifference": 0,
+        "interpretationConditional": false,
+        "summary": "Технический QC ICU CORE: исходные значения сохранены; ограничения и клинический контекст оцениваются отдельно"
+      }
+    },
+    {
+      "id": "D",
+      "input": {
+        "pH": 7.07,
+        "pCO2": 50.00423424442156,
+        "HCO3in": 14,
+        "SBE_input": -15.745999999999999,
+        "Lac": 2.5,
+        "pO2": 90,
+        "FiO2": 21,
+        "PEEP": 0,
+        "Na": 135,
+        "Cl": 113,
+        "K": 4,
+        "Ca": 1.2,
+        "Mg": 0.9,
+        "Alb": 8,
+        "PO4": 1.1,
+        "Gluc": 5.5,
+        "Ur": 5,
+        "Osm_in": null,
+        "Weight": 70,
+        "RR": 16,
+        "SpO2": 98,
+        "SBP": 120,
+        "DBP": 80,
+        "HR": 80,
+        "Temp": 36.8,
+        "GCS": 15,
+        "Age": 30,
+        "Plt": 200,
+        "WBC": 7,
+        "Bands": 3,
+        "Hct": 40,
+        "Cr": 80,
+        "Bil": 15,
+        "Urine": 1500,
+        "baselineSOFA": 0,
+        "AGupperLimit": null,
+        "sbeMode": "input",
+        "naCorr": "off",
+        "chronic": "unknown",
+        "sidModel": "charged",
+        "O2support": "no",
+        "ACVPU": "A",
+        "Vaso": "none",
+        "Sex": "M",
+        "acuity": "auto",
+        "bilateral": "unknown",
+        "timing": "unknown",
+        "noncardiac": "unknown",
+        "infection": "unknown",
+        "anionSourceConfirmed": "unknown",
+        "acuteRenalFailure": "no",
+        "respiratorySupport": "unknown",
+        "infectionRelatedOrganDysfunction": "unknown",
+        "adequateResuscitation": "unknown",
+        "vasopressorRequirement": "unknown",
+        "sampleSimultaneity": "yes",
+        "gasSampleType": "arterial",
+        "news2Scale": "1",
+        "chronicHealth": "no",
+        "surgicalContext": "unknown",
+        "naSolution": "0.9",
+        "kSolution": "4",
+        "chronicity": "unknown",
+        "notes": "",
+        "legacyApacheReview": false,
+        "legacyApacheChronicValue": "",
+        "Chronic": "none"
+      },
+      "result": {
+        "title": "Множественное смешанное нарушение",
+        "detail": "HAGMA — анионный ацидифицирующий компонент [поддерживается утверждёнными критериями] + NAGMA / low-SID — неанионный ацидифицирующий компонент [поддерживается утверждёнными критериями] + респираторный ацидоз [поддерживается утверждёнными критериями] · Corrected HCO₃ 18.0 ммоль/л; delta gap -6.0; continuous contributors, не самостоятельные диагнозы · Физиологические вклады (contributors): SBE_Cl -13.19 ммоль/л — ацидифицирующий; SBE_Alb 7.31 ммоль/л — алкализирующий; SIDa 27.70 мЭкв/л — направление общего эффекта требует reference; SIDe 17.80 мЭкв/л — направление общего эффекта требует reference. Общие Na/Cl/Alb не считаются независимыми методами и не повышают уверенность процесса · Opposing metabolic contributors: противоположно направленные ацидифицирующие и алкализирующие вклады; сами по себе не устанавливают дополнительные диагнозы · Winter: ожидаемый PaCO₂ 27.0–31.0 мм рт. ст. PaCO₂ выше ожидаемого: дополнительный респираторный ацидоз.",
+        "components": [
+          "HAGMA — анионный ацидифицирующий компонент",
+          "NAGMA / low-SID — неанионный ацидифицирующий компонент",
+          "респираторный ацидоз"
+        ],
+        "composition": {
+          "processes": [
+            "HAGMA",
+            "NAGMA",
+            "respiratory acidosis"
+          ],
+          "possibleProcesses": [],
+          "processConfidence": {
+            "HAGMA": "supported",
+            "NAGMA": "supported",
+            "respiratory acidosis": "supported"
+          },
+          "contributors": [
+            {
+              "id": "anion",
+              "value": 16,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+            },
+            {
+              "id": "correctedHCO3",
+              "value": 18,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+            },
+            {
+              "id": "deltaGap",
+              "value": -6,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+            },
+            {
+              "id": "SBE_Cl",
+              "value": -13.18518518518519,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl"
+              ],
+              "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+            },
+            {
+              "id": "SBE_Alb",
+              "value": 7.30752,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": true,
+              "inputs": [
+                "pH",
+                "Alb"
+              ],
+              "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+            },
+            {
+              "id": "SIDa",
+              "value": 27.69999999999999,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "K",
+                "Ca",
+                "Mg",
+                "Cl",
+                "Lac"
+              ],
+              "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+            },
+            {
+              "id": "SIDe",
+              "value": 17.796073,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": true,
+              "inputs": [
+                "HCO3",
+                "pH",
+                "Alb",
+                "PO4"
+              ],
+              "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+            }
+          ],
+          "evidence": {
+            "HAGMA": [
+              "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated",
+              "измеренная гиперлактатемия; сама по себе не доказывает лактатацидоз"
+            ],
+            "NAGMA": [
+              "Δ/Δ 0.40 <0.9"
+            ],
+            "respiratory acidosis": [
+              "Winter: ожидаемый PaCO₂ 27.0–31.0 мм рт. ст. PaCO₂ выше ожидаемого: дополнительный респираторный ацидоз."
+            ]
+          },
+          "corrected": {
+            "value": 18,
+            "deltaGap": -6,
+            "applicable": true,
+            "reason": "HCO₃_corr = HCO₃_measured + ΔAG; вспомогательный признак, не самостоятельный диагноз"
+          },
+          "winter": {
+            "applicable": true,
+            "status": "above",
+            "low": 27,
+            "high": 31,
+            "respiratoryProcess": "respiratory acidosis",
+            "checks": [
+              "выше ожид."
+            ],
+            "text": "Winter: ожидаемый PaCO₂ 27.0–31.0 мм рт. ст. PaCO₂ выше ожидаемого: дополнительный респираторный ацидоз."
+          },
+          "opposingMetabolicContributors": true,
+          "maskedMetabolicPattern": false,
+          "metabolic": {
+            "anion": {
+              "confidence": "supported",
+              "sourceConfirmed": false,
+              "evidence": [
+                "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated",
+                "измеренная гиперлактатемия; сама по себе не доказывает лактатацидоз"
+              ]
+            },
+            "nonAnion": {
+              "supported": true,
+              "chlorideDirection": "acidifying",
+              "expectedRenalCompensation": false
+            },
+            "alkalinizing": {
+              "name": null,
+              "confidence": "not-established",
+              "supported": false,
+              "classic": false,
+              "deltaBorderline": false,
+              "evidence": []
+            }
+          },
+          "respiratory": {
+            "process": "respiratory acidosis",
+            "adequateCompensation": false
+          },
+          "interpretationBlocked": false
+        },
+        "processes": [
+          "HAGMA",
+          "NAGMA",
+          "respiratory acidosis"
+        ],
+        "possibleProcesses": [],
+        "processConfidence": {
+          "HAGMA": "supported",
+          "NAGMA": "supported",
+          "respiratory acidosis": "supported"
+        },
+        "contributors": [
+          {
+            "id": "anion",
+            "value": 16,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+          },
+          {
+            "id": "correctedHCO3",
+            "value": 18,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+          },
+          {
+            "id": "deltaGap",
+            "value": -6,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+          },
+          {
+            "id": "SBE_Cl",
+            "value": -13.18518518518519,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl"
+            ],
+            "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+          },
+          {
+            "id": "SBE_Alb",
+            "value": 7.30752,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": true,
+            "inputs": [
+              "pH",
+              "Alb"
+            ],
+            "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+          },
+          {
+            "id": "SIDa",
+            "value": 27.69999999999999,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "K",
+              "Ca",
+              "Mg",
+              "Cl",
+              "Lac"
+            ],
+            "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+          },
+          {
+            "id": "SIDe",
+            "value": 17.796073,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": true,
+            "inputs": [
+              "HCO3",
+              "pH",
+              "Alb",
+              "PO4"
+            ],
+            "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+          }
+        ],
+        "evidence": {
+          "HAGMA": [
+            "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated",
+            "измеренная гиперлактатемия; сама по себе не доказывает лактатацидоз"
+          ],
+          "NAGMA": [
+            "Δ/Δ 0.40 <0.9"
+          ],
+          "respiratory acidosis": [
+            "Winter: ожидаемый PaCO₂ 27.0–31.0 мм рт. ст. PaCO₂ выше ожидаемого: дополнительный респираторный ацидоз."
+          ]
+        },
+        "corrected": {
+          "value": 18,
+          "deltaGap": -6,
+          "applicable": true,
+          "reason": "HCO₃_corr = HCO₃_measured + ΔAG; вспомогательный признак, не самостоятельный диагноз"
+        },
+        "winter": {
+          "applicable": true,
+          "status": "above",
+          "low": 27,
+          "high": 31,
+          "respiratoryProcess": "respiratory acidosis",
+          "checks": [
+            "выше ожид."
+          ],
+          "text": "Winter: ожидаемый PaCO₂ 27.0–31.0 мм рт. ст. PaCO₂ выше ожидаемого: дополнительный респираторный ацидоз."
+        },
+        "opposingMetabolicContributors": true,
+        "maskedMetabolicPattern": false,
+        "metabolic": {
+          "anion": {
+            "confidence": "supported",
+            "sourceConfirmed": false,
+            "evidence": [
+              "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated",
+              "измеренная гиперлактатемия; сама по себе не доказывает лактатацидоз"
+            ]
+          },
+          "nonAnion": {
+            "supported": true,
+            "chlorideDirection": "acidifying",
+            "expectedRenalCompensation": false
+          },
+          "alkalinizing": {
+            "name": null,
+            "confidence": "not-established",
+            "supported": false,
+            "classic": false,
+            "deltaBorderline": false,
+            "evidence": []
+          }
+        },
+        "respiratory": {
+          "process": "respiratory acidosis",
+          "adequateCompensation": false
+        },
+        "interpretationBlocked": false,
+        "primaryProcessCertain": false,
+        "primaryDetail": "Порядок возникновения / первичность процессов не установлены",
+        "acidifyingShift": false,
+        "anionComponentConfidence": "supported"
+      },
+      "balance": {
+        "W": 70,
+        "tbwCoef": 0.6,
+        "T": 42,
+        "acuity": "unknown",
+        "available": true,
+        "waterDeficit": null,
+        "naDeficit": null,
+        "kDeficit": null,
+        "clDeficit": null,
+        "naVolume": null,
+        "kVolume": null,
+        "deltaNa": null,
+        "deltaK": null,
+        "naSol": {
+          "conc": 154,
+          "label": "0.9% NaCl",
+          "perMl": 0.154
+        },
+        "kSol": {
+          "conc": 536,
+          "label": "4% KCl",
+          "perMl": 0.536
+        }
+      },
+      "QC": {
+        "status": "NO_TECHNICAL_CONFLICT",
+        "warnings": [],
+        "pending": [],
+        "HCO3difference": 0,
+        "SBEdifference": 0,
+        "interpretationConditional": false,
+        "summary": "Технический QC ICU CORE: исходные значения сохранены; ограничения и клинический контекст оцениваются отдельно"
+      }
+    },
+    {
+      "id": "E",
+      "input": {
+        "pH": 7.18,
+        "pCO2": 20,
+        "HCO3in": 8,
+        "SBE_input": -19.96400000000001,
+        "Lac": 5,
+        "pO2": 90,
+        "FiO2": 21,
+        "PEEP": 0,
+        "Na": 130,
+        "Cl": 105,
+        "K": 3,
+        "Ca": 1.2,
+        "Mg": 0.9,
+        "Alb": 23,
+        "PO4": 1.1,
+        "Gluc": 5.5,
+        "Ur": 5,
+        "Osm_in": null,
+        "Weight": 70,
+        "RR": 16,
+        "SpO2": 98,
+        "SBP": 120,
+        "DBP": 80,
+        "HR": 80,
+        "Temp": 36.8,
+        "GCS": 15,
+        "Age": 30,
+        "Plt": 200,
+        "WBC": 7,
+        "Bands": 3,
+        "Hct": 40,
+        "Cr": 80,
+        "Bil": 15,
+        "Urine": 1500,
+        "baselineSOFA": 0,
+        "AGupperLimit": null,
+        "sbeMode": "input",
+        "naCorr": "off",
+        "chronic": "unknown",
+        "sidModel": "charged",
+        "O2support": "no",
+        "ACVPU": "A",
+        "Vaso": "none",
+        "Sex": "M",
+        "acuity": "auto",
+        "bilateral": "unknown",
+        "timing": "unknown",
+        "noncardiac": "unknown",
+        "infection": "unknown",
+        "anionSourceConfirmed": "unknown",
+        "acuteRenalFailure": "no",
+        "respiratorySupport": "unknown",
+        "infectionRelatedOrganDysfunction": "unknown",
+        "adequateResuscitation": "unknown",
+        "vasopressorRequirement": "unknown",
+        "sampleSimultaneity": "yes",
+        "gasSampleType": "arterial",
+        "news2Scale": "1",
+        "chronicHealth": "no",
+        "surgicalContext": "unknown",
+        "naSolution": "0.9",
+        "kSolution": "4",
+        "chronicity": "unknown",
+        "notes": "",
+        "legacyApacheReview": false,
+        "legacyApacheChronicValue": "",
+        "Chronic": "none"
+      },
+      "result": {
+        "title": "Смешанное нарушение",
+        "detail": "HAGMA — анионный ацидифицирующий компонент [поддерживается утверждёнными критериями] + NAGMA / low-SID — неанионный ацидифицирующий компонент [поддерживается утверждёнными критериями] · Corrected HCO₃ 17.3 ммоль/л; delta gap -6.8; continuous contributors, не самостоятельные диагнозы · Физиологические вклады (contributors): SBE_Cl -9.08 ммоль/л — ацидифицирующий; SBE_Alb 4.16 ммоль/л — алкализирующий; SIDa 27.20 мЭкв/л — направление общего эффекта требует reference; SIDe 15.72 мЭкв/л — направление общего эффекта требует reference. Общие Na/Cl/Alb не считаются независимыми методами и не повышают уверенность процесса · Opposing metabolic contributors: противоположно направленные ацидифицирующие и алкализирующие вклады; сами по себе не устанавливают дополнительные диагнозы · Winter: ожидаемый PaCO₂ 18.0–22.0 мм рт. ст. PaCO₂ соответствует ожидаемому диапазону Winter; адекватная респираторная компенсация.",
+        "components": [
+          "HAGMA — анионный ацидифицирующий компонент",
+          "NAGMA / low-SID — неанионный ацидифицирующий компонент"
+        ],
+        "composition": {
+          "processes": [
+            "HAGMA",
+            "NAGMA"
+          ],
+          "possibleProcesses": [],
+          "processConfidence": {
+            "HAGMA": "supported",
+            "NAGMA": "supported"
+          },
+          "contributors": [
+            {
+              "id": "anion",
+              "value": 21.25,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+            },
+            {
+              "id": "correctedHCO3",
+              "value": 17.25,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+            },
+            {
+              "id": "deltaGap",
+              "value": -6.75,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+            },
+            {
+              "id": "SBE_Cl",
+              "value": -9.07692307692308,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl"
+              ],
+              "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+            },
+            {
+              "id": "SBE_Alb",
+              "value": 4.158879999999997,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": true,
+              "inputs": [
+                "pH",
+                "Alb"
+              ],
+              "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+            },
+            {
+              "id": "SIDa",
+              "value": 27.19999999999999,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "K",
+                "Ca",
+                "Mg",
+                "Cl",
+                "Lac"
+              ],
+              "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+            },
+            {
+              "id": "SIDe",
+              "value": 15.723802,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": true,
+              "inputs": [
+                "HCO3",
+                "pH",
+                "Alb",
+                "PO4"
+              ],
+              "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+            }
+          ],
+          "evidence": {
+            "HAGMA": [
+              "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated",
+              "измеренная гиперлактатемия; сама по себе не доказывает лактатацидоз"
+            ],
+            "NAGMA": [
+              "Δ/Δ 0.58 <0.9"
+            ]
+          },
+          "corrected": {
+            "value": 17.25,
+            "deltaGap": -6.75,
+            "applicable": true,
+            "reason": "HCO₃_corr = HCO₃_measured + ΔAG; вспомогательный признак, не самостоятельный диагноз"
+          },
+          "winter": {
+            "applicable": true,
+            "status": "within",
+            "low": 18,
+            "high": 22,
+            "respiratoryProcess": null,
+            "checks": [
+              "адекватна"
+            ],
+            "text": "Winter: ожидаемый PaCO₂ 18.0–22.0 мм рт. ст. PaCO₂ соответствует ожидаемому диапазону Winter; адекватная респираторная компенсация."
+          },
+          "opposingMetabolicContributors": true,
+          "maskedMetabolicPattern": false,
+          "metabolic": {
+            "anion": {
+              "confidence": "supported",
+              "sourceConfirmed": false,
+              "evidence": [
+                "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated",
+                "измеренная гиперлактатемия; сама по себе не доказывает лактатацидоз"
+              ]
+            },
+            "nonAnion": {
+              "supported": true,
+              "chlorideDirection": "acidifying",
+              "expectedRenalCompensation": false
+            },
+            "alkalinizing": {
+              "name": null,
+              "confidence": "not-established",
+              "supported": false,
+              "classic": false,
+              "deltaBorderline": false,
+              "evidence": []
+            }
+          },
+          "respiratory": {
+            "process": null,
+            "adequateCompensation": true
+          },
+          "interpretationBlocked": false
+        },
+        "processes": [
+          "HAGMA",
+          "NAGMA"
+        ],
+        "possibleProcesses": [],
+        "processConfidence": {
+          "HAGMA": "supported",
+          "NAGMA": "supported"
+        },
+        "contributors": [
+          {
+            "id": "anion",
+            "value": 21.25,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+          },
+          {
+            "id": "correctedHCO3",
+            "value": 17.25,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+          },
+          {
+            "id": "deltaGap",
+            "value": -6.75,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+          },
+          {
+            "id": "SBE_Cl",
+            "value": -9.07692307692308,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl"
+            ],
+            "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+          },
+          {
+            "id": "SBE_Alb",
+            "value": 4.158879999999997,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": true,
+            "inputs": [
+              "pH",
+              "Alb"
+            ],
+            "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+          },
+          {
+            "id": "SIDa",
+            "value": 27.19999999999999,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "K",
+              "Ca",
+              "Mg",
+              "Cl",
+              "Lac"
+            ],
+            "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+          },
+          {
+            "id": "SIDe",
+            "value": 15.723802,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": true,
+            "inputs": [
+              "HCO3",
+              "pH",
+              "Alb",
+              "PO4"
+            ],
+            "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+          }
+        ],
+        "evidence": {
+          "HAGMA": [
+            "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated",
+            "измеренная гиперлактатемия; сама по себе не доказывает лактатацидоз"
+          ],
+          "NAGMA": [
+            "Δ/Δ 0.58 <0.9"
+          ]
+        },
+        "corrected": {
+          "value": 17.25,
+          "deltaGap": -6.75,
+          "applicable": true,
+          "reason": "HCO₃_corr = HCO₃_measured + ΔAG; вспомогательный признак, не самостоятельный диагноз"
+        },
+        "winter": {
+          "applicable": true,
+          "status": "within",
+          "low": 18,
+          "high": 22,
+          "respiratoryProcess": null,
+          "checks": [
+            "адекватна"
+          ],
+          "text": "Winter: ожидаемый PaCO₂ 18.0–22.0 мм рт. ст. PaCO₂ соответствует ожидаемому диапазону Winter; адекватная респираторная компенсация."
+        },
+        "opposingMetabolicContributors": true,
+        "maskedMetabolicPattern": false,
+        "metabolic": {
+          "anion": {
+            "confidence": "supported",
+            "sourceConfirmed": false,
+            "evidence": [
+              "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated",
+              "измеренная гиперлактатемия; сама по себе не доказывает лактатацидоз"
+            ]
+          },
+          "nonAnion": {
+            "supported": true,
+            "chlorideDirection": "acidifying",
+            "expectedRenalCompensation": false
+          },
+          "alkalinizing": {
+            "name": null,
+            "confidence": "not-established",
+            "supported": false,
+            "classic": false,
+            "deltaBorderline": false,
+            "evidence": []
+          }
+        },
+        "respiratory": {
+          "process": null,
+          "adequateCompensation": true
+        },
+        "interpretationBlocked": false,
+        "primaryProcessCertain": true,
+        "primaryDetail": "",
+        "acidifyingShift": false,
+        "anionComponentConfidence": "supported"
+      },
+      "balance": {
+        "W": 70,
+        "tbwCoef": 0.6,
+        "T": 42,
+        "acuity": "unknown",
+        "available": true,
+        "waterDeficit": null,
+        "naDeficit": 420,
+        "kDeficit": 42,
+        "clDeficit": null,
+        "naVolume": null,
+        "kVolume": 78.35820895522387,
+        "deltaNa": 0.5581395348837209,
+        "deltaK": 1.5,
+        "naSol": {
+          "conc": 154,
+          "label": "0.9% NaCl",
+          "perMl": 0.154
+        },
+        "kSol": {
+          "conc": 536,
+          "label": "4% KCl",
+          "perMl": 0.536
+        }
+      },
+      "QC": {
+        "status": "NO_TECHNICAL_CONFLICT",
+        "warnings": [],
+        "pending": [],
+        "HCO3difference": 0.7864133922955219,
+        "SBEdifference": 0,
+        "interpretationConditional": false,
+        "summary": "Технический QC ICU CORE: исходные значения сохранены; ограничения и клинический контекст оцениваются отдельно"
+      }
+    },
+    {
+      "id": "F",
+      "input": {
+        "pH": 7.19,
+        "pCO2": 48,
+        "HCO3in": 18,
+        "SBE_input": 0,
+        "Lac": 3.2,
+        "pO2": 90,
+        "FiO2": 21,
+        "PEEP": 0,
+        "Na": 145,
+        "Cl": 111,
+        "K": 4,
+        "Ca": 1.2,
+        "Mg": 0.9,
+        "Alb": 10,
+        "PO4": 1.1,
+        "Gluc": 5.5,
+        "Ur": 5,
+        "Osm_in": null,
+        "Weight": 70,
+        "RR": 16,
+        "SpO2": 98,
+        "SBP": 120,
+        "DBP": 80,
+        "HR": 80,
+        "Temp": 36.8,
+        "GCS": 15,
+        "Age": 30,
+        "Plt": 200,
+        "WBC": 7,
+        "Bands": 3,
+        "Hct": 40,
+        "Cr": 80,
+        "Bil": 15,
+        "Urine": 1500,
+        "baselineSOFA": 0,
+        "AGupperLimit": null,
+        "sbeMode": "input",
+        "naCorr": "off",
+        "chronic": "unknown",
+        "sidModel": "charged",
+        "O2support": "no",
+        "ACVPU": "A",
+        "Vaso": "none",
+        "Sex": "M",
+        "acuity": "auto",
+        "bilateral": "unknown",
+        "timing": "unknown",
+        "noncardiac": "unknown",
+        "infection": "unknown",
+        "anionSourceConfirmed": "unknown",
+        "acuteRenalFailure": "no",
+        "respiratorySupport": "unknown",
+        "infectionRelatedOrganDysfunction": "unknown",
+        "adequateResuscitation": "unknown",
+        "vasopressorRequirement": "unknown",
+        "sampleSimultaneity": "yes",
+        "gasSampleType": "arterial",
+        "news2Scale": "1",
+        "chronicHealth": "no",
+        "surgicalContext": "unknown",
+        "naSolution": "0.9",
+        "kSolution": "4",
+        "chronicity": "unknown",
+        "notes": "",
+        "legacyApacheReview": false,
+        "legacyApacheChronicValue": "",
+        "Chronic": "none"
+      },
+      "result": {
+        "title": "Смешанное нарушение",
+        "detail": "HAGMA — анионный ацидифицирующий компонент [поддерживается утверждёнными критериями] + респираторный ацидоз [поддерживается утверждёнными критериями] · Возможен: дополнительный метаболический алкализирующий компонент [possible]; не подтверждён как самостоятельный диагноз · Δ/Δ 1.5–2.0: возможен алкализирующий компонент; отдельный метаболический алкалоз не доказан · Corrected HCO₃ 29.5 ммоль/л; delta gap 5.5; continuous contributors, не самостоятельные диагнозы · Физиологические вклады (contributors): SBE_Cl -3.17 ммоль/л — ацидифицирующий; SBE_Alb 7.38 ммоль/л — алкализирующий; SIDa 39.00 мЭкв/л — направление общего эффекта требует reference; SIDe 22.46 мЭкв/л — направление общего эффекта требует reference. Общие Na/Cl/Alb не считаются независимыми методами и не повышают уверенность процесса · Opposing metabolic contributors: противоположно направленные ацидифицирующие и алкализирующие вклады; сами по себе не устанавливают дополнительные диагнозы · Winter: ожидаемый PaCO₂ 33.0–37.0 мм рт. ст. PaCO₂ выше ожидаемого: дополнительный респираторный ацидоз. Модель оценивает компенсацию итогового сниженного HCO₃⁻; не устанавливает первичность и величину каждого противоположного процесса.",
+        "components": [
+          "HAGMA — анионный ацидифицирующий компонент",
+          "респираторный ацидоз"
+        ],
+        "composition": {
+          "processes": [
+            "HAGMA",
+            "respiratory acidosis"
+          ],
+          "possibleProcesses": [
+            "metabolic alkalinizing component"
+          ],
+          "processConfidence": {
+            "HAGMA": "supported",
+            "metabolic alkalinizing component": "possible",
+            "respiratory acidosis": "supported"
+          },
+          "contributors": [
+            {
+              "id": "anion",
+              "value": 23.5,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+            },
+            {
+              "id": "correctedHCO3",
+              "value": 29.5,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+            },
+            {
+              "id": "deltaGap",
+              "value": 5.5,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+            },
+            {
+              "id": "SBE_Cl",
+              "value": -3.172413793103445,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl"
+              ],
+              "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+            },
+            {
+              "id": "SBE_Alb",
+              "value": 7.3836,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": true,
+              "inputs": [
+                "pH",
+                "Alb"
+              ],
+              "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+            },
+            {
+              "id": "SIDa",
+              "value": 38.999999999999986,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "K",
+                "Ca",
+                "Mg",
+                "Cl",
+                "Lac"
+              ],
+              "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+            },
+            {
+              "id": "SIDe",
+              "value": 22.461681,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": true,
+              "inputs": [
+                "HCO3",
+                "pH",
+                "Alb",
+                "PO4"
+              ],
+              "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+            }
+          ],
+          "evidence": {
+            "HAGMA": [
+              "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated",
+              "измеренная гиперлактатемия; сама по себе не доказывает лактатацидоз"
+            ],
+            "metabolic alkalinizing component": [
+              "Δ/Δ 1.92: возможен алкализирующий компонент; отдельный алкалоз не доказан"
+            ],
+            "respiratory acidosis": [
+              "Winter: ожидаемый PaCO₂ 33.0–37.0 мм рт. ст. PaCO₂ выше ожидаемого: дополнительный респираторный ацидоз. Модель оценивает компенсацию итогового сниженного HCO₃⁻; не устанавливает первичность и величину каждого противоположного процесса."
+            ]
+          },
+          "corrected": {
+            "value": 29.5,
+            "deltaGap": 5.5,
+            "applicable": true,
+            "reason": "HCO₃_corr = HCO₃_measured + ΔAG; вспомогательный признак, не самостоятельный диагноз"
+          },
+          "winter": {
+            "applicable": true,
+            "status": "above",
+            "low": 33,
+            "high": 37,
+            "respiratoryProcess": "respiratory acidosis",
+            "checks": [
+              "выше ожид."
+            ],
+            "text": "Winter: ожидаемый PaCO₂ 33.0–37.0 мм рт. ст. PaCO₂ выше ожидаемого: дополнительный респираторный ацидоз. Модель оценивает компенсацию итогового сниженного HCO₃⁻; не устанавливает первичность и величину каждого противоположного процесса."
+          },
+          "opposingMetabolicContributors": true,
+          "maskedMetabolicPattern": false,
+          "metabolic": {
+            "anion": {
+              "confidence": "supported",
+              "sourceConfirmed": false,
+              "evidence": [
+                "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated",
+                "измеренная гиперлактатемия; сама по себе не доказывает лактатацидоз"
+              ]
+            },
+            "nonAnion": {
+              "supported": false,
+              "chlorideDirection": "acidifying",
+              "expectedRenalCompensation": false
+            },
+            "alkalinizing": {
+              "name": "metabolic alkalinizing component",
+              "confidence": "possible",
+              "supported": false,
+              "classic": false,
+              "deltaBorderline": true,
+              "evidence": [
+                "Δ/Δ 1.92: возможен алкализирующий компонент; отдельный алкалоз не доказан"
+              ]
+            }
+          },
+          "respiratory": {
+            "process": "respiratory acidosis",
+            "adequateCompensation": false
+          },
+          "interpretationBlocked": false
+        },
+        "processes": [
+          "HAGMA",
+          "respiratory acidosis"
+        ],
+        "possibleProcesses": [
+          "metabolic alkalinizing component"
+        ],
+        "processConfidence": {
+          "HAGMA": "supported",
+          "metabolic alkalinizing component": "possible",
+          "respiratory acidosis": "supported"
+        },
+        "contributors": [
+          {
+            "id": "anion",
+            "value": 23.5,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+          },
+          {
+            "id": "correctedHCO3",
+            "value": 29.5,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+          },
+          {
+            "id": "deltaGap",
+            "value": 5.5,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+          },
+          {
+            "id": "SBE_Cl",
+            "value": -3.172413793103445,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl"
+            ],
+            "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+          },
+          {
+            "id": "SBE_Alb",
+            "value": 7.3836,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": true,
+            "inputs": [
+              "pH",
+              "Alb"
+            ],
+            "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+          },
+          {
+            "id": "SIDa",
+            "value": 38.999999999999986,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "K",
+              "Ca",
+              "Mg",
+              "Cl",
+              "Lac"
+            ],
+            "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+          },
+          {
+            "id": "SIDe",
+            "value": 22.461681,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": true,
+            "inputs": [
+              "HCO3",
+              "pH",
+              "Alb",
+              "PO4"
+            ],
+            "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+          }
+        ],
+        "evidence": {
+          "HAGMA": [
+            "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated",
+            "измеренная гиперлактатемия; сама по себе не доказывает лактатацидоз"
+          ],
+          "metabolic alkalinizing component": [
+            "Δ/Δ 1.92: возможен алкализирующий компонент; отдельный алкалоз не доказан"
+          ],
+          "respiratory acidosis": [
+            "Winter: ожидаемый PaCO₂ 33.0–37.0 мм рт. ст. PaCO₂ выше ожидаемого: дополнительный респираторный ацидоз. Модель оценивает компенсацию итогового сниженного HCO₃⁻; не устанавливает первичность и величину каждого противоположного процесса."
+          ]
+        },
+        "corrected": {
+          "value": 29.5,
+          "deltaGap": 5.5,
+          "applicable": true,
+          "reason": "HCO₃_corr = HCO₃_measured + ΔAG; вспомогательный признак, не самостоятельный диагноз"
+        },
+        "winter": {
+          "applicable": true,
+          "status": "above",
+          "low": 33,
+          "high": 37,
+          "respiratoryProcess": "respiratory acidosis",
+          "checks": [
+            "выше ожид."
+          ],
+          "text": "Winter: ожидаемый PaCO₂ 33.0–37.0 мм рт. ст. PaCO₂ выше ожидаемого: дополнительный респираторный ацидоз. Модель оценивает компенсацию итогового сниженного HCO₃⁻; не устанавливает первичность и величину каждого противоположного процесса."
+        },
+        "opposingMetabolicContributors": true,
+        "maskedMetabolicPattern": false,
+        "metabolic": {
+          "anion": {
+            "confidence": "supported",
+            "sourceConfirmed": false,
+            "evidence": [
+              "согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated",
+              "измеренная гиперлактатемия; сама по себе не доказывает лактатацидоз"
+            ]
+          },
+          "nonAnion": {
+            "supported": false,
+            "chlorideDirection": "acidifying",
+            "expectedRenalCompensation": false
+          },
+          "alkalinizing": {
+            "name": "metabolic alkalinizing component",
+            "confidence": "possible",
+            "supported": false,
+            "classic": false,
+            "deltaBorderline": true,
+            "evidence": [
+              "Δ/Δ 1.92: возможен алкализирующий компонент; отдельный алкалоз не доказан"
+            ]
+          }
+        },
+        "respiratory": {
+          "process": "respiratory acidosis",
+          "adequateCompensation": false
+        },
+        "interpretationBlocked": false,
+        "primaryProcessCertain": false,
+        "primaryDetail": "Порядок возникновения / первичность процессов не установлены",
+        "acidifyingShift": false,
+        "anionComponentConfidence": "supported"
+      },
+      "balance": {
+        "W": 70,
+        "tbwCoef": 0.6,
+        "T": 42,
+        "acuity": "unknown",
+        "available": true,
+        "waterDeficit": null,
+        "naDeficit": null,
+        "kDeficit": null,
+        "clDeficit": null,
+        "naVolume": null,
+        "kVolume": null,
+        "deltaNa": null,
+        "deltaK": null,
+        "naSol": {
+          "conc": 154,
+          "label": "0.9% NaCl",
+          "perMl": 0.154
+        },
+        "kSol": {
+          "conc": 536,
+          "label": "4% KCl",
+          "perMl": 0.536
+        }
+      },
+      "QC": {
+        "status": "CONTEXT_REQUIRED",
+        "warnings": [
+          {
+            "code": "SBE_CONFLICT",
+            "severity": "warning",
+            "message": "SBE_input расходится с SBE_calculated профиля v30.1 более чем на 2 ммоль/л; возможны различия методов, исходный SBE сохранён"
+          }
+        ],
+        "pending": [],
+        "HCO3difference": 0.2841297003016763,
+        "SBEdifference": 9.801999999999998,
+        "interpretationConditional": false,
+        "summary": "Технический QC ICU CORE: исходные значения сохранены; ограничения и клинический контекст оцениваются отдельно"
+      }
+    },
+    {
+      "id": "G",
+      "input": {
+        "pH": 7.401029995663981,
+        "pCO2": 40,
+        "HCO3in": 24,
+        "SBE_input": -0.38331407024351377,
+        "Lac": 1,
+        "pO2": 90,
+        "FiO2": 21,
+        "PEEP": 0,
+        "Na": 124,
+        "Cl": 103,
+        "K": 4,
+        "Ca": 1.2,
+        "Mg": 0.9,
+        "Alb": 40,
+        "PO4": 1.1,
+        "Gluc": 5.5,
+        "Ur": 5,
+        "Osm_in": null,
+        "Weight": 70,
+        "RR": 16,
+        "SpO2": 98,
+        "SBP": 120,
+        "DBP": 80,
+        "HR": 80,
+        "Temp": 36.8,
+        "GCS": 15,
+        "Age": 30,
+        "Plt": 200,
+        "WBC": 7,
+        "Bands": 3,
+        "Hct": 40,
+        "Cr": 80,
+        "Bil": 15,
+        "Urine": 1500,
+        "baselineSOFA": 0,
+        "AGupperLimit": null,
+        "sbeMode": "input",
+        "naCorr": "off",
+        "chronic": "unknown",
+        "sidModel": "charged",
+        "O2support": "no",
+        "ACVPU": "A",
+        "Vaso": "none",
+        "Sex": "M",
+        "acuity": "auto",
+        "bilateral": "unknown",
+        "timing": "unknown",
+        "noncardiac": "unknown",
+        "infection": "unknown",
+        "anionSourceConfirmed": "unknown",
+        "acuteRenalFailure": "no",
+        "respiratorySupport": "unknown",
+        "infectionRelatedOrganDysfunction": "unknown",
+        "adequateResuscitation": "unknown",
+        "vasopressorRequirement": "unknown",
+        "sampleSimultaneity": "yes",
+        "gasSampleType": "arterial",
+        "news2Scale": "1",
+        "chronicHealth": "no",
+        "surgicalContext": "unknown",
+        "naSolution": "0.9",
+        "kSolution": "4",
+        "chronicity": "unknown",
+        "notes": "",
+        "legacyApacheReview": false,
+        "legacyApacheChronicValue": "",
+        "Chronic": "none"
+      },
+      "result": {
+        "title": "Расстройств КОС не выявлено",
+        "detail": "Физиологические вклады (contributors): SBE_Cl -12.29 ммоль/л — ацидифицирующий; SBE_Alb 0.00 ммоль/л — нулевой; SIDa 28.20 мЭкв/л — направление общего эффекта требует reference; SIDe 37.17 мЭкв/л — направление общего эффекта требует reference. Общие Na/Cl/Alb не считаются независимыми методами и не повышают уверенность процесса",
+        "components": [],
+        "composition": {
+          "processes": [],
+          "possibleProcesses": [],
+          "processConfidence": {},
+          "contributors": [
+            {
+              "id": "anion",
+              "value": -3,
+              "unit": "ммоль/л",
+              "direction": "not-established",
+              "applicable": false,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+            },
+            {
+              "id": "correctedHCO3",
+              "value": 9,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": false,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+            },
+            {
+              "id": "deltaGap",
+              "value": -15,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": false,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+            },
+            {
+              "id": "SBE_Cl",
+              "value": -12.290322580645167,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "Cl"
+              ],
+              "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+            },
+            {
+              "id": "SBE_Alb",
+              "value": 0,
+              "unit": "ммоль/л",
+              "direction": "neutral",
+              "applicable": true,
+              "inputs": [
+                "pH",
+                "Alb"
+              ],
+              "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+            },
+            {
+              "id": "SIDa",
+              "value": 28.19999999999999,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": true,
+              "inputs": [
+                "Na",
+                "K",
+                "Ca",
+                "Mg",
+                "Cl",
+                "Lac"
+              ],
+              "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+            },
+            {
+              "id": "SIDe",
+              "value": 37.17277767419298,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": true,
+              "inputs": [
+                "HCO3",
+                "pH",
+                "Alb",
+                "PO4"
+              ],
+              "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+            }
+          ],
+          "evidence": {},
+          "corrected": {
+            "value": 9,
+            "deltaGap": -15,
+            "applicable": false,
+            "reason": "Нет повышенного интерпретируемого AG или газовая триада несогласована"
+          },
+          "winter": {
+            "applicable": false,
+            "status": "not-indicated",
+            "text": "Winter не применяется: метаболический ацидифицирующий компонент не установлен",
+            "checks": []
+          },
+          "opposingMetabolicContributors": false,
+          "maskedMetabolicPattern": false,
+          "metabolic": {
+            "anion": {
+              "confidence": "none",
+              "sourceConfirmed": false,
+              "evidence": []
+            },
+            "nonAnion": {
+              "supported": false,
+              "chlorideDirection": "acidifying",
+              "expectedRenalCompensation": false
+            },
+            "alkalinizing": {
+              "name": null,
+              "confidence": "not-established",
+              "supported": false,
+              "classic": false,
+              "deltaBorderline": false,
+              "evidence": []
+            }
+          },
+          "respiratory": {
+            "process": null,
+            "adequateCompensation": false
+          },
+          "interpretationBlocked": false
+        },
+        "processes": [],
+        "possibleProcesses": [],
+        "processConfidence": {},
+        "contributors": [
+          {
+            "id": "anion",
+            "value": -3,
+            "unit": "ммоль/л",
+            "direction": "not-established",
+            "applicable": false,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+          },
+          {
+            "id": "correctedHCO3",
+            "value": 9,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": false,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+          },
+          {
+            "id": "deltaGap",
+            "value": -15,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": false,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+          },
+          {
+            "id": "SBE_Cl",
+            "value": -12.290322580645167,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "Cl"
+            ],
+            "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+          },
+          {
+            "id": "SBE_Alb",
+            "value": 0,
+            "unit": "ммоль/л",
+            "direction": "neutral",
+            "applicable": true,
+            "inputs": [
+              "pH",
+              "Alb"
+            ],
+            "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+          },
+          {
+            "id": "SIDa",
+            "value": 28.19999999999999,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": true,
+            "inputs": [
+              "Na",
+              "K",
+              "Ca",
+              "Mg",
+              "Cl",
+              "Lac"
+            ],
+            "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+          },
+          {
+            "id": "SIDe",
+            "value": 37.17277767419298,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": true,
+            "inputs": [
+              "HCO3",
+              "pH",
+              "Alb",
+              "PO4"
+            ],
+            "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+          }
+        ],
+        "evidence": {},
+        "corrected": {
+          "value": 9,
+          "deltaGap": -15,
+          "applicable": false,
+          "reason": "Нет повышенного интерпретируемого AG или газовая триада несогласована"
+        },
+        "winter": {
+          "applicable": false,
+          "status": "not-indicated",
+          "text": "Winter не применяется: метаболический ацидифицирующий компонент не установлен",
+          "checks": []
+        },
+        "opposingMetabolicContributors": false,
+        "maskedMetabolicPattern": false,
+        "metabolic": {
+          "anion": {
+            "confidence": "none",
+            "sourceConfirmed": false,
+            "evidence": []
+          },
+          "nonAnion": {
+            "supported": false,
+            "chlorideDirection": "acidifying",
+            "expectedRenalCompensation": false
+          },
+          "alkalinizing": {
+            "name": null,
+            "confidence": "not-established",
+            "supported": false,
+            "classic": false,
+            "deltaBorderline": false,
+            "evidence": []
+          }
+        },
+        "respiratory": {
+          "process": null,
+          "adequateCompensation": false
+        },
+        "interpretationBlocked": false,
+        "primaryProcessCertain": true,
+        "primaryDetail": "",
+        "acidifyingShift": false,
+        "anionComponentConfidence": "none"
+      },
+      "balance": {
+        "W": 70,
+        "tbwCoef": 0.6,
+        "T": 42,
+        "acuity": "unknown",
+        "available": true,
+        "waterDeficit": null,
+        "naDeficit": 672,
+        "kDeficit": null,
+        "clDeficit": null,
+        "naVolume": null,
+        "kVolume": null,
+        "deltaNa": 0.6976744186046512,
+        "deltaK": null,
+        "naSol": {
+          "conc": 154,
+          "label": "0.9% NaCl",
+          "perMl": 0.154
+        },
+        "kSol": {
+          "conc": 536,
+          "label": "4% KCl",
+          "perMl": 0.536
+        }
+      },
+      "QC": {
+        "status": "NO_TECHNICAL_CONFLICT",
+        "warnings": [],
+        "pending": [],
+        "HCO3difference": -3.552713678800501e-15,
+        "SBEdifference": 0,
+        "interpretationConditional": false,
+        "summary": "Технический QC ICU CORE: исходные значения сохранены; ограничения и клинический контекст оцениваются отдельно"
+      }
+    },
+    {
+      "id": "H",
+      "input": {
+        "pH": 6.82,
+        "pCO2": 16,
+        "HCO3in": 5,
+        "SBE_input": -28.796,
+        "Lac": 1,
+        "pO2": 90,
+        "FiO2": 21,
+        "PEEP": 0,
+        "Na": 140,
+        "Cl": 103,
+        "K": 4,
+        "Ca": 1.2,
+        "Mg": 0.9,
+        "Alb": 40,
+        "PO4": 1.1,
+        "Gluc": 5.5,
+        "Ur": 5,
+        "Osm_in": null,
+        "Weight": 70,
+        "RR": 16,
+        "SpO2": 98,
+        "SBP": 120,
+        "DBP": 80,
+        "HR": 80,
+        "Temp": 36.8,
+        "GCS": 15,
+        "Age": 30,
+        "Plt": 200,
+        "WBC": 7,
+        "Bands": 3,
+        "Hct": 40,
+        "Cr": 80,
+        "Bil": 15,
+        "Urine": 1500,
+        "baselineSOFA": 0,
+        "AGupperLimit": null,
+        "sbeMode": "input",
+        "naCorr": "off",
+        "chronic": "unknown",
+        "sidModel": "charged",
+        "O2support": "no",
+        "ACVPU": "A",
+        "Vaso": "none",
+        "Sex": "M",
+        "acuity": "auto",
+        "bilateral": "unknown",
+        "timing": "unknown",
+        "noncardiac": "unknown",
+        "infection": "unknown",
+        "anionSourceConfirmed": "unknown",
+        "acuteRenalFailure": "no",
+        "respiratorySupport": "unknown",
+        "infectionRelatedOrganDysfunction": "unknown",
+        "adequateResuscitation": "unknown",
+        "vasopressorRequirement": "unknown",
+        "sampleSimultaneity": "yes",
+        "gasSampleType": "arterial",
+        "news2Scale": "1",
+        "chronicHealth": "no",
+        "surgicalContext": "unknown",
+        "naSolution": "0.9",
+        "kSolution": "4",
+        "chronicity": "unknown",
+        "notes": "",
+        "legacyApacheReview": false,
+        "legacyApacheChronicValue": "",
+        "Chronic": "none"
+      },
+      "result": {
+        "title": "Газовая триада несогласована: клинический диагноз КОС не сформирован",
+        "detail": "Расчёт по введённым значениям сохранён; проверить pH, PaCO₂, HCO₃⁻ и условия пробы. Условные сценарии показаны в QC, не являются диагнозом.",
+        "components": [],
+        "composition": {
+          "processes": [],
+          "possibleProcesses": [],
+          "processConfidence": {},
+          "contributors": [
+            {
+              "id": "anion",
+              "value": 32,
+              "unit": "ммоль/л",
+              "direction": "acidifying",
+              "applicable": false,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+            },
+            {
+              "id": "correctedHCO3",
+              "value": 25,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": false,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+            },
+            {
+              "id": "deltaGap",
+              "value": 1,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": false,
+              "inputs": [
+                "Na",
+                "Cl",
+                "HCO3",
+                "Alb"
+              ],
+              "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+            },
+            {
+              "id": "SBE_Cl",
+              "value": 1,
+              "unit": "ммоль/л",
+              "direction": "alkalinizing",
+              "applicable": false,
+              "inputs": [
+                "Na",
+                "Cl"
+              ],
+              "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+            },
+            {
+              "id": "SBE_Alb",
+              "value": 0,
+              "unit": "ммоль/л",
+              "direction": "neutral",
+              "applicable": false,
+              "inputs": [
+                "pH",
+                "Alb"
+              ],
+              "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+            },
+            {
+              "id": "SIDa",
+              "value": 44.19999999999999,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": false,
+              "inputs": [
+                "Na",
+                "K",
+                "Ca",
+                "Mg",
+                "Cl",
+                "Lac"
+              ],
+              "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+            },
+            {
+              "id": "SIDe",
+              "value": 15.116618000000003,
+              "unit": "мЭкв/л",
+              "direction": "reference-required",
+              "applicable": false,
+              "inputs": [
+                "HCO3",
+                "pH",
+                "Alb",
+                "PO4"
+              ],
+              "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+            }
+          ],
+          "evidence": {},
+          "corrected": {
+            "value": 25,
+            "deltaGap": 1,
+            "applicable": false,
+            "reason": "Нет повышенного интерпретируемого AG или газовая триада несогласована"
+          },
+          "interpretationBlocked": true,
+          "winter": {
+            "applicable": false,
+            "status": "blocked",
+            "text": "Winter: окончательная оценка заблокирована несогласованной газовой триадой; см. условные сценарии",
+            "checks": []
+          },
+          "conditionalScenarios": [
+            {
+              "id": "hco3-pco2",
+              "conditional": true,
+              "assumption": "HCO₃⁻ + PaCO₂",
+              "expected": {
+                "pH": 7.117728766960431,
+                "HCO3": 5,
+                "PaCO2": 16
+              },
+              "winter": {
+                "conditional": true,
+                "low": 13.5,
+                "high": 17.5,
+                "status": "within"
+              },
+              "text": "Условный сценарий (conditional), не диагноз: если верны HCO₃⁻ + PaCO₂, ожидаются pH 7.118, HCO₃⁻ 5.00 ммоль/л, PaCO₂ 16.00 мм рт. ст.; ацидемия. Условный Winter 13.5–17.5 мм рт. ст.; PaCO₂ в пределах диапазона; при истинности ветки это совместимо с адекватной компенсацией. Исходные значения не заменены."
+            },
+            {
+              "id": "ph-pco2",
+              "conditional": true,
+              "assumption": "pH + PaCO₂",
+              "expected": {
+                "pH": 6.82,
+                "HCO3": 2.519075809198912,
+                "PaCO2": 16
+              },
+              "winter": {
+                "conditional": true,
+                "low": 9.778613713798368,
+                "high": 13.778613713798368,
+                "status": "above"
+              },
+              "text": "Условный сценарий (conditional), не диагноз: если верны pH + PaCO₂, ожидаются pH 6.820, HCO₃⁻ 2.52 ммоль/л, PaCO₂ 16.00 мм рт. ст.; ацидемия. Условный Winter 9.8–13.8 мм рт. ст.; PaCO₂ выше диапазона; при истинности ветки это поддерживало бы дополнительный респираторный ацидоз. Исходные значения не заменены."
+            },
+            {
+              "id": "ph-hco3",
+              "conditional": true,
+              "assumption": "pH + HCO₃⁻",
+              "expected": {
+                "pH": 6.82,
+                "HCO3": 5,
+                "PaCO2": 31.757678632720744
+              },
+              "winter": {
+                "conditional": true,
+                "low": 13.5,
+                "high": 17.5,
+                "status": "above"
+              },
+              "text": "Условный сценарий (conditional), не диагноз: если верны pH + HCO₃⁻, ожидаются pH 6.820, HCO₃⁻ 5.00 ммоль/л, PaCO₂ 31.76 мм рт. ст.; ацидемия. Условный Winter 13.5–17.5 мм рт. ст.; PaCO₂ выше диапазона; при истинности ветки это поддерживало бы дополнительный респираторный ацидоз. Исходные значения не заменены."
+            }
+          ]
+        },
+        "processes": [],
+        "possibleProcesses": [],
+        "processConfidence": {},
+        "contributors": [
+          {
+            "id": "anion",
+            "value": 32,
+            "unit": "ммоль/л",
+            "direction": "acidifying",
+            "applicable": false,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Повышенный AG — возможный анионный вклад; сам по себе не диагноз"
+          },
+          {
+            "id": "correctedHCO3",
+            "value": 25,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": false,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"
+          },
+          {
+            "id": "deltaGap",
+            "value": 1,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": false,
+            "inputs": [
+              "Na",
+              "Cl",
+              "HCO3",
+              "Alb"
+            ],
+            "note": "Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"
+          },
+          {
+            "id": "SBE_Cl",
+            "value": 1,
+            "unit": "ммоль/л",
+            "direction": "alkalinizing",
+            "applicable": false,
+            "inputs": [
+              "Na",
+              "Cl"
+            ],
+            "note": "Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"
+          },
+          {
+            "id": "SBE_Alb",
+            "value": 0,
+            "unit": "ммоль/л",
+            "direction": "neutral",
+            "applicable": false,
+            "inputs": [
+              "pH",
+              "Alb"
+            ],
+            "note": "Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"
+          },
+          {
+            "id": "SIDa",
+            "value": 44.19999999999999,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": false,
+            "inputs": [
+              "Na",
+              "K",
+              "Ca",
+              "Mg",
+              "Cl",
+              "Lac"
+            ],
+            "note": "Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"
+          },
+          {
+            "id": "SIDe",
+            "value": 15.116618000000003,
+            "unit": "мЭкв/л",
+            "direction": "reference-required",
+            "applicable": false,
+            "inputs": [
+              "HCO3",
+              "pH",
+              "Alb",
+              "PO4"
+            ],
+            "note": "Эффективный SID; численное значение сохранено, диагностический reference не подставлен"
+          }
+        ],
+        "evidence": {},
+        "corrected": {
+          "value": 25,
+          "deltaGap": 1,
+          "applicable": false,
+          "reason": "Нет повышенного интерпретируемого AG или газовая триада несогласована"
+        },
+        "interpretationBlocked": true,
+        "winter": {
+          "applicable": false,
+          "status": "blocked",
+          "text": "Winter: окончательная оценка заблокирована несогласованной газовой триадой; см. условные сценарии",
+          "checks": []
+        },
+        "conditionalScenarios": [
+          {
+            "id": "hco3-pco2",
+            "conditional": true,
+            "assumption": "HCO₃⁻ + PaCO₂",
+            "expected": {
+              "pH": 7.117728766960431,
+              "HCO3": 5,
+              "PaCO2": 16
+            },
+            "winter": {
+              "conditional": true,
+              "low": 13.5,
+              "high": 17.5,
+              "status": "within"
+            },
+            "text": "Условный сценарий (conditional), не диагноз: если верны HCO₃⁻ + PaCO₂, ожидаются pH 7.118, HCO₃⁻ 5.00 ммоль/л, PaCO₂ 16.00 мм рт. ст.; ацидемия. Условный Winter 13.5–17.5 мм рт. ст.; PaCO₂ в пределах диапазона; при истинности ветки это совместимо с адекватной компенсацией. Исходные значения не заменены."
+          },
+          {
+            "id": "ph-pco2",
+            "conditional": true,
+            "assumption": "pH + PaCO₂",
+            "expected": {
+              "pH": 6.82,
+              "HCO3": 2.519075809198912,
+              "PaCO2": 16
+            },
+            "winter": {
+              "conditional": true,
+              "low": 9.778613713798368,
+              "high": 13.778613713798368,
+              "status": "above"
+            },
+            "text": "Условный сценарий (conditional), не диагноз: если верны pH + PaCO₂, ожидаются pH 6.820, HCO₃⁻ 2.52 ммоль/л, PaCO₂ 16.00 мм рт. ст.; ацидемия. Условный Winter 9.8–13.8 мм рт. ст.; PaCO₂ выше диапазона; при истинности ветки это поддерживало бы дополнительный респираторный ацидоз. Исходные значения не заменены."
+          },
+          {
+            "id": "ph-hco3",
+            "conditional": true,
+            "assumption": "pH + HCO₃⁻",
+            "expected": {
+              "pH": 6.82,
+              "HCO3": 5,
+              "PaCO2": 31.757678632720744
+            },
+            "winter": {
+              "conditional": true,
+              "low": 13.5,
+              "high": 17.5,
+              "status": "above"
+            },
+            "text": "Условный сценарий (conditional), не диагноз: если верны pH + HCO₃⁻, ожидаются pH 6.820, HCO₃⁻ 5.00 ммоль/л, PaCO₂ 31.76 мм рт. ст.; ацидемия. Условный Winter 13.5–17.5 мм рт. ст.; PaCO₂ выше диапазона; при истинности ветки это поддерживало бы дополнительный респираторный ацидоз. Исходные значения не заменены."
+          }
+        ]
+      },
+      "balance": {
+        "W": 70,
+        "tbwCoef": 0.6,
+        "T": 42,
+        "acuity": "unknown",
+        "available": true,
+        "waterDeficit": null,
+        "naDeficit": null,
+        "kDeficit": null,
+        "clDeficit": null,
+        "naVolume": null,
+        "kVolume": null,
+        "deltaNa": null,
+        "deltaK": null,
+        "naSol": {
+          "conc": 154,
+          "label": "0.9% NaCl",
+          "perMl": 0.154
+        },
+        "kSol": {
+          "conc": 536,
+          "label": "4% KCl",
+          "perMl": 0.536
+        }
+      },
+      "QC": {
+        "status": "CONFLICT",
+        "warnings": [
+          {
+            "code": "HCO3_CONFLICT",
+            "severity": "strong",
+            "message": "HCO₃⁻ расходится с расчётом по pH/PaCO₂ более чем на 2 ммоль/л; технический QC-порог ICU CORE, вход не заменён"
+          }
+        ],
+        "pending": [],
+        "HCO3difference": 2.480924190801088,
+        "SBEdifference": 0,
+        "interpretationConditional": true,
+        "summary": "Входные данные внутренне несогласованы; расчёт по введённым значениям сохранён, клиническая интерпретация условна"
+      }
+    }
+  ]
+}

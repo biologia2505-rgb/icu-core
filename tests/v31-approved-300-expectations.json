@@ -1,0 +1,146 @@
+[
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-05",
+    "label": "possible processes are not proven",
+    "before": [],
+    "after": [
+      "metabolic alkalinizing component"
+    ],
+    "rule": "v31 rules 1–4,8–9: independent components; corroborated corrected HCO3 / chloride; no primary title veto"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-06",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "rule": "v31 rules 1–4,8–9: independent components; corroborated corrected HCO3 / chloride; no primary title veto"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-06",
+    "label": "possible processes are not proven",
+    "before": [
+      "metabolic alkalosis"
+    ],
+    "after": [],
+    "rule": "v31 rules 1–4,8–9: independent components; corroborated corrected HCO3 / chloride; no primary title veto"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-07",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "rule": "v31 rules 1–4,8–9: independent components; corroborated corrected HCO3 / chloride; no primary title veto"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-07",
+    "label": "possible processes are not proven",
+    "before": [
+      "metabolic alkalosis"
+    ],
+    "after": [],
+    "rule": "v31 rules 1–4,8–9: independent components; corroborated corrected HCO3 / chloride; no primary title veto"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-08",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "rule": "v31 rules 1–4,8–9: independent components; corroborated corrected HCO3 / chloride; no primary title veto"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-08",
+    "label": "possible processes are not proven",
+    "before": [
+      "metabolic alkalosis"
+    ],
+    "after": [],
+    "rule": "v31 rules 1–4,8–9: independent components; corroborated corrected HCO3 / chloride; no primary title veto"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-09",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA",
+      "respiratory alkalosis"
+    ],
+    "after": [
+      "HAGMA",
+      "metabolic alkalinizing component",
+      "respiratory alkalosis"
+    ],
+    "rule": "v31 rules 1–4,8–9: independent components; corroborated corrected HCO3 / chloride; no primary title veto"
+  },
+  {
+    "suite": "regression-300",
+    "id": "NORMAL-PH-MIXED-09",
+    "label": "possible processes are not proven",
+    "before": [
+      "metabolic alkalosis"
+    ],
+    "after": [],
+    "rule": "v31 rules 1–4,8–9: independent components; corroborated corrected HCO3 / chloride; no primary title veto"
+  },
+  {
+    "suite": "regression-300",
+    "id": "HYPOALBUMINEMIA-06",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA"
+    ],
+    "after": [
+      "HAGMA",
+      "NAGMA"
+    ],
+    "rule": "v31 rules 1–4,8–9: independent components; corroborated corrected HCO3 / chloride; no primary title veto"
+  },
+  {
+    "suite": "regression-300",
+    "id": "HYPOALBUMINEMIA-06",
+    "label": "single primary with compensation is isolated",
+    "before": "Изолированное нарушение",
+    "after": "Смешанное нарушение",
+    "rule": "v31 rules 1–4,8–9: independent components; corroborated corrected HCO3 / chloride; no primary title veto"
+  },
+  {
+    "suite": "regression-300",
+    "id": "HYPOALBUMINEMIA-07",
+    "label": "confirmed/probable process composition",
+    "before": [
+      "HAGMA"
+    ],
+    "after": [
+      "HAGMA",
+      "NAGMA"
+    ],
+    "rule": "v31 rules 1–4,8–9: independent components; corroborated corrected HCO3 / chloride; no primary title veto"
+  }
+]
