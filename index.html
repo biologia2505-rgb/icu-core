@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ICU CORE v31.0-dev — Clinical Reasoning Engine</title>
+<title>ICU CORE v32.0-dev — Clinical Reasoning Engine</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 /* === INTRO — дышащий градиент + пульсирующий логотип === */
-#intro-screen{position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;display:flex;flex-direction:column;justify-content:center;align-items:center;pointer-events:none;animation:introFadeOut .6s ease 2.2s forwards;background:linear-gradient(135deg,#1A1F2A 0%,#1E2A38 60%,#232F40 100%);background-size:200% 200%;animation:introFadeOut .6s ease 2.2s forwards,introBreath 6s ease-in-out infinite}
+#intro-screen{position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;display:flex;flex-direction:column;justify-content:center;align-items:center;pointer-events:none;background:linear-gradient(135deg,#1A1F2A 0%,#1E2A38 60%,#232F40 100%);background-size:200% 200%;animation:introFadeOut .6s ease 2.2s forwards,introBreath 6s ease-in-out infinite}
 #intro-screen .intro-logo{width:clamp(48px,10vw,84px);height:clamp(48px,10vw,84px);color:#7BA8A0;stroke-width:1.5;margin-bottom:28px;animation:introLogoPulse 2s ease-in-out infinite,introSlide 1s cubic-bezier(.16,1,.3,1) both}
 #intro-screen .intro-title{font:700 clamp(32px,7vw,64px) 'Inter',sans-serif;color:#FAF9F7;letter-spacing:-.03em;margin:0;animation:introSlide 1.2s cubic-bezier(.16,1,.3,1) both;font-feature-settings:'cv11'}
 #intro-screen .intro-line{width:clamp(60px,15vw,120px);height:1.5px;background:linear-gradient(90deg,transparent,#7BA8A0,transparent);margin:24px 0;animation:introGrow 1.4s cubic-bezier(.16,1,.3,1) .3s both}
@@ -293,22 +293,15 @@ td:last-child{text-align:right;font-weight:600;font-variant-numeric:tabular-nums
 }
 
 /* ===== ICU CORE v28 — visual system ===== */
-:root{--hero:#0b1018;--hero2:#101b27;--cyan:#6ee7f2;--mint:#8ce3c5;--violet:#a8a0ff;--glass:rgba(255,255,255,.055);--glass-border:rgba(255,255,255,.10)}
 body{background:radial-gradient(circle at 10% -10%,rgba(110,231,242,.08),transparent 32%),radial-gradient(circle at 95% 10%,rgba(168,160,255,.08),transparent 30%),var(--bg)}
 .container{max-width:1220px}
 .header{backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);background:color-mix(in srgb,var(--card) 86%,transparent);position:sticky;top:10px;z-index:20;border:1px solid var(--border);box-shadow:0 14px 40px rgba(0,0,0,.08)}
 .header-brand h1{letter-spacing:-.045em}.header-sub{letter-spacing:.02em}
-.home-hero{position:relative;overflow:hidden;border-radius:28px;min-height:560px;padding:58px clamp(26px,6vw,78px);display:flex;align-items:center;background:linear-gradient(135deg,#081018 0%,#0d1824 46%,#10172a 100%);color:#f8fbff;box-shadow:0 30px 90px rgba(7,16,28,.24);border:1px solid rgba(255,255,255,.09)}
-.home-hero:before{content:"";position:absolute;inset:-30%;background:radial-gradient(circle at 22% 28%,rgba(110,231,242,.16),transparent 22%),radial-gradient(circle at 76% 38%,rgba(168,160,255,.15),transparent 25%),radial-gradient(circle at 52% 88%,rgba(140,227,197,.08),transparent 20%);animation:heroFloat 14s ease-in-out infinite alternate}
-.home-grid{position:absolute;inset:0;opacity:.12;background-image:linear-gradient(rgba(255,255,255,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.2) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to right,black,transparent 80%);pointer-events:none}
-.home-content{position:relative;z-index:2;max-width:760px}.home-kicker{display:inline-flex;gap:9px;align-items:center;padding:8px 12px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.045);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#b9c9d8}.home-kicker i{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 18px var(--cyan)}
-.home-title{font-size:clamp(46px,8vw,92px);line-height:.94;letter-spacing:-.07em;margin:24px 0 18px;font-weight:700}.home-title span{background:linear-gradient(100deg,#fff,var(--cyan) 52%,#b8b1ff);-webkit-background-clip:text;background-clip:text;color:transparent}.home-lead{font-size:clamp(16px,2vw,20px);line-height:1.65;color:#b9c5d1;max-width:680px;margin:0 0 30px}.home-actions{display:flex;gap:12px;flex-wrap:wrap}.home-primary{border:0!important;background:linear-gradient(135deg,#dffcff,#8ee9f1)!important;color:#071018!important;box-shadow:0 12px 30px rgba(110,231,242,.18);font-weight:700!important}.home-secondary{background:rgba(255,255,255,.06)!important;color:#eaf2f8!important;border-color:rgba(255,255,255,.14)!important}.home-metrics{position:absolute;right:5%;bottom:7%;display:grid;grid-template-columns:repeat(2,145px);gap:10px;z-index:2}.home-metric{padding:16px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.045);backdrop-filter:blur(16px);border-radius:18px}.home-metric b{display:block;font:600 24px 'JetBrains Mono',monospace;color:#f7fbff}.home-metric span{font-size:10px;color:#8fa1b1;text-transform:uppercase;letter-spacing:.1em}
 .home-modules{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}.home-module{padding:18px;border:1px solid var(--border);background:var(--card);border-radius:18px;transition:.25s ease}.home-module:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(0,0,0,.08)}.home-module b{display:block;margin-bottom:6px}.home-module span{font-size:12px;color:var(--mut)}
 .clinical-card{border-radius:22px;background:linear-gradient(180deg,var(--card),color-mix(in srgb,var(--card) 92%,var(--acc-soft)));border:1px solid var(--border);box-shadow:0 18px 45px rgba(0,0,0,.06);padding:22px;margin-top:16px}.clinical-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--mut2);font-weight:700}.clinical-title{font-size:clamp(21px,3vw,32px);letter-spacing:-.035em;margin:7px 0}.clinical-sub{color:var(--mut);line-height:1.6}.finding-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}.finding-chip{padding:13px 15px;border:1px solid var(--border);border-radius:15px;background:var(--elev2);display:flex;gap:10px;align-items:flex-start}.finding-chip .dot{width:9px;height:9px;border-radius:50%;background:#f59e0b;margin-top:5px;flex:none}.finding-chip.bad .dot{background:#ef6a72;box-shadow:0 0 12px rgba(239,106,114,.25)}
 .panel{animation:panelIn .38s ease both}@keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes heroFloat{from{transform:translate3d(-1%,0,0) scale(1)}to{transform:translate3d(2%,2%,0) scale(1.04)}}
-.help-note{padding:14px 16px;border:1px dashed var(--border);border-radius:15px;background:var(--elev2);color:var(--mut);font-size:12px;line-height:1.65;margin:12px 0}.field label small,.field .hint{display:block;color:var(--mut2);font-size:10px;line-height:1.35;margin-top:4px;font-weight:400}
-@media(max-width:850px){.home-hero{min-height:640px;align-items:flex-start;padding-top:44px}.home-metrics{position:relative;right:auto;bottom:auto;margin-top:28px;grid-template-columns:repeat(2,1fr)}.home-modules{grid-template-columns:repeat(2,1fr)}.finding-list{grid-template-columns:1fr}}
-@media(max-width:560px){.home-hero{border-radius:22px;min-height:690px}.home-title{font-size:54px}.home-actions>*{width:100%}.home-modules{grid-template-columns:1fr}.home-metric{padding:13px}.home-metric b{font-size:20px}}
+@media(max-width:850px){.home-modules{grid-template-columns:repeat(2,1fr)}.finding-list{grid-template-columns:1fr}}
+@media(max-width:560px){.home-modules{grid-template-columns:1fr}}
 
 /* ═════════ ICU CORE v29 — ELEGANT CLINICAL DESIGN SYSTEM ═════════ */
 :root{
@@ -402,7 +395,7 @@ html.theme-transitioning body,html.theme-transitioning .header,html.theme-transi
   <div class="header-brand">
     <svg class="header-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
     <div>
-      <h1>ICU CORE <span class="version">v31.0-dev</span></h1>
+      <h1>ICU CORE <span class="version">v32.0-dev</span></h1>
       <div class="header-sub">КОС · Stewart · Шкалы · Баланс</div>
     </div>
   </div>
@@ -448,7 +441,7 @@ html.theme-transitioning body,html.theme-transitioning .header,html.theme-transi
       <p class="hero-copy">Кислотно-основное состояние, электролиты, оксигенация и органная дисфункция — с поиском скрытых сочетанных нарушений и объяснением каждого вывода.</p>
       <div class="hero-actions"><button class="hero-cta" onclick="clearAll();switchTab('input')">＋&nbsp; Новый случай</button><button class="hero-link" onclick="switchTab('info')">Как работает&nbsp; →</button></div>
     </div>
-    <div class="hero-footer"><span>12+ модулей</span><span>скрытые нарушения</span><span>объяснимый вывод</span><span>v31.0-dev</span></div>
+    <div class="hero-footer"><span>12+ модулей</span><span>скрытые нарушения</span><span>объяснимый вывод</span><span>v32.0-dev</span></div>
   </div>
   <div class="home-intro-row"><div><span class="section-kicker">Сначала смысл</span><h2>Откройте данные — ICU CORE соберёт картину.</h2></div><p>Заполняйте только доступные показатели. Чем полнее данные, тем глубже анализ. Отсутствие данных не трактуется как норма.</p></div>
   <div class="home-modules premium-modules">
@@ -655,7 +648,7 @@ html.theme-transitioning body,html.theme-transitioning .header,html.theme-transi
       <div class="card"><h2>Контекст расчётов и качество пробы</h2><div class="field-row">
         <div><label>Респираторное нарушение <small>давность по клиническим данным</small></label><select id="chronic" onchange="previewCalc()"><option value="unknown">Неизвестно</option><option value="acute">Острое</option><option value="chronic">Хроническое</option></select><div class="hint">Используется для оценки ожидаемого HCO₃⁻. Давность автоматически не определяется.</div></div>
         <div><label>Верхняя граница AGcorr лаборатории</label><input id="AGupperLimit" type="number" step=".1" oninput="previewCalc()" placeholder="Не задана; тестовый профиль 14"><div class="hint">14 — признак профиля текущих тестов, не универсальная лабораторная норма. ΔAG сохраняет расчётную точку 12.</div></div>
-        <div><label>Независимо подтверждён источник кислот/анионов <small>например, подтверждённые кетоны или установленный другой источник</small></label><select id="anionSourceConfirmed" onchange="previewCalc()"><option value="unknown">Неизвестно</option><option value="no">Нет подтверждения</option><option value="yes">Да, подтверждён независимо</option></select><div class="hint">Один AG/SIG или гипергликемия не подтверждают источник. Укажите основание в заметках; текст заметок автоматически не трактуется.</div></div>
+        <div><label>Этиология анионного компонента подтверждена <small>например, измеренные кетоны/β-гидроксибутират, установленный токсин или другая подтверждённая причина</small></label><select id="anionSourceConfirmed" onchange="previewCalc()"><option value="unknown">Неизвестно</option><option value="no">Нет подтверждения</option><option value="yes">Да, подтверждён независимо</option></select><div class="hint">Это поле не определяет наличие HAGMA и используется только для статуса этиологии. Укажите основание в заметках; текст заметок автоматически не трактуется.</div></div>
         <div><label>Острая почечная недостаточность <small>APACHE II</small></label><select id="acuteRenalFailure" onchange="previewCalc()"><option value="unknown">Неизвестно</option><option value="no">Нет</option><option value="yes">Да</option></select></div>
         <div><label>Respiratory support — SOFA <small>респираторная поддержка</small></label><select id="respiratorySupport" onchange="previewCalc()"><option value="unknown">Неизвестно</option><option value="no">Нет</option><option value="yes">Да</option></select></div>
         <div><label>Исходный SOFA <small>для изменения SOFA</small></label><input id="baselineSOFA" type="number" step="1" oninput="previewCalc()" placeholder="Неизвестно"></div>
@@ -729,7 +722,7 @@ html.theme-transitioning body,html.theme-transitioning .header,html.theme-transi
 </section>
 
 <section class="panel" id="panel-info">
-  <div class="card"><h2>Как это работает</h2><div class="result-grid workflow-grid"><article class="result-card workflow-card"><h4>1. Ввод данных</h4><p>ICU CORE использует введённые показатели и явный клинический контекст. Отсутствующее значение не считается нормальным и не восстанавливается автоматически.</p></article><article class="result-card workflow-card"><h4>2. Проверка качества</h4><p>Проверяются согласованность pH–PaCO₂–HCO₃⁻, единицы и диапазоны, артериальная/венозная проба, одновременность измерений и отсутствующие данные. Исходные значения не исправляются автоматически. PEEP/CPAP — Berlin; Respiratory support — SOFA; Supplemental oxygen — NEWS2: три независимых поля.</p></article><article class="result-card workflow-card"><h4>3. Расчёт</h4><p>Традиционный КОС и компенсация, AG/AGcorr/ΔΔ, Stewart/SID/SIG, осмоляльность, оксигенация, рСКФ (eGFR), электролитный баланс и шкалы. рСКФ — отдельный расчётный показатель для взрослых; он не участвует в клиническом заключении или шкалах.</p></article><article class="result-card workflow-card"><h4>4. Клиническая композиция</h4><p>Компоненты сопоставляются между собой, с компенсацией и доступным клиническим контекстом. Один показатель не считается самостоятельным диагнозом: повышенный AG/SIG сам по себе не равен HAGMA.</p></article><article class="result-card workflow-card"><h4>5. Шкалы</h4><p>SOFA, APACHE II, NEWS2, qSOFA и SIRS используют доступные данные. Неполные данные отмечаются как неполные или условные. Стандартный APACHE II использует худшие значения первых 24 часов ОРИТ; текущий snapshot не равнозначен этому набору. APACHE II не применяется при возрасте ≤16 лет.</p></article><article class="result-card workflow-card"><h4>6. Результат</h4><p>Обзор — краткий клинический вывод и показатели. Анализ — подробный КОС. Шкалы — баллы и применимость. Баланс — расчётные дефициты. Графики — визуальное представление. Итог — собранный отчёт, который можно скопировать после актуального расчёта.</p></article><article class="result-card workflow-card"><h4>7. Ограничения</h4><p>ICU CORE — инструмент поддержки клинического мышления. Он не заменяет клиническую оценку, динамику пациента и проверку исходных данных.</p></article></div><div class="small-note" style="margin-top:16px">ICU CORE · v31.0-dev</div></div>
+  <div class="card"><h2>Как это работает</h2><div class="result-grid workflow-grid"><article class="result-card workflow-card"><h4>1. Ввод данных</h4><p>ICU CORE использует введённые показатели и явный клинический контекст. Отсутствующее значение не считается нормальным и не восстанавливается автоматически.</p></article><article class="result-card workflow-card"><h4>2. Проверка качества</h4><p>pH–PaCO₂–HCO₃⁻ сопоставляются как технический cross-check, но расхождение не блокирует диагностику и не приводит к автоматической подмене значений. Также проверяются единицы, диапазоны, тип пробы, одновременность измерений и отсутствующие данные. PEEP/CPAP — Berlin; Respiratory support — SOFA; Supplemental oxygen — NEWS2: три независимых поля.</p></article><article class="result-card workflow-card"><h4>3. Расчёт</h4><p>Традиционный КОС и компенсация, AG/AGcorr/ΔΔ, Stewart/SID/SIG, осмоляльность, оксигенация, рСКФ (eGFR), электролитный баланс и шкалы. рСКФ — отдельный расчётный показатель для взрослых; он не участвует в клиническом заключении или шкалах.</p></article><article class="result-card workflow-card"><h4>4. Клиническая композиция</h4><p>Диагностическое ядро последовательно оценивает pH, HCO₃⁻/PaCO₂, ожидаемую компенсацию, AG/AGcorr и Δ/Δ. Повышенный интерпретируемый AG устанавливает анионный метаболический ацидифицирующий процесс; его причина оценивается отдельно. Stewart используется для физиологического объяснения, а не для подгонки диагноза.</p></article><article class="result-card workflow-card"><h4>5. Шкалы</h4><p>SOFA, APACHE II, NEWS2, qSOFA и SIRS используют доступные данные. Неполные данные отмечаются как неполные или условные. Стандартный APACHE II использует худшие значения первых 24 часов ОРИТ; текущий snapshot не равнозначен этому набору. APACHE II не применяется при возрасте ≤16 лет.</p></article><article class="result-card workflow-card"><h4>6. Результат</h4><p>Обзор — краткий клинический вывод и показатели. Анализ — подробный КОС. Шкалы — баллы и применимость. Баланс — расчётные дефициты. Графики — визуальное представление. Итог — собранный отчёт, который можно скопировать после актуального расчёта.</p></article><article class="result-card workflow-card"><h4>7. Ограничения</h4><p>ICU CORE — инструмент поддержки клинического мышления. Он не заменяет клиническую оценку, динамику пациента и проверку исходных данных.</p></article></div><div class="small-note" style="margin-top:16px">ICU CORE · v32.0-dev</div></div>
   <div class="card" style="margin-top:12px"><h2>Растворы</h2>
     <table>
       <thead><tr><th>Раствор</th><th>ммоль/л</th><th>1 мл</th></tr></thead>
@@ -785,8 +778,8 @@ function currentInputFingerprint(){return JSON.stringify([...PATIENT_NUMERIC_IDS
 function markResultFresh(){lastSuccessfulInputFingerprint=currentInputFingerprint();}
 function hasCurrentResult(){return Boolean(lastReport)&&lastSuccessfulInputFingerprint!==null&&lastSuccessfulInputFingerprint===currentInputFingerprint();}
 function markResultStale(reason="Входные данные изменены; выполните расчёт заново."){lastReport="";lastSuccessfulInputFingerprint=null;const message=escapeHTML(reason);for(const id of ["syndrome","diagnosis","results","explanations","scalesResults","sepsisResults","balanceResults","balanceExplanations","finalResults","results-findings","dash-findings","dash-full-results","dash-balance","qcResults","qcDash","qcFinal","gamble-summary"]){const el=document.getElementById(id);if(el)el.innerHTML='<div class="small-note">'+message+'</div>';}for(const name of ["pH","HCO3","Na","K","Cl","Gluc","Lac","PF","eGFR"]){const val=document.getElementById("dash-"+name),status=document.getElementById("dash-"+name+"-status"),tile=document.getElementById("tile-"+name);if(val)val.textContent="—";if(status){status.textContent="Расчёт не актуален";status.className="dash-status warn";}if(tile)tile.className="dash-tile warn";}for(const id of ["dash-news2","dash-qsofa","dash-sofa","dash-apache"]){const el=document.getElementById(id);if(el)el.textContent="—";const interp=document.getElementById(id+"-i");if(interp)interp.textContent="Расчёт не актуален";}const title=document.getElementById("dash-syn-title"),detail=document.getElementById("dash-syn-detail"),risk=document.getElementById("riskValue"),badge=document.getElementById("riskBadge");if(title)title.textContent="Расчёт не актуален";if(detail)detail.textContent=reason;if(risk)risk.textContent="Интерпретация ограничена";if(badge)badge.className="risk-pill warn";for(const name of ["gChart","sChart"]){const chart=name==="gChart"?gChart:sChart;if(chart){try{chart.destroy();}catch(e){}}}gChart=null;sChart=null;}
-function resetPatientFields(){markResultStale("Данные пациента загружаются; прежний расчёт недоступен.");for(const id of PATIENT_NUMERIC_IDS){const el=document.getElementById(id);if(el)el.value="";}for(const [id,value]of Object.entries(PATIENT_SELECTOR_DEFAULTS)){const el=document.getElementById(id);if(el)el.value=value;}const notes=document.getElementById("notes");if(notes)notes.value="";const holder=document.getElementById("chronicHealth");if(holder){holder.dataset.legacyApacheReview="false";holder.dataset.legacyApacheChronicValue="";}const old=document.getElementById("Chronic");if(old)old.value="unknown";}
-function patientInputChanged(event){const id=event?.target?.id;if(![...PATIENT_NUMERIC_IDS,...Object.keys(PATIENT_SELECTOR_DEFAULTS),"notes"].includes(id))return;if(id==="chronicHealth"&&["yes","no"].includes(getSelect("chronicHealth"))){const holder=document.getElementById("chronicHealth");holder.dataset.legacyApacheReview="false";holder.dataset.legacyApacheChronicValue="";}markResultStale();}
+function resetPatientFields(){markResultStale("Данные пациента загружаются; прежний расчёт недоступен.");for(const id of PATIENT_NUMERIC_IDS){const el=document.getElementById(id);if(el)el.value="";}for(const [id,value]of Object.entries(PATIENT_SELECTOR_DEFAULTS)){const el=document.getElementById(id);if(el)el.value=value;}const notes=document.getElementById("notes");if(notes)notes.value="";const holder=document.getElementById("chronicHealth");if(holder){holder.dataset.legacyApacheReview="false";holder.dataset.legacyApacheChronicValue="";}}
+function patientInputChanged(event){const id=event?.target?.id;if(![...PATIENT_NUMERIC_IDS,...Object.keys(PATIENT_SELECTOR_DEFAULTS),"notes"].includes(id))return;if(id==="chronicHealth"&&["yes","no"].includes(getSelect("chronicHealth"))){const holder=document.getElementById("chronicHealth");holder.dataset.legacyApacheReview="false";holder.dataset.legacyApacheChronicValue="";}if(lastSuccessfulInputFingerprint===null&&!lastReport)return;markResultStale();}
 function exportCurrentReport(){if(!hasCurrentResult()){markResultStale();showToast("Расчёт не актуален: пересчитайте текущие данные");return null;}return{report:lastReport,fingerprint:lastSuccessfulInputFingerprint};}
 function representationEpsilon(a,b){return 4*Number.EPSILON*Math.max(1,Math.abs(a),Math.abs(b));}
 function compareExpectedRange(value,low,high){if(![value,low,high].every(Number.isFinite))return "unavailable";if(value<low-representationEpsilon(value,low))return "below";if(value>high+representationEpsilon(value,high))return "above";return "within";}
@@ -866,54 +859,31 @@ function normalisePHBoundary(value){
   return value;
 }
 function detectPrimary(d,b){
-  const out={acidBase:normalisePHBoundary(d.pH)<7.35?"acidemia":normalisePHBoundary(d.pH)>7.45?"alkalemia":"normal",resp:null,met:null,respIsCompensation:false,bothOpposite:false,hidden:false,flags:[],chronicity:respiratoryChronicity(d),respiratoryCompensationMatch:false,expectedHCO3Range:null,primaryProcessCertain:true,primaryProcess:null};
-  if(gasTriadConflict(d,b)){out.invalid=true;out.primaryProcessCertain=false;out.flags.push("Газовая триада несогласована: диагностическая интерпретация заблокирована");return out;}
-  const ranges=respiratoryCompensationRange(d),sbeConflict=Number.isFinite(d.SBE_input)&&Math.abs(d.SBE_input-b.SBE_calc)>2,sbeReliable=d.sbeMode==="calc"||!sbeConflict;
-  const metAcid=b.HCO3<22||(sbeReliable&&b.SBE<-2),metAlk=b.HCO3>26||(sbeReliable&&b.SBE>2);
-  const metabolic=metAcid?"metabolic acidosis":metAlk?"metabolic alkalosis":null;
-  out.acidifyingShift=!metAcid&&!metAlk&&b.HCO3===22&&b.SBE_calc<-2;
-  const metabolicRange=metabolic==="metabolic acidosis"?{low:1.5*b.HCO3+8-2,high:1.5*b.HCO3+8+2}:metabolic==="metabolic alkalosis"?{low:.7*b.HCO3+21-2,high:.7*b.HCO3+21+2}:null;
-  const metabolicCompatible=metabolicRange&&compareExpectedRange(d.pCO2,metabolicRange.low,metabolicRange.high)==="within";
-  const respiratoryCompatible=ranges&&(ranges.selected?compareExpectedRange(b.HCO3,ranges.selected.low,ranges.selected.high)==="within":[ranges.acute,ranges.chronic].some(r=>compareExpectedRange(b.HCO3,r.low,r.high)==="within"));
-  let candidate=null;
-  if(out.acidBase==="acidemia"){
-    const respCandidate=d.pCO2>45,metCandidate=metAcid;
-    if(respCandidate&&metCandidate){out.resp="respiratory acidosis";out.met="metabolic acidosis";out.primaryProcessCertain=false;}
-    else candidate=respCandidate?"respiratory":metCandidate?"metabolic acidosis":null;
-  }else if(out.acidBase==="alkalemia"){
-    const respCandidate=d.pCO2<35,metCandidate=metAlk;
-    if(respCandidate&&metCandidate){out.resp="respiratory alkalosis";out.met="metabolic alkalosis";out.primaryProcessCertain=false;}
-    else candidate=respCandidate?"respiratory":metCandidate?"metabolic alkalosis":null;
+  const pH=normalisePHBoundary(d.pH),acidBase=pH<7.35?"acidemia":pH>7.45?"alkalemia":"normal",rawMet=b.HCO3<22?"metabolic acidosis":b.HCO3>26?"metabolic alkalosis":null,rawResp=d.pCO2>45?"respiratory acidosis":d.pCO2<35?"respiratory alkalosis":null;
+  const out={acidBase,met:null,resp:null,rawMet,rawResp,respIsCompensation:false,bothOpposite:false,hidden:false,flags:[],chronicity:respiratoryChronicity(d),respiratoryCompensationMatch:false,expectedHCO3Range:null,primaryProcessCertain:true,primaryProcess:null};
+  // First choose the primary direction from pH and PaCO2/HCO3. At normal pH, 7.40 is used only to choose the dominant vector, not as a disease threshold.
+  if(acidBase==="acidemia")out.primaryProcess=rawMet==="metabolic acidosis"?rawMet:rawResp==="respiratory acidosis"?rawResp:null;
+  else if(acidBase==="alkalemia")out.primaryProcess=rawMet==="metabolic alkalosis"?rawMet:rawResp==="respiratory alkalosis"?rawResp:null;
+  else if(rawResp&&rawMet){
+    if(rawResp==="respiratory acidosis"&&rawMet==="metabolic alkalosis")out.primaryProcess=pH<7.40?rawResp:pH>7.40?rawMet:null;
+    else if(rawResp==="respiratory alkalosis"&&rawMet==="metabolic acidosis")out.primaryProcess=pH>7.40?rawResp:pH<7.40?rawMet:null;
+  }else out.primaryProcess=rawMet||rawResp;
+  if(!out.primaryProcess&&rawMet&&rawResp){out.primaryProcessCertain=false;out.flags.push("pH ровно около 7.40 при противоположно направленных pCO₂/HCO₃⁻: первичность уточняется по компенсационным моделям и клиническому контексту");}
+  if(out.primaryProcess==="metabolic acidosis"||out.primaryProcess==="metabolic alkalosis"){
+    out.met=out.primaryProcess;
+    const isAcid=out.met==="metabolic acidosis",low=isAcid?1.5*b.HCO3+8-2:.7*b.HCO3+20-1.5,high=isAcid?1.5*b.HCO3+8+2:.7*b.HCO3+20+1.5,status=compareExpectedRange(d.pCO2,low,high);
+    if(status==="within")out.respIsCompensation=true;else if(status==="above")out.resp="respiratory acidosis";else if(status==="below")out.resp="respiratory alkalosis";
+  }else if(out.primaryProcess==="respiratory acidosis"||out.primaryProcess==="respiratory alkalosis"){
+    out.resp=out.primaryProcess;out.respiratoryPrimary=true;const ranges=respiratoryCompensationRange(d);out.respiratoryRange=ranges;
+    if(ranges?.selected){out.expectedHCO3Range=ranges.selected;out.respiratoryRangeStatus=compareExpectedRange(b.HCO3,ranges.selected.low,ranges.selected.high);out.respiratoryCompensationMatch=out.respiratoryRangeStatus==="within";if(out.respiratoryRangeStatus==="below")out.met="metabolic acidosis";else if(out.respiratoryRangeStatus==="above")out.met="metabolic alkalosis";}
+    else if(ranges){out.respiratoryRangeStatus="unknown";out.flags.push("Для точной оценки метаболического ответа при респираторном нарушении укажите остроту/хроничность.");}
   }else{
-    if(metabolicCompatible&&!respiratoryCompatible)candidate=metabolic;
-    else if(respiratoryCompatible&&!metabolicCompatible)candidate="respiratory";
-    else if(metabolic||ranges){
-      out.primaryProcessCertain=false;
-      if(ranges){out.resp=ranges.direction;out.respiratoryRange=ranges;}
-      if(metabolic&&ranges){
-        const modelStatuses=(ranges.selected?[ranges.selected]:[ranges.acute,ranges.chronic]).map(r=>compareExpectedRange(b.HCO3,r.low,r.high));
-        const relative=modelStatuses.every(status=>status===modelStatuses[0])?modelStatuses[0]:"unknown";
-        const relativeMet=relative==="below"?"metabolic acidosis":relative==="above"?"metabolic alkalosis":null;
-        if(!metabolicCompatible&&!respiratoryCompatible&&relativeMet===metabolic)out.met=metabolic;
-        else out.possibleMetabolicProcesses=[...new Set([metabolic,relativeMet].filter(Boolean))];
-      }else if(metabolic){out.met=metabolic;const status=compareExpectedRange(d.pCO2,metabolicRange.low,metabolicRange.high);if(status==="below")out.resp="respiratory alkalosis";else if(status==="above")out.resp="respiratory acidosis";}
-      else if(ranges?.selected){const status=compareExpectedRange(b.HCO3,ranges.selected.low,ranges.selected.high);out.possibleMetabolicProcesses=status==="below"?["metabolic acidosis"]:status==="above"?["metabolic alkalosis"]:[];}
-    }
+    out.met=rawMet;out.resp=rawResp;
   }
-  if(candidate==="respiratory"&&ranges){
-    out.primaryProcess=ranges.direction;out.resp=ranges.direction;out.respiratoryPrimary=true;out.respiratoryRange=ranges;
-    if(ranges.selected){out.expectedHCO3Range=ranges.selected;out.respiratoryRangeStatus=compareExpectedRange(b.HCO3,ranges.selected.low,ranges.selected.high);if(out.respiratoryRangeStatus==="below")out.met="metabolic acidosis";else if(out.respiratoryRangeStatus==="above")out.met="metabolic alkalosis";else if(out.respiratoryRangeStatus==="within")out.respiratoryCompensationMatch=true;}
-    else{out.respiratoryRangeStatus="unknown";out.flags.push("Хроничность респираторного нарушения не указана; автоматическая оценка дополнительного метаболического процесса по компенсации ограничена.");}
-  }else if(candidate==="metabolic acidosis"||candidate==="metabolic alkalosis"){
-    out.primaryProcess=candidate;out.met=candidate;
-    const range=candidate==="metabolic acidosis"?{low:1.5*b.HCO3+8-2,high:1.5*b.HCO3+8+2}:{low:.7*b.HCO3+21-2,high:.7*b.HCO3+21+2},status=compareExpectedRange(d.pCO2,range.low,range.high);
-    if(status==="below"){out.resp="respiratory alkalosis";out.flags.push("добавочный респираторный алкалоз");}else if(status==="above"){out.resp="respiratory acidosis";out.flags.push("добавочный респираторный ацидоз");}else if(status==="within")out.respIsCompensation=true;
-  }
-  if(!out.primaryProcessCertain)out.flags.push("Первичный процесс однозначно не определён по имеющимся данным; порядок смешанных процессов не установлен");
   out.bothOpposite=out.met==="metabolic acidosis"&&out.resp==="respiratory alkalosis"||out.met==="metabolic alkalosis"&&out.resp==="respiratory acidosis";
   return out;
 }
-function legacyCompensation(d,b,p){const r={text:"",checks:[]};if(p.invalid){r.text="Клиническая оценка компенсации заблокирована: газовая триада несогласована";return r;}if(p.primaryProcessCertain===false){r.text="Первичный процесс однозначно не определён по имеющимся данным; компенсационные модели не устанавливают уникальный порядок процессов.";if(p.met){const lo=p.met==="metabolic acidosis"?1.5*b.HCO3+8-2:.7*b.HCO3+21-2,hi=p.met==="metabolic acidosis"?1.5*b.HCO3+8+2:.7*b.HCO3+21+2;r.text+=` Метаболическая модель: PaCO₂ ${fixed(lo,1)}–${fixed(hi,1)}.`;}if(p.respiratoryRange){const q=p.respiratoryRange;r.ranges={acute:q.acute,chronic:q.chronic};r.text+=` Респираторные модели HCO₃⁻: acute ${fixed(q.acute.low,1)}–${fixed(q.acute.high,1)}, chronic ${fixed(q.chronic.low,1)}–${fixed(q.chronic.high,1)}.`;}r.checks.push("первичность не определена");return r;}if(p.respiratoryPrimary&&p.respiratoryRange){const ranges=p.respiratoryRange;r.ranges={acute:ranges.acute,chronic:ranges.chronic};if(ranges.selected){r.range=ranges.selected;r.text=`Ожидаемый диапазон HCO₃⁻ (${p.chronicity==="acute"?"острая":"хроническая"} компенсация): ${fixed(r.range.low,1)}–${fixed(r.range.high,1)} ммоль/л`;if(p.respiratoryRangeStatus==="within"){r.checks.push("совместима");r.text+="; HCO₃⁻ совместим с ожидаемой компенсацией";}else if(p.respiratoryRangeStatus==="below"){r.checks.push("ниже ожид.");r.text+="; HCO₃⁻ ниже ожидаемого диапазона: дополнительный метаболический ацидифицирующий процесс";}else if(p.respiratoryRangeStatus==="above"){r.checks.push("выше ожид.");r.text+="; HCO₃⁻ выше ожидаемого диапазона: дополнительный метаболический алкализирующий процесс";}else r.checks.push("не рассчитано");}else{r.text=`Ожидаемый HCO₃⁻: acute ${fixed(ranges.acute.low,1)}–${fixed(ranges.acute.high,1)}; chronic ${fixed(ranges.chronic.low,1)}–${fixed(ranges.chronic.high,1)} ммоль/л. Хроничность респираторного нарушения не указана; автоматическая оценка дополнительного метаболического процесса по компенсации ограничена.`;r.checks.push("хроничность неизвестна");}return r;}if(p.met==="metabolic acidosis"){const lo=1.5*b.HCO3+8-2,hi=1.5*b.HCO3+8+2;r.text=`Winter's: ожид. pCO₂ = ${fixed(lo,1)}–${fixed(hi,1)}`;if(compareExpectedRange(d.pCO2,lo,hi)==="above")r.checks.push("выше ожид.");else if(compareExpectedRange(d.pCO2,lo,hi)==="below")r.checks.push("ниже ожид.");else r.checks.push("адекватна");return r;}if(p.met==="metabolic alkalosis"){const lo=0.7*b.HCO3+21-2,hi=0.7*b.HCO3+21+2;r.text=`Ожид. pCO₂ = ${fixed(lo,1)}–${fixed(hi,1)}`;const lowEpsilon=4*Number.EPSILON*Math.max(1,Math.abs(d.pCO2),Math.abs(lo)),highEpsilon=4*Number.EPSILON*Math.max(1,Math.abs(d.pCO2),Math.abs(hi));if(d.pCO2>hi+highEpsilon)r.checks.push("выше ожид.");else if(d.pCO2<lo-lowEpsilon)r.checks.push("ниже ожид.");else r.checks.push("адекватна");return r;}if(p.resp==="respiratory acidosis"){if(respiratoryChronicity(d)==="acute"){r.text=`Острое: HCO₃⁻ ~ ${fixed(24+0.1*(d.pCO2-40),1)}`;}else if(respiratoryChronicity(d)==="chronic"){r.text=`Хронич.: HCO₃⁻ ~ ${fixed(24+0.35*(d.pCO2-40),1)}`;}else r.text="Хроничность не задана";return r;}if(p.resp==="respiratory alkalosis"){if(respiratoryChronicity(d)==="acute"){r.text=`Острое: HCO₃⁻ ~ ${fixed(24-0.2*(40-d.pCO2),1)}`;}else if(respiratoryChronicity(d)==="chronic"){r.text=`Хронич.: HCO₃⁻ ~ ${fixed(24-0.4*(40-d.pCO2),1)}`;}else r.text="Хроничность не задана";return r;}r.text="Первичное нарушение не определено";return r;}
+
 function phCompensation(d){
   if(d.pH<7.20)return{status:"тяжёлая ацидемия",detail:"pH <7.20; pH сам по себе не определяет наличие/отсутствие смешанного нарушения"};
   if(normalisePHBoundary(d.pH)<7.35)return{status:"ацидемия",detail:"pH <7.35"};
@@ -922,81 +892,70 @@ function phCompensation(d){
   return{status:"тяжёлая алкалемия",detail:"pH >7.60; pH сам по себе не определяет наличие/отсутствие смешанного нарушения"};
 }
 function calcDeltaDelta(d,b){
-  if(!Number.isFinite(b.AGcorr)||!Number.isFinite(b.deltaAG))return{value:NaN,classification:"Δ/Δ не рассчитано: AGcorr/ΔAG недоступны; необходимы измеренный Alb и полный набор входов",suspicion:false,applicable:false};
+  if(!Number.isFinite(b.AGcorr)||!Number.isFinite(b.deltaAG))return{value:NaN,classification:"Δ/Δ не рассчитано: AGcorr/ΔAG недоступны",suspicion:false,applicable:false};
   const h=detectHAGMA(d,b,null),denominator=24-b.HCO3;
-  // Ratio applicability is deliberately stricter than existence/confidence of the component.
-  const applicable=deltaDeltaApplicable(d,b,h);
-  if(!applicable)return{value:b.deltaDelta,classification:"Не использовать Δ/Δ для автоматической классификации: нужны HCO₃⁻<22, знаменатель>2, надёжный ацидифицирующий компонент и интерпретируемый AG; при Na>145 отношение ограничено",suspicion:false,applicable:false};
+  // Per diagnostic algorithm, Δ/Δ is interpreted only for metabolic acidosis with elevated AG.
+  const applicable=h.hasHAGMA&&b.HCO3<22&&denominator>2&&b.deltaAG>0&&d.Na<=145;
+  if(!applicable)return{value:b.deltaDelta,classification:"Δ/Δ не применяется автоматически: он предназначен для метаболического ацидоза с повышенным AG; при Na>145 интерпретация отношения дополнительно ограничена",suspicion:false,applicable:false};
   const dd=b.deltaDelta;let classification,suspicion=false;
-  if(dd<0.4)classification="HAGMA + выраженный дополнительный NAGMA (паттерн)";
-  else if(dd<0.9)classification="HAGMA + NAGMA (паттерн)";
+  if(dd<0.4)classification="Преобладает гиперхлоремический/неанионный ацидоз; возможен дополнительный HAGMA";
+  else if(dd<0.9)classification="Смешанный HAGMA + NAGMA";
   else if(dd<=1.5)classification="HAGMA без явного дополнительного метаболического процесса";
-  else if(dd<=2){classification="HAGMA: возможен дополнительный алкализирующий компонент; отдельный метаболический алкалоз не доказан";}
-  else{classification="HAGMA: вероятный сопутствующий алкализирующий процесс при клинически интерпретируемом AG";suspicion=true;}
+  else if(dd<=2)classification="HAGMA: возможен дополнительный метаболический алкализирующий компонент";
+  else{classification="HAGMA: вероятен сопутствующий метаболический алкализирующий процесс";suspicion=true;}
   return{value:dd,classification,suspicion,applicable:true};
 }
 
 function detectHAGMA(d,b,st){
   const upper=Number.isFinite(d.AGupperLimit)&&d.AGupperLimit>0?d.AGupperLimit:14;
-  if(!Number.isFinite(b.AGcorr))return{hasHAGMA:false,componentPossible:false,confidence:"unavailable",evaluationUnavailable:true,evidence:[],mixedPresentation:false,limitedBySodium:d.Na>145,reason:"Оценка анионного компонента не рассчитана: AGcorr не рассчитано без полного набора входов Na, Cl, HCO₃⁻ и измеренного Alb"};
-  const elevated=Number.isFinite(b.AGcorr)&&b.AGcorr>upper;
-  const result={hasHAGMA:false,componentPossible:elevated,confidence:elevated?"possible":"none",evidence:[],mixedPresentation:false,limitedBySodium:d.Na>145,reason:""};
-  if(!elevated)return result;
-  if(![d.Na,d.Cl,d.Alb,d.Lac,d.pH,d.pCO2,b.HCO3].every(Number.isFinite)){
-    result.confidence="unreliable";result.reason="AG повышен, но отсутствуют критические входы: клинический диагноз не подтверждается";return result;
-  }
-  if(gasTriadConflict(d,b)){
-    result.confidence="unreliable";result.reason="AG повышен, но основная газовая триада несогласована: диагностическая интерпретация заблокирована";return result;
-  }
-  // Existing gas thresholds describe supporting evidence, not existence requirements.
-  if(b.HCO3<22&&b.SBE_calc<-2)result.evidence.push("согласованный метаболический ацидифицирующий компонент по HCO₃⁻ и SBE_calculated");
-  if(d.Lac>2)result.evidence.push("измеренная гиперлактатемия; сама по себе не доказывает лактатацидоз");
-  if(d.anionSourceConfirmed==="yes")result.evidence.push("независимо подтверждённый клиницистом источник кислот/анионов");
-  if(result.evidence.length){result.hasHAGMA=true;result.confidence="supported";}
-  const primary=detectPrimary(d,b);
-  const composition=acidBaseProcesses(primary,{applicable:deltaDeltaApplicable(d,b,result),value:b.deltaDelta},result);
-  result.mixedPresentation=composition.processes.length>1;
-  const wording=result.mixedPresentation?"Повышенный AG / возможный анионный ацидотический компонент на фоне смешанного нарушения":result.hasHAGMA&&primary.met==="metabolic acidosis"?"Анионный ацидотический компонент (HAGMA) поддерживается независимыми данными":result.hasHAGMA?"Повышенный AG / поддерживаемый анионный ацидотический компонент; клиническая интерпретация требует контекста":"Повышенный AG / возможный анионный ацидотический компонент; клиническая интерпретация требует контекста";
-  result.reason=wording+(result.evidence.length?": "+result.evidence.join("; "):"; по одному AG диагноз HAGMA не устанавливается");
-  if(result.limitedBySodium)result.reason+="; гипернатриемия ограничивает интерпретацию абсолютного AG/ΔΔ, но не отменяет независимые подтверждающие признаки";
-  if(Number.isFinite(d.SBE_input)&&Math.abs(d.SBE_input-b.SBE_calc)>2)result.reason+="; конфликт SBE_input отмечен отдельно, введённое значение сохранено";
+  if(!Number.isFinite(b.AGcorr))return{hasHAGMA:false,componentPossible:false,confidence:"unavailable",evaluationUnavailable:true,evidence:[],mixedPresentation:false,limitedBySodium:d.Na>145,upper,etiologyStatus:"unknown",reason:"Анионный промежуток не оценён: для AGcorr нужны Na, Cl, HCO₃⁻ и альбумин"};
+  const elevated=b.AGcorr>upper;
+  const result={hasHAGMA:elevated,componentPossible:elevated,confidence:elevated?"supported":"none",evaluationUnavailable:false,evidence:[],mixedPresentation:false,limitedBySodium:d.Na>145,upper,etiologyStatus:d.anionSourceConfirmed==="yes"?"confirmed":d.anionSourceConfirmed==="no"?"not-confirmed":"unknown",reason:""};
+  if(!elevated){result.reason=`AGcorr ${fixed(b.AGcorr,1)} не выше выбранной верхней границы ${fixed(upper,1)} ммоль/л`;return result;}
+  result.evidence.push(`AGcorr ${fixed(b.AGcorr,1)} > ${fixed(upper,1)} ммоль/л`);
+  if(Number.isFinite(d.Alb)&&d.Alb<35)result.evidence.push(`AG скорректирован на гипоальбуминемию (Alb ${fixed(d.Alb,1)} г/л)`);
+  result.reason=`Метаболический ацидоз с повышенным анионным промежутком (HAGMA): ${result.evidence.join("; ")}.`;
+  if(result.limitedBySodium)result.reason+=" Гипернатриемия ограничивает точность абсолютного AG/ΔΔ, но не блокирует интерпретацию введённых данных.";
+  result.reason+=result.etiologyStatus==="confirmed"?" Источник кислот/анионов подтверждён клиницистом.":" Этиология анионного компонента не установлена автоматически.";
   return result;
 }
 
-function clinicalFindings(d,b,st,p,dd,hagma){const findings=[],alerts=[];const Alb=Number.isFinite(d.Alb)?d.Alb:NaN;if(Alb<35)alerts.push(`Гипоальбуминемия: Alb ${fixed(Alb,1)}`);if(Alb>50)findings.push(`Гиперпротеинемия (Alb ${fixed(Alb,1)})`);if(d.Na>145)alerts.push(`Гипернатриемия: Na ${fixed(d.Na,1)}. Сопоставимость абсолютного AG и Δ/Δ со стандартной расчётной точкой 12 ограничена; AG не является самостоятельным диагнозом.`);if(d.Na<135)alerts.push(`Гипонатриемия: Na ${fixed(d.Na,1)}`);if(d.K<3.5)findings.push(`Гипокалиемия (K ${fixed(d.K,1)})`);if(d.K>5.5)findings.push(`Гиперкалиемия (K ${fixed(d.K,1)})`);if(d.Cl<98)findings.push(`Гипохлоремия (Cl ${fixed(d.Cl,1)})`);if(d.Cl>107)findings.push(`Гиперхлоремия (Cl ${fixed(d.Cl,1)})`);if(hagma.componentPossible||hagma.evaluationUnavailable)findings.push(hagma.reason);if(Number.isFinite(st.SIG)&&st.SIG>5)findings.push(`SIG повышен (${fixed(st.SIG,1)})`);if(Number.isFinite(b.Osm_gap)){if(b.Osm_gap>20)findings.push(`Осмолярный gap ${fixed(b.Osm_gap,1)} (>20). Рассмотреть токсические спирты и другие причины повышенного осмолярного gap.`);else if(b.Osm_gap>10)findings.push(`Осмолярный gap ${fixed(b.Osm_gap,1)} (10–20)`);}if(oxygenApplicability(d).available&&Number.isFinite(b.PF)&&b.PF<=300)alerts.push(`P/F ${fixed(b.PF,0)} — гипоксемия`);if(d.Gluc>5.5&&Number.isFinite(b.Na_glucose)){
-  findings.push(`Гипергликемия может вносить вклад в измеренный Na; расчётный Na по Katz ${fixed(b.Na_glucose,2)} ммоль/л, без установления этиологии.`);
-  if(d.Na<135){if(b.Na_glucose<135)findings.push("После расчётной поправки гипонатриемия сохраняется");else if(b.Na_glucose<=145)findings.push("После расчётной поправки Na находится в обычном диапазоне");}
+function clinicalFindings(d,b,st,p,dd,hagma){
+  const findings=[],alerts=[],Alb=Number.isFinite(d.Alb)?d.Alb:NaN;
+  if(Alb<35)alerts.push(`Гипоальбуминемия: Alb ${fixed(Alb,1)}`);if(Alb>50)findings.push(`Гиперпротеинемия (Alb ${fixed(Alb,1)})`);
+  if(d.Na>145)alerts.push(`Гипернатриемия: Na ${fixed(d.Na,1)}. Абсолютный AG и Δ/Δ интерпретировать с учётом выраженной диснатриемии.`);if(d.Na<135)alerts.push(`Гипонатриемия: Na ${fixed(d.Na,1)}`);
+  if(d.K<3.5)findings.push(`Гипокалиемия (K ${fixed(d.K,1)})`);if(d.K>5.5)findings.push(`Гиперкалиемия (K ${fixed(d.K,1)})`);if(d.Cl<98)findings.push(`Гипохлоремия (Cl ${fixed(d.Cl,1)})`);if(d.Cl>107)findings.push(`Гиперхлоремия (Cl ${fixed(d.Cl,1)})`);
+  if(hagma.hasHAGMA||hagma.evaluationUnavailable)findings.push(hagma.reason);
+  if(Number.isFinite(b.Osm_gap)){if(b.Osm_gap>20)findings.push(`Осмолярный gap ${fixed(b.Osm_gap,1)} (>20). Рассмотреть токсические спирты и другие причины повышенного осмолярного gap.`);else if(b.Osm_gap>10)findings.push(`Осмолярный gap ${fixed(b.Osm_gap,1)} (10–20)`);}
+  if(oxygenApplicability(d).available&&Number.isFinite(b.PF)&&b.PF<=300)alerts.push(`P/F ${fixed(b.PF,0)} — гипоксемия`);
+  if(d.Gluc>5.5&&Number.isFinite(b.Na_glucose)){findings.push(`Гипергликемия может влиять на измеренный Na; расчётный Na по Katz ${fixed(b.Na_glucose,2)} ммоль/л.`);}
+  if(d.Lac>2)findings.push(`Гиперлактатемия: лактат ${fixed(d.Lac,1)} ммоль/л; наличие HAGMA и его этиология оцениваются отдельно`);
+  if(hagma.hasHAGMA&&d.Lac<=2)findings.push(`Лактат ${fixed(d.Lac,1)} ммоль/л не объясняет повышенный AG; искать другие источники неизмеренных анионов`);
+  if(hagma.hasHAGMA&&d.Gluc>5.5)findings.push("При гипергликемии оценить кетоны / β-гидроксибутират; кетоацидоз требует этиологического подтверждения");
+  return{findings,alerts};
 }
-if(d.Lac>2&&!hagma.hasHAGMA)findings.push("Гиперлактатемия; повышенный лактат сам по себе не устанавливает лактатацидоз");
-if(hagma.componentPossible&&d.Lac<=2)findings.push(`Измеренный лактат ${fixed(d.Lac,1)} не объясняет повышение AG; остальные источники оцениваются по независимым данным`);
-if(hagma.componentPossible&&d.Gluc>5.5)findings.push("При гипергликемии проверить кетоны / β-гидроксибутират; кетоацидоз без подтверждения не диагностируется");
-if(d.Na>145&&b.SBE_Cl>0)findings.push("Относительно низкий Cl к Na повышает strong-ion difference и оказывает алкализирующее влияние; отдельный метаболический алкалоз по этому признаку не назначается");
-if(p.met==="metabolic acidosis"&&d.Na<135&&b.SBE_Cl<0)findings.push("Относительно высокий Cl к Na поддерживает снижение strong-ion difference; это не тождественно абсолютной гиперхлоремии");
-return{findings,alerts};}
 function clinicalQC(d,b){
   const warnings=[],pending=[];
-  if(Number.isFinite(d.PEEP)&&d.PEEP>=5&&d.respiratorySupport==="no")warnings.push({code:"PRESSURE_SUPPORT_CONTEXT",severity:"context",message:"Введён PEEP/CPAP ≥5 при respiratorySupport=Нет; проверить согласованность контекста. Значения автоматически не изменены."});
+  if(Number.isFinite(d.PEEP)&&d.PEEP>=5&&d.respiratorySupport==="no")warnings.push({code:"PRESSURE_SUPPORT_CONTEXT",severity:"context",message:"Введён PEEP/CPAP ≥5 при respiratorySupport=Нет; проверить контекст. Значения не изменены."});
   const missing=["Na","K","Cl","Alb","PO4","Lac"].filter(k=>!Number.isFinite(d[k]));
-  if(missing.length)warnings.push({code:"MISSING_REQUIRED_MATH_INPUTS",severity:"context",message:"Kellum/Stewart: отсутствуют обязательные входы "+missing.join(", ")+"; ноль и норма не подставляются"});
-  if(!Number.isFinite(d.Alb))warnings.push({code:"MISSING_ALBUMIN_AGCORR",severity:"context",message:"Alb отсутствует или не является конечным числом: AGcorr, ΔAG, Δ/Δ и их диагностическая оценка не рассчитаны; Alb=40 не подставляется"});
-  const osmMissing=["Na","Gluc","Ur"].filter(k=>!Number.isFinite(d[k]));
-  if(osmMissing.length)warnings.push({code:"MISSING_OSMOLARITY_INPUTS",severity:"context",message:"Осмоляльность не рассчитана: отсутствуют обязательные входы "+osmMissing.join(", ")+"; Osm_calc и Osm_gap не рассчитаны, мочевина=0 не подставляется"});
-  if(gasTriadConflict(d,b))warnings.push({code:"HCO3_CONFLICT",severity:"strong",message:"HCO₃⁻ расходится с расчётом по pH/PaCO₂ более чем на 2 ммоль/л; технический QC-порог ICU CORE, вход не заменён"});
-  if(Number.isFinite(d.SBE_input)&&Number.isFinite(b.SBE_calc)&&Math.abs(d.SBE_input-b.SBE_calc)>2)warnings.push({code:"SBE_CONFLICT",severity:"warning",message:"SBE_input расходится с SBE_calculated профиля v30.1 более чем на 2 ммоль/л; возможны различия методов, исходный SBE сохранён"});
-  if(Number.isFinite(d.pO2)&&Number.isFinite(d.SpO2)&&d.pO2>=60&&d.pO2<=79&&d.SpO2>=98&&d.sampleSimultaneity!=="no")warnings.push({code:"PAO2_SPO2_SOFT",severity:"soft",message:"PaO₂ 60–79 при SpO₂ ≥98%: проверить условия и одновременность измерений; технический QC-порог, числа сохранены"});
-  if(d.Na>145)warnings.push({code:"HYPERNATREMIA_AG_LIMIT",severity:"warning",message:"Гипернатриемия ограничивает интерпретацию абсолютного AG и Δ/Δ относительно стандартного референса"});
-  if(Number.isFinite(d.pO2)&&Number.isFinite(d.SpO2)&&d.pO2<60&&d.SpO2>=95&&d.sampleSimultaneity!=="no")warnings.push({code:"PAO2_SPO2_STRONG",severity:"strong",message:"PaO₂ <60 при SpO₂ ≥95%: проверить артериальность, одновременность, FiO₂, качество сигнала и при необходимости кооксиметрию; числа сохранены"});
-  if(d.gasSampleType==="venous")warnings.push({code:"GAS_SAMPLE_VENOUS",severity:"context",message:"Проба венозная: интерпретация артериальной оксигенации требует проверки"});
-  if(Number.isFinite(b.PF)&&b.PF<=300&&Number.isFinite(d.PEEP)&&d.PEEP<5)warnings.push({code:"BERLIN_PRESSURE_NOT_MET",severity:"context",message:"Berlin: PEEP/CPAP <5; критерий давления не выполнен. Это не обнуляет SOFA при отдельно подтверждённой поддержке"});
-  if(d.Vaso&&d.Vaso!=="none")warnings.push({code:"MAP_ON_VASOPRESSOR",severity:"context",message:"MAP измерен на вазопрессоре: нормальный MAP не означает отсутствия поддержки; уточнить потребность и ресусцитацию"});
+  if(missing.length)warnings.push({code:"MISSING_REQUIRED_MATH_INPUTS",severity:"context",message:"Kellum/Stewart: отсутствуют "+missing.join(", ")+"; ноль и норма не подставляются"});
+  if(!Number.isFinite(d.Alb))warnings.push({code:"MISSING_ALBUMIN_AGCORR",severity:"context",message:"Alb отсутствует: AGcorr и Δ/Δ не рассчитаны; Alb=40 не подставляется"});
+  const osmMissing=["Na","Gluc","Ur"].filter(k=>!Number.isFinite(d[k]));if(osmMissing.length)warnings.push({code:"MISSING_OSMOLARITY_INPUTS",severity:"context",message:"Осмоляльность не рассчитана: отсутствуют "+osmMissing.join(", ")});
+  if(gasTriadConflict(d,b))warnings.push({code:"HCO3_METHOD_DIFFERENCE",severity:"warning",message:"Введённый HCO₃⁻ отличается от HCO₃⁻, рассчитанного по Henderson–Hasselbalch, более чем на 2 ммоль/л. Это технический cross-check, а не запрет диагностики: проверить, что введено (actual HCO₃⁻ / standard HCO₃⁻ / total CO₂), метод и принадлежность к одной пробе. Исходные значения сохранены."});
+  if(Number.isFinite(d.SBE_input)&&Number.isFinite(b.SBE_calc)&&Math.abs(d.SBE_input-b.SBE_calc)>2)warnings.push({code:"SBE_CONFLICT",severity:"warning",message:"SBE_input отличается от SBE_calculated более чем на 2 ммоль/л; возможны различия методов, исходный SBE сохранён"});
+  if(Number.isFinite(d.pO2)&&Number.isFinite(d.SpO2)&&d.pO2>=60&&d.pO2<=79&&d.SpO2>=98&&d.sampleSimultaneity!=="no")warnings.push({code:"PAO2_SPO2_SOFT",severity:"soft",message:"PaO₂ 60–79 при SpO₂ ≥98%: проверить условия и одновременность измерений"});
+  if(d.Na>145)warnings.push({code:"HYPERNATREMIA_AG_LIMIT",severity:"warning",message:"Гипернатриемия ограничивает точность абсолютного AG и Δ/Δ относительно стандартного референса; диагноз КОС не блокируется"});
+  if(Number.isFinite(d.pO2)&&Number.isFinite(d.SpO2)&&d.pO2<60&&d.SpO2>=95&&d.sampleSimultaneity!=="no")warnings.push({code:"PAO2_SPO2_STRONG",severity:"strong",message:"Оксигенационные данные требуют проверки: PaO₂ <60 при SpO₂ ≥95%; проверить артериальность, одновременность, FiO₂, качество сигнала и при необходимости кооксиметрию"});
+  if(d.gasSampleType==="venous")warnings.push({code:"GAS_SAMPLE_VENOUS",severity:"context",message:"Проба венозная: артериальная оксигенация по ней не интерпретируется"});
+  if(Number.isFinite(b.PF)&&b.PF<=300&&Number.isFinite(d.PEEP)&&d.PEEP<5)warnings.push({code:"BERLIN_PRESSURE_NOT_MET",severity:"context",message:"Berlin: PEEP/CPAP <5; критерий давления не выполнен"});
+  if(d.Vaso&&d.Vaso!=="none")warnings.push({code:"MAP_ON_VASOPRESSOR",severity:"context",message:"MAP измерен на вазопрессоре: нормальный MAP не означает отсутствия поддержки"});
   warnings.push(...invalidDomainWarnings(d));
-  if(d.sampleSimultaneity==="no")warnings.push({code:"NON_SIMULTANEOUS_SAMPLE",severity:"context",message:"Измерения не одновременны: прямое сопоставление PaO₂/SpO₂ ограничено; расчёты по введённым значениям сохранены"});
-  return{status:warnings.some(x=>["HCO3_CONFLICT","PAO2_SPO2_STRONG"].includes(x.code))?"CONFLICT":warnings.some(x=>x.severity==="soft")?"CHECK_REQUIRED":warnings.length?"CONTEXT_REQUIRED":"NO_TECHNICAL_CONFLICT",warnings,pending,
-    HCO3difference:Number.isFinite(d.HCO3in)?d.HCO3in-b.HCO3calc:NaN,
-    SBEdifference:Number.isFinite(d.SBE_input)?d.SBE_input-b.SBE_calc:NaN,
-    interpretationConditional:warnings.some(x=>x.code!=="SBE_CONFLICT")||pending.length>0,summary:warnings.some(x=>x.code==="HCO3_CONFLICT"||x.code==="PAO2_SPO2_STRONG")?"Входные данные внутренне несогласованы; расчёт по введённым значениям сохранён, клиническая интерпретация условна":"Технический QC ICU CORE: исходные значения сохранены; ограничения и клинический контекст оцениваются отдельно"};
+  if(d.sampleSimultaneity==="no")warnings.push({code:"NON_SIMULTANEOUS_SAMPLE",severity:"context",message:"Измерения не одновременны: прямое сопоставление ограничено; расчёты по введённым значениям сохранены"});
+  const oxygenStrong=warnings.some(x=>x.code==="PAO2_SPO2_STRONG"),hh=warnings.some(x=>x.code==="HCO3_METHOD_DIFFERENCE");
+  const summary=oxygenStrong?"КОС-интерпретация сохранена; оксигенационные данные требуют отдельной проверки.":hh?"КОС-интерпретация не заблокирована; имеется методическое расхождение HCO₃⁻ с расчётом Henderson–Hasselbalch.":"Технический QC: исходные значения сохранены; ограничения оцениваются отдельно.";
+  return{status:oxygenStrong?"OXYGEN_CHECK_REQUIRED":warnings.length?"CONTEXT_REQUIRED":"NO_TECHNICAL_CONFLICT",warnings,pending,HCO3difference:Number.isFinite(d.HCO3in)?d.HCO3in-b.HCO3calc:NaN,SBEdifference:Number.isFinite(d.SBE_input)?d.SBE_input-b.SBE_calc:NaN,interpretationConditional:oxygenStrong||pending.length>0,summary};
 }
-function renderQC(d,b){const qc=clinicalQC(d,b),scenarios=conditionalGasScenarios(d,b);const html=`<div class="alert"><b>Математический результат:</b> расчёт по введённым значениям сохранён.<br><b>Клинический QC:</b> ${escapeHTML(qc.summary)}<br>HCO₃⁻: расхождение с H-H ${fixed(qc.HCO3difference,3)} ммоль/л; SBE_input − SBE_calculated ${fixed(qc.SBEdifference,3)} ммоль/л.<br>${qc.warnings.map(w=>escapeHTML(w.message)).join("<br>")}<br>${qc.pending.map(escapeHTML).join("; ")}${scenarios.length?"<br><br>"+scenarios.map(x=>escapeHTML(x.text)).join("<br><br>"):""}</div>`;for(const id of ["qcResults","qcDash","qcFinal"]){const el=document.getElementById(id);if(el)el.innerHTML=html;}lastReport+="\n\n── КЛИНИЧЕСКИЙ QC ──\n"+qc.summary+"\n"+qc.warnings.map(w=>w.code+": "+w.message).join("\n")+(scenarios.length?"\n\n"+scenarios.map(x=>x.text).join("\n"):"");}
+function renderQC(d,b){const qc=clinicalQC(d,b);const html=`<div class="alert"><b>Математический результат:</b> расчёт по введённым значениям сохранён.<br><b>Клинический QC:</b> ${escapeHTML(qc.summary)}<br>HCO₃⁻: разница с H-H ${fixed(qc.HCO3difference,3)} ммоль/л; SBE_input − SBE_calculated ${fixed(qc.SBEdifference,3)} ммоль/л.<br>${qc.warnings.map(w=>escapeHTML(w.message)).join("<br>")}</div>`;for(const id of ["qcResults","qcDash","qcFinal"]){const el=document.getElementById(id);if(el)el.innerHTML=html;}lastReport+="\n\n── КЛИНИЧЕСКИЙ QC ──\n"+qc.summary+"\n"+qc.warnings.map(w=>w.code+": "+w.message).join("\n");}
 function dataQuality(d,b,st,sofa){
   const q=[];
   if(!Number.isFinite(d.pO2)||!Number.isFinite(d.FiO2))q.push("Для P/F и части SOFA/APACHE II нет полной информации об оксигенации.");
@@ -1010,117 +969,87 @@ function dataQuality(d,b,st,sofa){
 function correctedBicarbonate(d,b,h){
   const measured=Number.isFinite(d.HCO3in),available=measured&&Number.isFinite(b.deltaAG);
   const value=available?d.HCO3in+b.deltaAG:NaN;
-  const applicable=available&&h.componentPossible&&h.confidence!=="unreliable"&&!gasTriadConflict(d,b)&&d.Na<=145;
-  return{value,deltaGap:available?b.deltaAG-(24-d.HCO3in):NaN,applicable,
-    reason:applicable?"HCO₃_corr = HCO₃_measured + ΔAG; вспомогательный признак, не самостоятельный диагноз":!measured?"Нужен измеренный HCO₃⁻":d.Na>145?"Гипернатриемия ограничивает интерпретацию AG / corrected HCO₃":"Нет повышенного интерпретируемого AG или газовая триада несогласована"};
+  const applicable=available&&h.hasHAGMA&&d.Na<=145;
+  return{value,deltaGap:available?b.deltaAG-(24-d.HCO3in):NaN,applicable,reason:applicable?"HCO₃_corr = HCO₃_measured + ΔAG; вспомогательный показатель смешанного метаболического паттерна":!measured?"Нужен введённый HCO₃⁻":d.Na>145?"Гипернатриемия ограничивает delta-gap интерпретацию":"Нет повышенного AG"};
 }
-function winterAssessment(d,b,acidifying,alkalosis){
-  if(gasTriadConflict(d,b))return{applicable:false,status:"blocked",text:"Winter: окончательная оценка заблокирована несогласованной газовой триадой; см. условные сценарии",checks:[]};
-  if(!acidifying)return{applicable:false,status:"not-indicated",text:"Winter не применяется: метаболический ацидифицирующий компонент не установлен",checks:[]};
-  if(!(b.HCO3<22))return{applicable:false,status:"masked",text:alkalosis?"Winter не применяется: итоговый HCO₃⁻ ≥22 на фоне сопутствующего метаболического алкализирующего процесса; он не отражает величину ацидифицирующего компонента, прямое применение методологически ненадёжно":"Winter не применяется: нет сниженного итогового HCO₃⁻ для модели метаболического ацидоза",checks:[]};
+function winterAssessment(d,b,acidifying){
+  if(!acidifying||!(b.HCO3<22))return{applicable:false,status:"not-indicated",text:"Winter не применяется: нет сниженного HCO₃⁻ метаболического ацидоза",checks:[]};
   const low=1.5*b.HCO3+8-2,high=1.5*b.HCO3+8+2,status=compareExpectedRange(d.pCO2,low,high);
   const respiratoryProcess=status==="above"?"respiratory acidosis":status==="below"?"respiratory alkalosis":null;
-  const conclusion=status==="within"?"PaCO₂ соответствует ожидаемому диапазону Winter; адекватная респираторная компенсация":status==="above"?"PaCO₂ выше ожидаемого: дополнительный респираторный ацидоз":"PaCO₂ ниже ожидаемого: дополнительный респираторный алкалоз";
-  return{applicable:true,status,low,high,respiratoryProcess,checks:[status==="within"?"адекватна":status==="above"?"выше ожид.":"ниже ожид."],text:`Winter: ожидаемый PaCO₂ ${fixed(low,1)}–${fixed(high,1)} мм рт. ст. ${conclusion}.`+(alkalosis?" Модель оценивает компенсацию итогового сниженного HCO₃⁻; не устанавливает первичность и величину каждого противоположного процесса.":"")};
+  const conclusion=status==="within"?"респираторная компенсация соответствует ожидаемой":status==="above"?"PaCO₂ выше ожидаемого — дополнительный респираторный ацидоз":"PaCO₂ ниже ожидаемого — дополнительный респираторный алкалоз";
+  return{applicable:true,status,low,high,respiratoryProcess,checks:[status==="within"?"адекватна":status==="above"?"выше ожид.":"ниже ожид."],text:`Winter: ожидаемый PaCO₂ ${fixed(low,1)}–${fixed(high,1)} мм рт. ст.; ${conclusion}.`};
 }
 function synthesizeAcidBase(d,b,p,dd,st,h){
-  const corrected=correctedBicarbonate(d,b,h);
+  const processes=[],possibleProcesses=[],processConfidence={},evidence={},add=(name,lines,confidence="supported")=>{if(!processes.includes(name))processes.push(name);processConfidence[name]=confidence;evidence[name]=lines;},possible=(name,lines)=>{if(!possibleProcesses.includes(name))possibleProcesses.push(name);processConfidence[name]="possible";evidence[name]=lines;};
+  const corrected=correctedBicarbonate(d,b,h),metAcid=p.met==="metabolic acidosis",metAlk=p.met==="metabolic alkalosis",normalHCO3=b.HCO3>=22&&b.HCO3<=26;
+  if(h.hasHAGMA)add("HAGMA",h.evidence.length?h.evidence:[`AGcorr ${fixed(b.AGcorr,1)} > ${fixed(h.upper,1)}`]);
+  if(metAcid){
+    if(!h.hasHAGMA)add("NAGMA",["HCO₃⁻ снижен при AGcorr в пределах выбранного референса"]);
+    if(h.hasHAGMA&&dd.applicable&&dd.value<.9)add("NAGMA",[`Δ/Δ ${fixed(dd.value,2)} <0.9: дополнительный неанионный ацидоз`]);
+    if(h.hasHAGMA&&dd.applicable&&dd.value>2)add("metabolic alkalinizing component",[`Δ/Δ ${fixed(dd.value,2)} >2: вероятен сопутствующий алкализирующий процесс`],"probable");
+    else if(h.hasHAGMA&&dd.applicable&&dd.value>1.5)possible("metabolic alkalinizing component",[`Δ/Δ ${fixed(dd.value,2)} в зоне 1.5–2.0: возможен алкализирующий компонент`]);
+  }
+  if(metAlk)add("metabolic alkalosis",[`HCO₃⁻ ${fixed(b.HCO3,1)} ммоль/л выше обычного диапазона`]);
+  // Source-backed mixed pattern: normal pH/HCO3 with elevated AG can represent metabolic acidosis + alkalosis.
+  if(h.hasHAGMA&&normalHCO3&&p.acidBase==="normal"&&!processes.includes("metabolic alkalosis"))add("metabolic alkalosis",["Нормальные pH и HCO₃⁻ при повышенном AG указывают на взаимное маскирование анионного ацидоза и метаболического алкалоза"]);
+
+  let compensationText="",winter={applicable:false,status:"not-indicated",text:"",checks:[]};
+  if(metAcid){
+    winter=winterAssessment(d,b,true);compensationText=winter.text;
+    if(winter.respiratoryProcess)add(winter.respiratoryProcess,[winter.text]);
+  }else if(metAlk){
+    const low=.7*b.HCO3+20-1.5,high=.7*b.HCO3+20+1.5,status=compareExpectedRange(d.pCO2,low,high);compensationText=`Метаболический алкалоз: ожидаемый PaCO₂ ${fixed(low,1)}–${fixed(high,1)} мм рт. ст.`;
+    if(status==="above")add("respiratory acidosis",[compensationText+"; фактический PaCO₂ выше ожидаемого"]);else if(status==="below")add("respiratory alkalosis",[compensationText+"; фактический PaCO₂ ниже ожидаемого"]);else compensationText+="; компенсация соответствует ожидаемой";
+  }else if(p.resp){
+    add(p.resp,[`PaCO₂ ${fixed(d.pCO2,1)} мм рт. ст. соответствует ${p.resp==="respiratory acidosis"?"респираторному ацидозу":"респираторному алкалозу"}`]);
+    const ranges=respiratoryCompensationRange(d);
+    if(ranges?.selected){const status=compareExpectedRange(b.HCO3,ranges.selected.low,ranges.selected.high);compensationText=`Ожидаемый HCO₃⁻ (${p.chronicity==="acute"?"острое":"хроническое"} нарушение): ${fixed(ranges.selected.low,1)}–${fixed(ranges.selected.high,1)} ммоль/л`;
+      if(status==="below")add("metabolic acidosis",[compensationText+"; фактический HCO₃⁻ ниже ожидаемого"]);else if(status==="above")add("metabolic alkalosis",[compensationText+"; фактический HCO₃⁻ выше ожидаемого"]);else compensationText+="; компенсация соответствует ожидаемой";
+    }else if(ranges)compensationText=`Респираторное нарушение установлено; для точной оценки метаболической компенсации укажите остроту/хроничность. Acute HCO₃⁻ ${fixed(ranges.acute.low,1)}–${fixed(ranges.acute.high,1)}, chronic ${fixed(ranges.chronic.low,1)}–${fixed(ranges.chronic.high,1)}.`;
+  }
+  if(!compensationText)compensationText="Компенсационная модель не требуется для установленного набора процессов";
   const direction=value=>!Number.isFinite(value)?"unavailable":value>0?"alkalinizing":value<0?"acidifying":"neutral";
-  // Direction describes a continuous physiological contribution, never a diagnostic cutoff.
   const contributors=[
-    {id:"anion",value:b.AGcorr,unit:"ммоль/л",direction:h.componentPossible?"acidifying":Number.isFinite(b.AGcorr)?"not-established":"unavailable",applicable:h.componentPossible&&h.confidence!=="unreliable",inputs:["Na","Cl","HCO3","Alb"],note:"Повышенный AG — возможный анионный вклад; сам по себе не диагноз"},
-    {id:"correctedHCO3",value:corrected.value,unit:"ммоль/л",direction:direction(corrected.deltaGap),applicable:corrected.applicable,inputs:["Na","Cl","HCO3","Alb"],note:"Направление относительно существующей расчётной точки Δ/Δ (HCO₃ 24); не самостоятельный процесс"},
-    {id:"deltaGap",value:corrected.deltaGap,unit:"ммоль/л",direction:direction(corrected.deltaGap),applicable:corrected.applicable,inputs:["Na","Cl","HCO3","Alb"],note:"Та же AG/HCO₃-линия, что corrected HCO₃; не дополнительное независимое доказательство"},
-    {id:"SBE_Cl",value:b.SBE_Cl,unit:"ммоль/л",direction:direction(b.SBE_Cl),applicable:Number.isFinite(b.SBE_Cl),inputs:["Na","Cl"],note:"Непрерывный относительный хлоридный эффект; сам по себе не назначает NAGMA или алкалоз"},
-    {id:"SBE_Alb",value:b.SBE_Alb,unit:"ммоль/л",direction:direction(b.SBE_Alb),applicable:Number.isFinite(b.SBE_Alb),inputs:["pH","Alb"],note:"Непрерывный альбуминовый эффект; общий Alb с AGcorr, не независимый диагностический метод"},
-    {id:"SIDa",value:st?.SIDa,unit:"мЭкв/л",direction:"reference-required",applicable:Number.isFinite(st?.SIDa),inputs:["Na","K","Ca","Mg","Cl","Lac"],note:"Общий SID: направление без заданного reference не классифицируется; направление хлоридного вклада показано отдельно"},
-    {id:"SIDe",value:st?.SIDe,unit:"мЭкв/л",direction:"reference-required",applicable:Number.isFinite(st?.SIDe),inputs:["HCO3","pH","Alb","PO4"],note:"Эффективный SID; численное значение сохранено, диагностический reference не подставлен"}
+    {id:"SBE_FW",value:b.SBE_FW,unit:"ммоль/л",direction:direction(b.SBE_FW),applicable:Number.isFinite(b.SBE_FW)},
+    {id:"SBE_Cl",value:b.SBE_Cl,unit:"ммоль/л",direction:direction(b.SBE_Cl),applicable:Number.isFinite(b.SBE_Cl)},
+    {id:"SBE_Alb",value:b.SBE_Alb,unit:"ммоль/л",direction:direction(b.SBE_Alb),applicable:Number.isFinite(b.SBE_Alb)},
+    {id:"SBE_UA",value:b.SBE_UA,unit:"ммоль/л",direction:direction(b.SBE_UA),applicable:Number.isFinite(b.SBE_UA)},
+    {id:"SIDa",value:st?.SIDa,unit:"мЭкв/л",direction:"descriptive",applicable:Number.isFinite(st?.SIDa)},
+    {id:"SIDe",value:st?.SIDe,unit:"мЭкв/л",direction:"descriptive",applicable:Number.isFinite(st?.SIDe)},
+    {id:"SIG",value:st?.SIG,unit:"мЭкв/л",direction:"descriptive",applicable:Number.isFinite(st?.SIG)}
   ];
-  if(p.invalid)return{processes:[],possibleProcesses:[],processConfidence:{},contributors:contributors.map(c=>({...c,applicable:false})),evidence:{},corrected,interpretationBlocked:true,winter:winterAssessment(d,b,false,false),conditionalScenarios:conditionalGasScenarios(d,b)};
-  const processes=[],possibleProcesses=[],processConfidence={},evidence={};
-  const add=(name,lines,confidence="supported")=>{if(!processes.includes(name))processes.push(name);processConfidence[name]=confidence;evidence[name]=lines;};
-  const possible=(name,lines)=>{possibleProcesses.push(name);processConfidence[name]="possible";evidence[name]=lines;};
-  if(h.confidence==="supported")add("HAGMA",h.evidence);
-  else if(h.confidence==="possible")possible("HAGMA",[h.reason||"Повышенный AG без независимого подтверждения"]);
-  const respiratoryRanges=respiratoryCompensationRange(d);
-  const expectedRenalCompensation=respiratoryRanges&&(respiratoryRanges.selected?[respiratoryRanges.selected]:[respiratoryRanges.acute,respiratoryRanges.chronic]).some(r=>compareExpectedRange(b.HCO3,r.low,r.high)==="within");
-  const netAcid=p.met==="metabolic acidosis"||(!respiratoryRanges&&b.HCO3<22&&b.SBE_calc<-2);
-  // Contributors cannot add a disorder or promote its confidence; approved ratio/gas rules only.
-  if((dd.applicable&&dd.value<.9)||netAcid&&h.confidence==="none")add("NAGMA",[...(dd.applicable&&dd.value<.9?[`Δ/Δ ${fixed(dd.value,2)} <0.9`]:[]),...(netAcid&&h.confidence==="none"?["Метаболический ацидифицирующий компонент без повышения AG"]:[])]);
-  else if(netAcid&&h.confidence!=="supported")add("metabolic acidosis",["Метаболический ацидифицирующий компонент по газам / компенсационным моделям"]);
-  const deltaStrong=dd.applicable&&dd.value>2,deltaBorderline=dd.applicable&&dd.value>1.5&&dd.value<=2;
-  const classic=p.met==="metabolic alkalosis";
-  let alkName=null;
-  if(classic){alkName="metabolic alkalosis";add(alkName,["Метаболический алкалоз по существующей газовой / компенсационной модели"]);}
-  else if(deltaStrong){alkName="metabolic alkalinizing component";add(alkName,[`Δ/Δ ${fixed(dd.value,2)} >2: probable metabolic alkalinizing component; ratio не устанавливает classic metabolic alkalosis`],"probable");}
-  else if(deltaBorderline){alkName="metabolic alkalinizing component";possible(alkName,[`Δ/Δ ${fixed(dd.value,2)}: возможен алкализирующий компонент; отдельный алкалоз не доказан`]);}
-  const acidifying=processes.some(x=>["HAGMA","NAGMA","metabolic acidosis"].includes(x));
-  const winter=winterAssessment(d,b,acidifying,Boolean(alkName));
-  const resp=p.respiratoryPrimary?p.resp:winter.applicable?winter.respiratoryProcess:p.resp;
-  if(resp)add(resp,[winter.applicable?winter.text:"Респираторный компонент по газам и компенсационным моделям"]);
-  for(const item of p.possibleMetabolicProcesses||[])if(!processes.includes(item)&&!possibleProcesses.includes(item))possible(item,["Возможный процесс по существующей компенсационной модели"]);
-  const opposingMetabolicContributors=contributors.some(c=>c.applicable&&c.direction==="acidifying")&&contributors.some(c=>c.applicable&&c.direction==="alkalinizing");
-  return{processes,possibleProcesses:[...new Set(possibleProcesses)].filter(x=>!processes.includes(x)),processConfidence,contributors,evidence,corrected,winter,opposingMetabolicContributors,maskedMetabolicPattern:opposingMetabolicContributors&&p.acidBase==="normal"&&!p.met,
-    metabolic:{anion:{confidence:h.confidence,sourceConfirmed:d.anionSourceConfirmed==="yes",evidence:h.evidence},nonAnion:{supported:processes.includes("NAGMA"),chlorideDirection:direction(b.SBE_Cl),expectedRenalCompensation:Boolean(expectedRenalCompensation)},alkalinizing:{name:alkName,confidence:alkName?processConfidence[alkName]:"not-established",supported:alkName?processConfidence[alkName]==="supported":false,classic,deltaBorderline,evidence:alkName?evidence[alkName]:[]}},
-    respiratory:{process:resp,adequateCompensation:winter.applicable&&winter.status==="within"},interpretationBlocked:false};
+  return{processes,possibleProcesses:possibleProcesses.filter(x=>!processes.includes(x)),processConfidence,evidence,corrected,winter,contributors,compensationText,metabolic:{anion:{confidence:h.confidence,etiologyStatus:h.etiologyStatus,evidence:h.evidence},nonAnion:{supported:processes.includes("NAGMA")},alkalinizing:{supported:processes.includes("metabolic alkalosis")||processes.includes("metabolic alkalinizing component")}},respiratory:{process:processes.find(x=>x.startsWith("respiratory"))||null},interpretationBlocked:false};
 }
-function conditionalGasScenarios(d,b){
-  if(!gasTriadConflict(d,b))return[];
-  const make=(id,assumption,pH,hco3,pco2)=>{
-    const acid=hco3<22,low=1.5*hco3+8-2,high=1.5*hco3+8+2;
-    const status=acid?compareExpectedRange(pco2,low,high):null;
-    const winter=acid?{conditional:true,low,high,status}:null;
-    const state=pH<7.35?"ацидемия":pH>7.45?"алкалемия":"pH в обычном диапазоне";
-    return{id,conditional:true,assumption,expected:{pH,HCO3:hco3,PaCO2:pco2},winter,text:`Условный сценарий (conditional), не диагноз: если верны ${assumption}, ожидаются pH ${fixed(pH,3)}, HCO₃⁻ ${fixed(hco3,2)} ммоль/л, PaCO₂ ${fixed(pco2,2)} мм рт. ст.; ${state}.`+(acid?` Условный Winter ${fixed(low,1)}–${fixed(high,1)} мм рт. ст.; PaCO₂ ${status==="above"?"выше":status==="below"?"ниже":"в пределах"} диапазона; при истинности ветки это ${status==="above"?"поддерживало бы дополнительный респираторный ацидоз":status==="below"?"поддерживало бы дополнительный респираторный алкалоз":"совместимо с адекватной компенсацией"}.`:"")+" Исходные значения не заменены."};
-  };
-  return[make("hco3-pco2","HCO₃⁻ + PaCO₂",6.1+Math.log10(d.HCO3in/(.03*d.pCO2)),d.HCO3in,d.pCO2),make("ph-pco2","pH + PaCO₂",d.pH,b.HCO3calc,d.pCO2),make("ph-hco3","pH + HCO₃⁻",d.pH,d.HCO3in,d.HCO3in/(.03*Math.pow(10,d.pH-6.1)))];
-}
-function clinicalProcessLabel(name){return({HAGMA:"HAGMA — анионный ацидифицирующий компонент",NAGMA:"NAGMA / low-SID — неанионный ацидифицирующий компонент","metabolic acidosis":"метаболический ацидоз","metabolic alkalosis":"метаболический алкалоз","metabolic alkalinizing component":"дополнительный метаболический алкализирующий компонент","respiratory acidosis":"респираторный ацидоз","respiratory alkalosis":"респираторный алкалоз"})[name]||name;}
+
+function clinicalProcessLabel(name){return({HAGMA:"метаболический ацидоз с повышенным анионным промежутком (HAGMA)",NAGMA:"метаболический ацидоз с нормальным анионным промежутком (NAGMA)","metabolic acidosis":"метаболический ацидоз","metabolic alkalosis":"метаболический алкалоз","metabolic alkalinizing component":"дополнительный метаболический алкализирующий компонент","respiratory acidosis":"респираторный ацидоз","respiratory alkalosis":"респираторный алкалоз"})[name]||name;}
 function syndrome(d,b,p,dd,st,hagma,phComp){
-  const composition=synthesizeAcidBase(d,b,p,dd,st,hagma);
-  if(composition.interpretationBlocked)return{title:"Газовая триада несогласована: клинический диагноз КОС не сформирован",detail:"Расчёт по введённым значениям сохранён; проверить pH, PaCO₂, HCO₃⁻ и условия пробы. Условные сценарии показаны в QC, не являются диагнозом.",components:[],composition,...composition};
-  const n=composition.processes.length,possible=composition.possibleProcesses;
-  let title=n>2?"Множественное смешанное нарушение":n===2?"Смешанное нарушение":n===1?"Изолированное нарушение":hagma.evaluationUnavailable?"Оценка анионного компонента не рассчитана":possible.length?"Возможные компоненты нарушения КОС":"Расстройств КОС не выявлено";
-  if(n===1&&possible.length)title=possible.includes("HAGMA")?"Основное нарушение; возможен дополнительный анионный ацидифицирующий компонент":"Установленный процесс; возможен дополнительный метаболический компонент";
-  const confidenceText=confidence=>({supported:"поддерживается утверждёнными критериями",probable:"вероятный (probable)",possible:"возможный (possible)"})[confidence]||"не установлен";
-  const parts=composition.processes.map(clinicalProcessLabel),details=[composition.processes.map(name=>`${clinicalProcessLabel(name)} [${confidenceText(composition.processConfidence[name])}]`).join(" + ")];
-  if(possible.length)details.push("Возможен: "+possible.map(name=>`${clinicalProcessLabel(name)} [possible]`).join(" + ")+"; не подтверждён как самостоятельный диагноз");
-  if(composition.metabolic.alkalinizing.confidence==="probable")details.push("probable metabolic alkalinizing component по утверждённой Δ/Δ policy; отдельный классический метаболический алкалоз из ratio не назначен");
-  else if(composition.metabolic.alkalinizing.deltaBorderline)details.push("Δ/Δ 1.5–2.0: возможен алкализирующий компонент; отдельный метаболический алкалоз не доказан");
-  if(composition.corrected.applicable)details.push(`Corrected HCO₃ ${fixed(composition.corrected.value,1)} ммоль/л; delta gap ${fixed(composition.corrected.deltaGap,1)}; continuous contributors, не самостоятельные диагнозы`);
-  const directionText={alkalinizing:"алкализирующий",acidifying:"ацидифицирующий",neutral:"нулевой",unavailable:"недоступен","reference-required":"направление общего эффекта требует reference"};
-  details.push("Физиологические вклады (contributors): "+composition.contributors.filter(c=>c.applicable&&["SBE_Cl","SBE_Alb","SIDa","SIDe"].includes(c.id)).map(c=>`${c.id} ${fixed(c.value,2)} ${c.unit} — ${directionText[c.direction]}`).join("; ")+". Общие Na/Cl/Alb не считаются независимыми методами и не повышают уверенность процесса");
-  if(composition.opposingMetabolicContributors)details.push("Opposing metabolic contributors: противоположно направленные ацидифицирующие и алкализирующие вклады; сами по себе не устанавливают дополнительные диагнозы");
-  if(composition.maskedMetabolicPattern){title="Маскированный / opposing metabolic pattern";details.push(`Уверенность процессов: анионный — ${confidenceText(hagma.confidence)}; алкализирующий — ${confidenceText(composition.metabolic.alkalinizing.confidence)}. Нормальные итоговые газы не исключают противоположные физиологические вклады`);}
-  if(composition.winter.applicable||composition.winter.status==="masked")details.push(composition.winter.text);
-  if(p.respiratoryPrimary&&p.respiratoryRange)details.push(legacyCompensation(d,b,p).text);
-  else if(p.respIsCompensation&&p.met==="metabolic alkalosis")details.push("респираторная компенсация в ожидаемом диапазоне");
-  if(hagma.evaluationUnavailable)details.push(hagma.reason);
-  const acidifyingShift=!!p.acidifyingShift||!p.met&&!p.resp&&hagma.confidence==="supported"&&b.SBE_calc<-2;
-  if(acidifyingShift&&n<=1){title=composition.maskedMetabolicPattern?title+"; метаболический ацидифицирующий сдвиг":"Метаболический ацидифицирующий сдвиг";details.push(`pH ${fixed(d.pH,3)}, HCO₃⁻ ${fixed(b.HCO3,1)}, SBE_calculated ${fixed(b.SBE_calc,2)}; введённый SBE сохранён`);}
-  if(p.acidBase==="normal"&&(n+possible.length)>1)details.push("Нормальный pH/HCO₃⁻ не исключает смешанного нарушения; противоположные метаболические процессы могут взаимно маскироваться");
-  return{title,detail:details.filter(Boolean).join(" · "),components:parts,composition,...composition,primaryProcessCertain:p.primaryProcessCertain,primaryDetail:p.primaryProcessCertain===false?"Порядок возникновения / первичность процессов не установлены":"",acidifyingShift,anionComponentConfidence:hagma.confidence};
+  const composition=synthesizeAcidBase(d,b,p,dd,st,hagma),established=composition.processes,possible=composition.possibleProcesses;
+  let title;
+  if(established.length>=2)title=`Смешанное нарушение КОС: ${established.map(clinicalProcessLabel).join(" + ")}`;
+  else if(established.length===1)title=clinicalProcessLabel(established[0]);
+  else if(possible.length)title=`Возможное нарушение КОС: ${possible.map(clinicalProcessLabel).join(" + ")}`;
+  else title="Явных нарушений КОС не выявлено";
+  const why=[];
+  for(const name of established){const ev=composition.evidence[name]||[];if(ev.length)why.push(`${clinicalProcessLabel(name)}: ${ev.join("; ")}`);}
+  for(const name of possible){const ev=composition.evidence[name]||[];if(ev.length)why.push(`Возможен ${clinicalProcessLabel(name)}: ${ev.join("; ")}`);}
+  const meaning=[];
+  if(established.length>1)meaning.push("Одновременно присутствуют несколько процессов; компенсаторный ответ не считается отдельным заболеванием, если он находится в ожидаемом диапазоне.");
+  if(p.acidBase==="normal"&&established.length>1)meaning.push("Нормальный pH не означает нормальное КОС: противоположные процессы могут взаимно маскироваться.");
+  const stewart=[];const dir={alkalinizing:"алкализирующий",acidifying:"ацидифицирующий",neutral:"нейтральный"};
+  for(const c of composition.contributors.filter(c=>c.applicable&&["SBE_FW","SBE_Cl","SBE_Alb","SBE_UA"].includes(c.id)))stewart.push(`${c.id} ${fixed(c.value,2)} — ${dir[c.direction]||"описательный"}`);
+  if(Number.isFinite(st.SIDa))stewart.push(`SIDa ${fixed(st.SIDa,2)}`);if(Number.isFinite(st.SIG))stewart.push(`SIG ${fixed(st.SIG,2)}`);
+  const etiology=hagma.hasHAGMA?(hagma.etiologyStatus==="confirmed"?"Источник анионного компонента отмечен как независимо подтверждённый клиницистом.":`Причина HAGMA автоматически не установлена${d.Lac<=2?`; лактат ${fixed(d.Lac,1)} ммоль/л не объясняет повышение AG`:d.Lac>2?`; имеется гиперлактатемия ${fixed(d.Lac,1)} ммоль/л, но причинность оценивается клинически`:""}.`):"";
+  const detail=[why.length?"Почему: "+why.join(" · "):"",meaning.length?"Что это значит: "+meaning.join(" "):"",stewart.length?"Физиология по Stewart/SBE: "+stewart.join("; ")+". Эти показатели объясняют механизм и не меняют диагноз ядра.":"",etiology?"Этиология: "+etiology:""].filter(Boolean).join(" ");
+  return{title,detail,components:established.map(clinicalProcessLabel),composition,...composition,primaryProcessCertain:true,primaryDetail:"",acidifyingShift:established.some(x=>["HAGMA","NAGMA","metabolic acidosis"].includes(x)),anionComponentConfidence:hagma.confidence};
 }
 function compensation(d,b,p){
   const st=calcStewart(d,b),h=detectHAGMA(d,b,st),dd=calcDeltaDelta(d,b),c=synthesizeAcidBase(d,b,p,dd,st,h);
-  if(p.respiratoryPrimary){const r=legacyCompensation(d,b,p);r.winter=c.winter;return r;}
-  if(c.winter.applicable||c.winter.status==="masked"||c.winter.status==="blocked"){if(p.respiratoryRange&&!p.invalid){const legacy=legacyCompensation(d,b,p);return{...legacy,...c.winter,text:c.winter.text+" "+legacy.text};}return c.winter;}
-  return legacyCompensation(d,b,p);
+  return{text:c.compensationText||"Компенсационная модель не требуется",checks:c.winter?.checks||[],winter:c.winter};
 }
 
 // Legacy composition is retained only for v30 HAGMA wording compatibility.
-function deltaDeltaApplicable(d,b,h){return b.HCO3<22&&24-b.HCO3>2&&b.deltaAG>0&&h.hasHAGMA&&d.Na<=145&&(normalisePHBoundary(d.pH)<7.35||b.SBE_calc<-2);}
-function acidBaseProcesses(p,dd,h){
-  const processes=[],possibleProcesses=[];
-  if(p.met==="metabolic acidosis")processes.push(h.confidence==="supported"?"HAGMA":h.confidence==="none"?"NAGMA":"metabolic acidosis");
-  if(p.met==="metabolic alkalosis")processes.push("metabolic alkalosis");
-  if(h.confidence==="supported"&&!processes.includes("HAGMA"))processes.push("HAGMA");
-  if(h.confidence==="possible")possibleProcesses.push("HAGMA");
-  if((p.met==="metabolic acidosis"||h.confidence==="supported")&&dd.applicable){if(dd.value<.9)processes.push("NAGMA");else if(dd.value>2)processes.push("metabolic alkalosis");else if(dd.value>1.5)possibleProcesses.push("metabolic alkalosis");}
-  if(p.resp)processes.push(p.resp);
-  for(const item of p.possibleMetabolicProcesses||[])if(!processes.includes(item))possibleProcesses.push(item);
-  return{processes:[...new Set(processes)],possibleProcesses:[...new Set(possibleProcesses)]};
-}
+
+
 function ardsAssessment(d,b){
   const oxygen=oxygenApplicability(d);if(!oxygen.available)return{confirmed:false,severity:null,status:"Артериальная оценка Berlin недоступна",detail:oxygen.reason};
   if(!Number.isFinite(b.PF))return{confirmed:false,severity:null,status:"Недостаточно данных для Berlin",detail:"Не определён P/F"};
@@ -1324,7 +1253,7 @@ function render(d,b,p,comp,dd,st,fin,hagma,syn,ards,phComp){
   const rGroups=[
     {title:"КОС",rows:[["HCO₃⁻ (лаб.)",fixed(d.HCO3in,1)+" ммоль/л"],["HCO₃⁻ (H-H)",fixed(b.HCO3calc,1)+" ммоль/л"],["SBE_input",fixed(d.SBE_input,1)],["SBE выбранный",fixed(b.SBE,1)],["SBE_calculated (профиль v30.1)",fixed(b.SBE_calc,1)]]},
     {title:"АП / ΔΔ",rows:[["Na измеренный",fixed(d.Na)],["Na Katz (оценка диснатриемии)",fixed(b.Na_glucose)],["АП",fixed(b.AG)],["АП_корр (Alb)",calculationText(b.AGcorr)],["AG Kellum",calculationText(b.AG_Kellum)],["ΔAG",calculationText(b.deltaAG)],["ΔHCO₃⁻",fixed(b.deltaHCO3)],["ΔΔ",Number.isFinite(dd.value)?fixed(dd.value,2):!Number.isFinite(b.AGcorr)?"не рассчитано":"не применимо"],["Corrected HCO₃ (измеренный + ΔAG)",calculationText(syn.corrected?.value,1)],["Delta gap (ΔAG − ΔHCO₃)",calculationText(syn.corrected?.deltaGap,1)]]},
-    {title:"ΔΔ классификация",rows:[["Классификация",dd.classification],["Анионный компонент",hagma.evaluationUnavailable?"не рассчитано":hagma.confidence==="supported"?"Поддерживается независимыми данными":hagma.confidence==="possible"?"Возможный; по одному AG не подтверждён":hagma.confidence==="unreliable"?"Диагностическая оценка заблокирована QC":"По AG не выявлен"]]},
+    {title:"ΔΔ классификация",rows:[["Классификация",dd.classification],["Анионный компонент",hagma.evaluationUnavailable?"не рассчитано":hagma.hasHAGMA?"HAGMA установлен по повышенному AGcorr; этиология оценивается отдельно":"По AG не выявлен"]]},
     {title:"SBE-разбивка",rows:[["SBE_FW (вода)",fixed(b.SBE_FW)],["SBE_Cl (хлор)",fixed(b.SBE_Cl)],["SBE_Alb (альбумин)",calculationText(b.SBE_Alb)],["SBE_UA (прочие)",calculationText(b.SBE_UA)]]},
     {title:"Стюарт",rows:[["SID_a",fixed(st.SIDa)],["SID_e",calculationText(st.SIDe)],["SIG",calculationText(st.SIG)],["SIG_corr (нестандартный профиль v30.1)",calculationText(st.SIG_corr)]]},
     {title:"Осмоляльность",rows:[["Осм_расч",Number.isFinite(b.Osm_calc)?fixed(b.Osm_calc,1)+" мОсм/кг":"не рассчитано"],["Осм_изм",Number.isFinite(d.Osm_in)?fixed(d.Osm_in,0)+" мОсм/кг":"—"],["Осмолярный gap",Number.isFinite(b.Osm_gap)?fixed(b.Osm_gap,1)+" мОсм/кг":"не рассчитано"]]},
@@ -1335,7 +1264,7 @@ function render(d,b,p,comp,dd,st,fin,hagma,syn,ards,phComp){
   const resultsHTML=`<div class="result-grid">${rGroups.map(g=>{const rowsHTML=g.rows.map(r=>`<div class="result-row"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');return `<div class="result-card"><h4>${g.title}</h4>${rowsHTML}</div>`;}).join('')}</div>`;
   const resEl=document.getElementById("results");if(resEl)resEl.innerHTML=resultsHTML;
   const dashFull=document.getElementById("dash-full-results");if(dashFull)dashFull.innerHTML=resultsHTML;
-  const logs=[];logs.push(`<b>pH вектор:</b> ${fixed(d.pH,3)} → ${p.acidBase}`);if(p.resp)logs.push(`<b>Респираторный:</b> ${p.resp}`);if(p.respIsCompensation)logs.push(`<b>Респираторный (компенсация)</b>`);if(p.met)logs.push(`<b>Метаболический:</b> ${p.met}`);if(hagma.componentPossible||hagma.evaluationUnavailable)logs.push(`<b>Анионный компонент (${hagma.evaluationUnavailable?"не рассчитано":hagma.confidence==="supported"?"поддерживается независимыми данными":hagma.confidence==="possible"?"возможный":"оценка заблокирована QC"}):</b> ${escapeHTML(hagma.reason)}`);logs.push(`<b>Итоговый состав процессов:</b> ${escapeHTML(syn.processes.map(clinicalProcessLabel).join(" + ")||"не установлен")}`);logs.push(`<b>Степень:</b> ${phComp.status}`);
+  const logs=[];logs.push(`<b>pH вектор:</b> ${fixed(d.pH,3)} → ${p.acidBase}`);if(p.resp)logs.push(`<b>Респираторный:</b> ${p.resp}`);if(p.respIsCompensation)logs.push(`<b>Респираторный (компенсация)</b>`);if(p.met)logs.push(`<b>Метаболический:</b> ${p.met}`);if(hagma.hasHAGMA||hagma.evaluationUnavailable)logs.push(`<b>Анионный компонент:</b> ${escapeHTML(hagma.reason)}`);logs.push(`<b>Итоговый состав процессов:</b> ${escapeHTML(syn.processes.map(clinicalProcessLabel).join(" + ")||"не установлен")}`);logs.push(`<b>Степень:</b> ${phComp.status}`);
   let diagHTML=`<h3>Что видно на входе</h3><ul>${logs.map(l=>`<li>${l}</li>`).join('')}</ul>`;
   diagHTML+=`<h3>Как проверяли компенсацию</h3><div>${escapeHTML(comp.text)}</div><ul>${comp.checks.map(c=>`<li>${escapeHTML(c)}</li>`).join('')}</ul>`;
   diagHTML+=`<h3>Что нашли по ходу анализа</h3>`;
@@ -1345,18 +1274,18 @@ function render(d,b,p,comp,dd,st,fin,hagma,syn,ards,phComp){
   diagHTML+=`<h3>Итог по КОС</h3><div><b>${escapeHTML(syn.title)}</b>${syn.detail?"<br>"+escapeHTML(syn.detail):""}</div>`;
   const diagEl=document.getElementById("diagnosis");if(diagEl)diagEl.innerHTML=diagHTML;const rf=document.getElementById("results-findings");if(rf)rf.innerHTML=(fin.findings.length||fin.alerts.length)?[...fin.findings.map(x=>`<div class="finding-chip"><span class="dot"></span><div>${escapeHTML(x)}</div></div>`),...fin.alerts.map(x=>`<div class="finding-chip bad"><span class="dot"></span><div>${escapeHTML(x)}</div></div>`)].join(""):"<div class=\"small-note\">Дополнительных клинических находок нет.</div>";
   const exEl=document.getElementById("explanations");if(exEl)exEl.innerHTML=`<details open><summary>АП и АП_корр</summary><div class="fml">АП = Na − (Cl + HCO3) = ${fixed(b.AG)}\nАП_корр = АП + 0.25 × (40 − Alb) = ${calculationText(b.AGcorr)}\nAG Kellum = (Na_measured + K) − (Cl + HCO3) − 0.2×Alb − 1.5×PO4 − Lac = ${calculationText(b.AG_Kellum)}\nAG=12 — расчётная точка для ΔAG, не универсальная лабораторная норма</div></details><details><summary>ΔΔ</summary><div class="fml">ΔAG = ${calculationText(b.deltaAG)}\nΔHCO3 = ${fixed(b.deltaHCO3)}\nΔΔ = ${calculationText(b.deltaDelta,2)}</div></details><details><summary>SBE + разбивка</summary><div class="fml">SBE_input = ${fixed(d.SBE_input,1)}\nSBE_calculated: ${b.SBE_formula} = ${fixed(b.SBE_calc,1)}\nSBE_FW = ${fixed(b.SBE_FW)}\nSBE_Cl = ${fixed(b.SBE_Cl)}\nSBE_Alb = ${calculationText(b.SBE_Alb)}\nSBE_UA = ${calculationText(b.SBE_UA)}</div></details><details><summary>Стюарт</summary><div class="fml">${st.formula}; ${st.units}\nSID_a = ${fixed(st.SIDa)}\nSID_e = ${calculationText(st.SIDe)}\nSIG = ${calculationText(st.SIG)}\n${st.correctedDefinition}</div></details><details><summary>Осмоляльность</summary><div class="fml">Осм_расч = 1.86 × Na + Gluc + Ur + 9 = ${calculationText(b.Osm_calc,1)}\n${"Осм_gap = "+calculationText(b.Osm_gap,1)}</div></details>`;
-  const strip=s=>s.replace(/<[^>]+>/g,'');const L=["═══ ICU CORE v31.0-dev ═══","","Дата: "+new Date().toLocaleString('ru-RU'),""];L.push("── СИНДРОМ ──",syn.title,syn.detail||"");L.push("","── КЛИНИЧЕСКИЕ НАХОДКИ ──");(fin.findings||[]).forEach(x=>L.push("· "+x));(fin.alerts||[]).forEach(x=>L.push("⚠ "+x));L.push("","── РАСЧЁТЫ ──");rGroups.forEach(g=>{g.rows.forEach(r=>L.push(`${g.title} · ${r[0]}: ${r[1]}`))});L.push("","── ХОД ──");logs.forEach(l=>L.push("· "+strip(l)));L.push("","Сформировано: ICU CORE v31.0-dev");lastReport=L.join("\n");
+  const strip=s=>s.replace(/<[^>]+>/g,'');const L=["═══ ICU CORE v32.0-dev ═══","","Дата: "+new Date().toLocaleString('ru-RU'),""];L.push("── СИНДРОМ ──",syn.title,syn.detail||"");L.push("","── КЛИНИЧЕСКИЕ НАХОДКИ ──");(fin.findings||[]).forEach(x=>L.push("· "+x));(fin.alerts||[]).forEach(x=>L.push("⚠ "+x));L.push("","── РАСЧЁТЫ ──");rGroups.forEach(g=>{g.rows.forEach(r=>L.push(`${g.title} · ${r[0]}: ${r[1]}`))});L.push("","── ХОД ──");logs.forEach(l=>L.push("· "+strip(l)));L.push("","Сформировано: ICU CORE v32.0-dev");lastReport=L.join("\n");
 }
 function renderScales(scales,sepsis,d){
   const sc=document.getElementById("scalesResults");if(sc)sc.innerHTML=scales.map(s=>`<div class="score-card"><h4>${escapeHTML(s.name)}</h4><div class="score-val">${escapeHTML(s.totalDisplay??(Number.isFinite(s.total)?String(s.total):"Не рассчитано"))}</div><div class="score-interp"><span class="badge-${s.level}">${escapeHTML(s.interp)}</span></div>${s.items.map(i=>`<div class="score-row"><span>${escapeHTML(i.name)}${i.val!=null?" ("+escapeHTML(String(i.val))+")":""}</span><span>${Number.isFinite(i.score)?escapeHTML(String(i.score))+(i.lowerBound?" (нижняя оценка)":""):i.reason==="ARF неизвестен"&&s.name==="APACHE II"&&i.name==="Креатинин"?"ARF неизвестен":i.range?`${i.range.low}–${i.range.high} (условно)`:"Недоступно"}</span></div>`).join("")}</div>`).join("");
   const el=document.getElementById("sepsisResults");if(el)el.innerHTML=`<div class="score-card"><h4>Сепсис (Sepsis-3)</h4><div class="score-val" style="font-size:16px">${escapeHTML(sepsis.sepsisStatus)}</div><div class="score-row"><span>Инфекция</span><span>${d.infection==="yes"?"Да":d.infection==="no"?"Нет":"Неизвестно"}</span></div><div class="score-row"><span>ΔSOFA</span><span>${Number.isFinite(sepsis.sofaDelta)?sepsis.sofaDelta:"Не рассчитано"}</span></div>${sepsis.shockStatus!=="—"?`<div class="score-row"><span>Шок</span><span>${escapeHTML(sepsis.shockStatus)}</span></div>`:""}</div>`;
 }
-function makeHistory(d,syn){const data={};for(const id of PATIENT_NUMERIC_IDS){if(id==="baselineSOFA"||id==="AGupperLimit")continue;const value=d[id==="SBE"?"SBE_input":id];data[id]=Number.isFinite(value)?value:null;}const record={version:"v31.0-dev",date:new Date().toLocaleString('ru-RU'),diag:syn.title+(syn.detail?": "+syn.detail:""),data,notes:d.notes||"",chronicity:respiratoryChronicity(d),baselineSOFA:Number.isFinite(d.baselineSOFA)?d.baselineSOFA:null,AGupperLimit:Number.isFinite(d.AGupperLimit)?d.AGupperLimit:null,legacyApacheReview:d.legacyApacheReview===true,legacyApacheChronicValue:d.legacyApacheChronicValue||""};for(const id of Object.keys(PATIENT_SELECTOR_DEFAULTS))record[id]=d[id]||PATIENT_SELECTOR_DEFAULTS[id];return record;}
-function runCalculation(save=false){try{markResultStale();const d=readInputs(),err=validate(d);if(err){showToast(err);return}const physioWarn=physiologicWarnings(d);if(physioWarn.length>0 && save){const proceed=confirm("Нефизиологические значения:\n\n"+physioWarn.join("\n")+"\n\nПродолжить?");if(!proceed){showToast("Проверьте ввод");return}}const b=calcBasic(d);const p=detectPrimary(d,b);const comp=compensation(d,b,p);const phComp=phCompensation(d);const dd=calcDeltaDelta(d,b);const st=calcStewart(d,b);const hagma=detectHAGMA(d,b,st);const fin=clinicalFindings(d,b,st,p,dd,hagma);const syn=syndrome(d,b,p,dd,st,hagma,phComp);const ards=ardsAssessment(d,b);const news2=calcNEWS2(d);const qsofa=calcQSOFA(d);const sirs=calcSIRS(d);const sofa=calcSOFA(d,b);const apache2=calcAPACHE2(d,b);const scales=[news2,qsofa,sirs,sofa,apache2];const sepsis=calcSepsis(d,b,sofa,qsofa);const bal=calcBalance(d);const quality=dataQuality(d,b,st,sofa);syn.quality=quality;render(d,b,p,comp,dd,st,fin,hagma,syn,ards,phComp);renderScales(scales,sepsis,d);renderBalance(d,bal);renderBalanceExplanations(d,bal);renderFinal(d,b,syn,scales,sepsis,bal,fin);renderQC(d,b);lastReport+="\n\n── ШКАЛЫ И КОНТЕКСТ ──\n"+scales.map(x=>x.name+": "+(x.totalDisplay??x.total)+" — "+x.interp).join("\n")+"\n"+sepsis.sepsisStatus+"\n"+sepsis.shockStatus;updateDash(d,b,syn,scales,sepsis,bal,fin);updateRisk(d,b,p,scales,sepsis);lastReport+="\n\n── СОХРАНЁННЫЙ КОНТЕКСТ ──\nPEEP/CPAP — Berlin: "+d.PEEP+"\nRespiratory support — SOFA: "+d.respiratorySupport+"\nSupplemental oxygen — NEWS2: "+d.O2support+"\nNEWS2 SpO₂ scale: "+d.news2Scale+"\nAPACHE chronic health: "+d.chronicHealth+"; surgical context: "+d.surgicalContext+"\nVaso: "+d.Vaso+"\nТип пробы: "+d.gasSampleType+"; одновременность: "+d.sampleSimultaneity+"\nanionSourceConfirmed: "+d.anionSourceConfirmed+" — независимо подтверждён источник кислот/анионов: "+(d.anionSourceConfirmed==="yes"?"да":d.anionSourceConfirmed==="no"?"нет подтверждения":"неизвестно")+"\nNa/K растворы: "+d.naSolution+"% / "+d.kSolution+"%";if(Number.isFinite(bal.naDeficit))lastReport+="\nNa дефицит: "+fixed(bal.naDeficit,1)+" ммоль — условная математическая оценка TBW × (140 − Na); не доказывает фактическую потерю общего Na организма.\nОжидаемое изменение Na после 1 л выбранного раствора: "+fixed(bal.deltaNa,2)+" ммоль/л (Adrogué–Madias-style calculation); не скорость в ммоль/л/ч и не прогноз после нескольких литров. Автоматический объём коррекции натрия до 140 не рассчитывается.";if(Number.isFinite(bal.kVolume))lastReport+="\nK объём: "+fixed(bal.kVolume,3)+" мл";if(!Number.isFinite(bal.W))lastReport+="\nВес не задан: весозависимые расчёты не рассчитаны.";markResultFresh();if(save){saveHistory(makeHistory(d,syn));showToast("Сохранено");}try{drawCharts(b,d,st)}catch(e){}if(save)switchTab("dash");}catch(e){markResultStale("Расчёт не завершён; отчёт недоступен");console.error("runCalculation:",e);}}
+function makeHistory(d,syn){const data={};for(const id of PATIENT_NUMERIC_IDS){if(id==="baselineSOFA"||id==="AGupperLimit")continue;const value=d[id==="SBE"?"SBE_input":id];data[id]=Number.isFinite(value)?value:null;}const record={version:"v32.0-dev",date:new Date().toLocaleString('ru-RU'),diag:syn.title+(syn.detail?": "+syn.detail:""),data,notes:d.notes||"",chronicity:respiratoryChronicity(d),baselineSOFA:Number.isFinite(d.baselineSOFA)?d.baselineSOFA:null,AGupperLimit:Number.isFinite(d.AGupperLimit)?d.AGupperLimit:null,legacyApacheReview:d.legacyApacheReview===true,legacyApacheChronicValue:d.legacyApacheChronicValue||""};for(const id of Object.keys(PATIENT_SELECTOR_DEFAULTS))record[id]=d[id]||PATIENT_SELECTOR_DEFAULTS[id];return record;}
+function runCalculation(save=false){try{markResultStale();const d=readInputs(),err=validate(d);if(err){showToast(err);return}const physioWarn=physiologicWarnings(d);if(physioWarn.length>0 && save){const proceed=confirm("Нефизиологические значения:\n\n"+physioWarn.join("\n")+"\n\nПродолжить?");if(!proceed){showToast("Проверьте ввод");return}}const b=calcBasic(d);const p=detectPrimary(d,b);const comp=compensation(d,b,p);const phComp=phCompensation(d);const dd=calcDeltaDelta(d,b);const st=calcStewart(d,b);const hagma=detectHAGMA(d,b,st);const fin=clinicalFindings(d,b,st,p,dd,hagma);const syn=syndrome(d,b,p,dd,st,hagma,phComp);const ards=ardsAssessment(d,b);const news2=calcNEWS2(d);const qsofa=calcQSOFA(d);const sirs=calcSIRS(d);const sofa=calcSOFA(d,b);const apache2=calcAPACHE2(d,b);const scales=[news2,qsofa,sirs,sofa,apache2];const sepsis=calcSepsis(d,b,sofa,qsofa);const bal=calcBalance(d);const quality=dataQuality(d,b,st,sofa);syn.quality=quality;render(d,b,p,comp,dd,st,fin,hagma,syn,ards,phComp);renderScales(scales,sepsis,d);renderBalance(d,bal);renderBalanceExplanations(d,bal);renderFinal(d,b,syn,scales,sepsis,bal,fin);renderQC(d,b);lastReport+="\n\n── ШКАЛЫ И КОНТЕКСТ ──\n"+scales.map(x=>x.name+": "+(x.totalDisplay??x.total)+" — "+x.interp).join("\n")+"\n"+sepsis.sepsisStatus+"\n"+sepsis.shockStatus;updateDash(d,b,syn,scales,sepsis,bal,fin);updateRisk(d,b,p,scales,sepsis);lastReport+="\n\n── СОХРАНЁННЫЙ КОНТЕКСТ ──\nPEEP/CPAP — Berlin: "+d.PEEP+"\nRespiratory support — SOFA: "+d.respiratorySupport+"\nSupplemental oxygen — NEWS2: "+d.O2support+"\nNEWS2 SpO₂ scale: "+d.news2Scale+"\nAPACHE chronic health: "+d.chronicHealth+"; surgical context: "+d.surgicalContext+"\nVaso: "+d.Vaso+"\nТип пробы: "+d.gasSampleType+"; одновременность: "+d.sampleSimultaneity+"\nanionSourceConfirmed: "+d.anionSourceConfirmed+" — этиология анионного компонента подтверждена: "+(d.anionSourceConfirmed==="yes"?"да":d.anionSourceConfirmed==="no"?"нет":"неизвестно")+"\nNa/K растворы: "+d.naSolution+"% / "+d.kSolution+"%";if(Number.isFinite(bal.naDeficit))lastReport+="\nNa дефицит: "+fixed(bal.naDeficit,1)+" ммоль — условная математическая оценка TBW × (140 − Na); не доказывает фактическую потерю общего Na организма.\nОжидаемое изменение Na после 1 л выбранного раствора: "+fixed(bal.deltaNa,2)+" ммоль/л (Adrogué–Madias-style calculation); не скорость в ммоль/л/ч и не прогноз после нескольких литров. Автоматический объём коррекции натрия до 140 не рассчитывается.";if(Number.isFinite(bal.kVolume))lastReport+="\nK объём: "+fixed(bal.kVolume,3)+" мл";if(!Number.isFinite(bal.W))lastReport+="\nВес не задан: весозависимые расчёты не рассчитаны.";markResultFresh();if(save){saveHistory(makeHistory(d,syn));showToast("Сохранено");}try{drawCharts(b,d,st)}catch(e){}if(save)switchTab("dash");}catch(e){markResultStale("Расчёт не завершён; отчёт недоступен");console.error("runCalculation:",e);}}
 function previewCalc(){markResultStale();try{if(document.getElementById("pH").value)runCalculation(false)}catch(e){markResultStale();}}
 function liveValidate(){try{Object.entries(ranges).forEach(([id,[lo,hi]])=>{const e=document.getElementById(id);if(!e)return;const raw=parseFloat(e.value),v=id==="pH"?normalisePHBoundary(raw):raw;e.classList.remove("ok-field","warn-field","bad-field");if(!Number.isFinite(v))return;if(v>=lo&&v<=hi)e.classList.add("ok-field");else if(v<lo*.95||v>hi*1.05)e.classList.add("bad-field");else e.classList.add("warn-field");});}catch(e){}}
 function updateRisk(d,b,p,scales,sepsis){
-  const qc=clinicalQC(d,b),limited=p.invalid||p.primaryProcessCertain===false||p.respiratoryRangeStatus==="unknown"||invalidDomainWarnings(d).length>0||scales.some(s=>s.complete===false)||![b.HCO3,b.AGcorr,b.AG_Kellum,b.Osm_calc].every(Number.isFinite),warned=qc.warnings.length>0||qc.pending.length>0;
+  const qc=clinicalQC(d,b),limited=p.respiratoryRangeStatus==="unknown"||invalidDomainWarnings(d).length>0||scales.some(s=>s.complete===false)||![b.HCO3,b.AGcorr,b.AG_Kellum,b.Osm_calc].every(Number.isFinite),warned=qc.warnings.length>0||qc.pending.length>0;
   const value=limited?"Интерпретация ограничена":warned?"Есть предупреждения":"Данные полные",el=document.getElementById("riskBadge"),v=document.getElementById("riskValue");if(el)el.className="risk-pill "+(limited||warned?"warn":"ok");if(v)v.textContent=value;
 }
 
@@ -1463,7 +1392,7 @@ function drawCharts(b,d,st){try{
   }
 }catch(e){console.error("drawCharts:",e);}}
 
-function resetPatientFormToDefaults(){markResultStale();resetClinicalContext();const vals={pH:7.40,pCO2:40,HCO3in:24,SBE:0,Lac:1,pO2:90,FiO2:21,PEEP:0,Na:140,Cl:103,K:4,Ca:1.2,Mg:0.9,Alb:40,PO4:1.1,Gluc:5.5,Ur:5,Osm_in:"",Weight:70,RR:16,SpO2:98,SBP:120,DBP:80,HR:80,Temp:36.8,GCS:15,Age:50,Plt:200,WBC:7,Bands:3,Hct:40,Cr:80,Bil:15,Urine:1500};Object.entries(vals).forEach(([k,v])=>{const e=document.getElementById(k);if(e)e.value=v});const e=document.getElementById("notes");if(e)e.value="";["sbeMode","naCorr","chronic","sidModel","O2support","ACVPU","Chronic","Vaso","Sex","acuity","bilateral","timing","noncardiac","infection"].forEach(k=>{const el=document.getElementById(k);if(el)el.value=el.id==="sbeMode"?"input":el.id==="naCorr"?"off":el.id==="chronic"?"unknown":el.id==="sidModel"?"charged":el.id==="O2support"?"no":el.id==="ACVPU"?"A":el.id==="Chronic"?"none":el.id==="Vaso"?"none":el.id==="Sex"?"M":el.id==="acuity"?"auto":"unknown"});}
+function resetPatientFormToDefaults(){markResultStale();resetClinicalContext();const vals={pH:7.40,pCO2:40,HCO3in:24,SBE:0,Lac:1,pO2:90,FiO2:21,PEEP:0,Na:140,Cl:103,K:4,Ca:1.2,Mg:0.9,Alb:40,PO4:1.1,Gluc:5.5,Ur:5,Osm_in:"",Weight:70,RR:16,SpO2:98,SBP:120,DBP:80,HR:80,Temp:36.8,GCS:15,Age:50,Plt:200,WBC:7,Bands:3,Hct:40,Cr:80,Bil:15,Urine:1500};Object.entries(vals).forEach(([k,v])=>{const e=document.getElementById(k);if(e)e.value=v});const e=document.getElementById("notes");if(e)e.value="";["sbeMode","naCorr","chronic","sidModel","O2support","ACVPU","Vaso","Sex","acuity","bilateral","timing","noncardiac","infection"].forEach(k=>{const el=document.getElementById(k);if(el)el.value=el.id==="sbeMode"?"input":el.id==="naCorr"?"off":el.id==="chronic"?"unknown":el.id==="sidModel"?"charged":el.id==="O2support"?"no":el.id==="ACVPU"?"A":el.id==="Chronic"?"none":el.id==="Vaso"?"none":el.id==="Sex"?"M":el.id==="acuity"?"auto":"unknown"});}
 function loadPreset(n){try{const p=presets[n];if(!p)return;resetPatientFormToDefaults();Object.entries(p).forEach(([k,v])=>{const el=document.getElementById(k);if(el)el.value=v;});liveValidate();runCalculation(false);showToast("Пресет "+n);}catch(e){markResultStale();}}
 function resetClinicalContext(){for(const id of ["chronicHealth","surgicalContext","chronic","anionSourceConfirmed","acuteRenalFailure","respiratorySupport","infectionRelatedOrganDysfunction","adequateResuscitation","vasopressorRequirement","sampleSimultaneity","gasSampleType"]){const el=document.getElementById(id);if(el)el.value="unknown";}const scale=document.getElementById("news2Scale");if(scale)scale.value="1";const health=document.getElementById("chronicHealth");if(health){health.dataset.legacyApacheReview="false";health.dataset.legacyApacheChronicValue="";}for(const [id,value]of [["naSolution","0.9"],["kSolution","4"]]){const el=document.getElementById(id);if(el)el.value=value;}for(const id of ["baselineSOFA","AGupperLimit"]){const el=document.getElementById(id);if(el)el.value="";}}
 function clearAll(){try{resetPatientFormToDefaults();liveValidate();runCalculation(false);showToast("Сброшено");}catch(e){markResultStale();}}
@@ -1491,28 +1420,25 @@ function resolvedTheme(mode){
   if(mode==="auto") return (window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";
   return mode==="dark"?"dark":"light";
 }
-function applyThemeMode(mode,save=true){
+function applyThemeMode(mode,save=true,redraw=true){
   const m=(mode==="light"||mode==="dark"||mode==="auto")?mode:"auto";
   const t=resolvedTheme(m);
   document.documentElement.setAttribute("data-theme",t);
   document.documentElement.setAttribute("data-theme-mode",m);
   if(save){try{localStorage.setItem("icu_theme_mode",m);localStorage.removeItem("icu_theme");}catch(e){}}
   document.querySelectorAll(".theme-choice").forEach(b=>b.classList.toggle("active",b.dataset.themeChoice===m));
-  try{const d=readInputs(),bb=calcBasic(d),st=calcStewart(d,bb);if(typeof drawCharts==="function") drawCharts(bb,d,st);}catch(e){}
+  if(redraw){try{const d=readInputs(),bb=calcBasic(d),st=calcStewart(d,bb);if(typeof drawCharts==="function") drawCharts(bb,d,st);}catch(e){}}
 }
 function setThemeMode(mode){
   document.documentElement.classList.add("theme-transitioning");
   applyThemeMode(mode,true);
   window.setTimeout(()=>document.documentElement.classList.remove("theme-transitioning"),760);
 }
-function toggleTheme(){
-  const m=document.documentElement.getAttribute("data-theme-mode")||"auto";
-  setThemeMode(m==="dark"?"light":"dark");
-}
+
 function initTheme(){
   let m=null;try{m=localStorage.getItem("icu_theme_mode");if(!m){const old=localStorage.getItem("icu_theme");if(old==="dark"||old==="light")m=old;}}catch(e){}
   if(m!=="dark"&&m!=="light"&&m!=="auto")m="auto";
-  applyThemeMode(m,false);
+  applyThemeMode(m,false,false);
   if(window.matchMedia){const mq=window.matchMedia("(prefers-color-scheme: dark)");const sync=()=>{if((document.documentElement.getAttribute("data-theme-mode")||"auto")==="auto")applyThemeMode("auto",false)};try{mq.addEventListener("change",sync)}catch(e){try{mq.addListener(sync)}catch(_){}}}
 }
 function getHistory(){try{return JSON.parse(localStorage.getItem(HISTORY_KEY)||"[]")}catch(e){return[]}}
@@ -1525,7 +1451,7 @@ document.addEventListener("click",e=>{try{const p=document.getElementById("histo
 function copyResult(){const result=exportCurrentReport();if(!result)return;const fallbackCopy=()=>{if(!hasCurrentResult()||currentInputFingerprint()!==result.fingerprint)return;try{const field=document.createElement("textarea");field.value=result.report;document.body.appendChild(field);field.select();document.execCommand("copy");field.remove();showToast("Скопировано");}catch(e){showToast("Не удалось скопировать");}};try{if(navigator.clipboard)navigator.clipboard.writeText(result.report).then(()=>showToast("Скопировано")).catch(fallbackCopy);else fallbackCopy();}catch(e){fallbackCopy();}}
 function shareResult(){const result=exportCurrentReport();if(!result)return;try{if(navigator.share)navigator.share({title:"ICU CORE",text:result.report}).catch(()=>{});else copyResult();}catch(e){showToast("Не удалось отправить");}}
 function showToast(m){try{const t=document.getElementById("toast");if(!t)return;t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1800);}catch(e){}}
-window.addEventListener("load",()=>{try{initTheme();liveValidate();runCalculation(false);switchTab("home");}catch(e){console.error("load:",e);}});
+window.addEventListener("load",()=>{try{initTheme();liveValidate();runCalculation(false);switchTab("home");const intro=document.getElementById("intro-screen");if(intro)intro.addEventListener("animationend",e=>{if(e.animationName==="introFadeOut")intro.remove();});}catch(e){console.error("load:",e);}});
 document.addEventListener("input",patientInputChanged,true);
 document.addEventListener("change",patientInputChanged,true);
 </script>
